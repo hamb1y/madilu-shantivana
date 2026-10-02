@@ -1,5 +1,6 @@
 ---
-import "@fontsource/young-serif/400.css";
+import "@fontsource-variable/fraunces/full.css";
+import "@fontsource-variable/fraunces/full-italic.css";
 import "@fontsource-variable/source-sans-3/wght.css";
 import "@fontsource-variable/noto-sans-kannada/wght.css";
 import "@fontsource-variable/noto-serif-kannada/wght.css";
@@ -59,7 +60,7 @@ const ogLocale = { en: "en_IN", kn: "kn_IN" } as const;
     {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
     <meta property="og:image" content={socialImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#f6efe2" />
+    <meta name="theme-color" content="#f5eddc" />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -71,5 +72,26 @@ const ogLocale = { en: "en_IN", kn: "kn_IN" } as const;
       <slot />
     </main>
     <Footer lang={lang} path={path} />
+    <script>
+      // Blocks below the fold slide up into place as they come into view.
+      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!still && "IntersectionObserver" in window) {
+        const watch = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.remove("rise-pending");
+              watch.unobserve(entry.target);
+            }
+          },
+          { rootMargin: "0px 0px -6% 0px" },
+        );
+        for (const el of document.querySelectorAll("[data-rise]")) {
+          if (el.getBoundingClientRect().top < innerHeight) continue;
+          el.classList.add("rise-pending");
+          watch.observe(el);
+        }
+      }
+    </script>
   </body>
 </html>

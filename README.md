@@ -8,14 +8,19 @@ The site is in English and Kannada (`/kn/`).
 
 ## What's on it
 
-- **Home**: the farm in a few figures, the same ground two years apart, and the
-  latest entries from the story.
-- **Story**: the farm from the first plan onwards, one dated entry at a time.
-- **What grows**: the planting map, row by row, with a count of every kind and
-  notes on the field crops.
-- **Farming**: how the farm is watered, fed, weeded and protected.
+- **Home**: the farm's story in a few chapters, from bare red earth to rows of
+  young trees, with a drawing of the farm, its figures, and the same ground
+  two years apart to drag between.
+- **Story**: every dated entry from the first plan onwards, by year, filtered by
+  topic.
+- **What grows**: the planting map, one mark per tree, where you can pick out
+  any kind. Also a count of every kind and notes on the field crops.
+- **Farming**: where the farm's water, feed and mulch come from and where they
+  go, and how it's watered, fed, weeded and protected.
 - **Photos**: every photo on the site, by year.
 - **About**: who runs the farm, what the name means, and where it is.
+
+The site is at https://madilusantivana.farm.
 
 ## Licence
 

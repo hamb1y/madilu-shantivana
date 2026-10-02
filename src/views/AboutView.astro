@@ -17,6 +17,8 @@ const p = photo(about.photo);
 const { location } = settings;
 // An exact pin, once set, takes over from the search link.
 const mapHref = settings.map_pin || settings.map_url;
+// The name in Kannada script, a word to a line, drawn large.
+const words = lx(settings.name, "kn").split(/\s+/).filter(Boolean);
 ---
 
 <Base lang={lang} path="/about/" title={title} description={t(lang, "about.description")} section="about">
@@ -24,29 +26,38 @@ const mapHref = settings.map_pin || settings.map_url;
     <header class="page-head">
       <h1>{title}</h1>
     </header>
+  </div>
 
+  <section class="name-band" aria-labelledby="name-title">
+    <div class="container name-inner">
+      <p class="letters" lang="kn" aria-hidden="true">
+        {words.map((word) => <span>{word}</span>)}
+      </p>
+      <div class="name-text">
+        <h2 id="name-title">{t(lang, "about.name")}</h2>
+        <p class="name-body">{lx(about.name_body, lang)}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
     {
       p && (
         <Figure
           photo={p}
           lang={lang}
-          eager
-          ratio="16 / 9"
-          sizes="(min-width: 76rem) 1200px, 100vw"
+          class="wide-photo"
+          ratio="21 / 9"
+          sizes="(min-width: 78rem) 78rem, 100vw"
           caption={`${formatDate(p.date, lang)} · ${lx(p.alt, lang)}`}
         />
       )
     }
 
     <div class="columns">
-      <section aria-labelledby="name-title">
-        <h2 id="name-title">{t(lang, "about.name")}</h2>
-        <p class="lead">{lx(about.name_body, lang)}</p>
-      </section>
-
       {
         about.people.length > 0 && (
-          <section aria-labelledby="people-title">
+          <section aria-labelledby="people-title" data-rise>
             <h2 id="people-title">{t(lang, "about.people")}</h2>
             <div class="people">
               {about.people.map((person) => (
@@ -60,10 +71,10 @@ const mapHref = settings.map_pin || settings.map_url;
         )
       }
 
-      <section aria-labelledby="where-title">
+      <section aria-labelledby="where-title" data-rise>
         <h2 id="where-title">{t(lang, "about.where")}</h2>
         <address>
-          <span>{lx(location.village, lang)}</span>
+          <span class="village">{lx(location.village, lang)}</span>
           <span>{t(lang, "about.taluk", { taluk: lx(location.taluk, lang) })}</span>
           <span>{lx(location.district, lang)}</span>
           <span>{lx(location.state, lang)}</span>
@@ -85,6 +96,62 @@ const mapHref = settings.map_pin || settings.map_url;
 </Base>
 
 <style>
+  .page-head {
+    padding-block-end: var(--s-6);
+  }
+
+  /* The name, in Kannada letters as tall as the page allows. */
+  .name-band {
+    background: var(--about);
+    color: var(--paper);
+  }
+
+  .name-inner {
+    display: grid;
+    gap: var(--s-6);
+    padding-block: var(--s-7) var(--s-8);
+  }
+
+  .letters {
+    display: grid;
+    max-width: none;
+    font-family: "Noto Serif Kannada Variable", serif;
+    font-size: clamp(4.25rem, 2rem + 11vw, 12rem);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .letters span:nth-child(2) {
+    padding-inline-start: 0.5em;
+  }
+
+  .name-text {
+    display: grid;
+    align-content: end;
+    gap: var(--s-4);
+  }
+
+  .name-text h2 {
+    font-size: var(--step-3);
+  }
+
+  .name-body {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    font-weight: 380;
+    line-height: 1.4;
+    max-width: 32ch;
+  }
+
+  :lang(kn) .name-body {
+    font-size: var(--step-1);
+    line-height: 1.75;
+  }
+
+  .container :global(.wide-photo) {
+    margin-block-start: var(--s-7);
+  }
+
   .columns {
     display: grid;
     gap: var(--s-7);
@@ -97,24 +164,38 @@ const mapHref = settings.map_pin || settings.map_url;
     gap: var(--s-4);
   }
 
-  h2 {
+  .columns h2 {
+    font-size: var(--step-4);
+    font-weight: 560;
     color: var(--accent);
+  }
+
+  :lang(kn) .columns h2 {
+    font-size: var(--step-3);
   }
 
   .people {
     display: grid;
-    gap: var(--s-5);
+    gap: var(--s-6);
   }
 
   .person {
     display: grid;
     gap: var(--s-2);
+    padding-block-start: var(--s-3);
+    border-block-start: 2px solid var(--ink);
   }
 
   address {
     display: grid;
     font-style: normal;
     font-size: var(--step-1);
+  }
+
+  .village {
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    line-height: 1.2;
   }
 
   .map {
@@ -125,8 +206,23 @@ const mapHref = settings.map_pin || settings.map_url;
   }
 
   @media (min-width: 64rem) {
+    /* The letters span the band; the meaning sits under them, to the right. */
+    .name-inner {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+    }
+
+    .letters {
+      grid-column: 1 / -1;
+    }
+
+    .name-text {
+      grid-column: 2;
+      margin-block-start: calc(var(--s-7) * -1);
+    }
+
     .columns {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: var(--s-8);
     }
   }
 </style>

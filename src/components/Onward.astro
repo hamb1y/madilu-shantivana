@@ -54,6 +54,11 @@ const ids = settings.nav.filter(isPageId).filter((id) => id !== current && id !=
     background: var(--accent);
     color: var(--paper);
     text-decoration: none;
+    transition: translate var(--quick) var(--ease);
+  }
+
+  a:hover {
+    translate: 0 -0.4rem;
   }
 
   .title {

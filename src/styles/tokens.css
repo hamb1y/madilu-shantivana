@@ -1,16 +1,28 @@
 /*
- * Design tokens. Paper and ink, one accent per section, two typefaces.
+ * Design tokens. Paper and ink, the colours of the land, one accent per page.
  * Every accent passes 4.5:1 on paper, and paper text passes 4.5:1 on it.
  */
 :root {
-  --paper: #f6efe2;
-  --paper-2: #efe5d2;
-  --ink: #2a2118;
-  --ink-2: #5e5247;
-  --rule: #d9ccb4;
-  --rule-strong: #a8977a;
+  --paper: #f5eddc;
+  --paper-2: #ece1c8;
+  --ink: #231a12;
+  --ink-2: #5a4d40;
+  --rule: #d6c7a8;
+  --rule-strong: #a08c6a;
 
-  /* One accent per section, used everywhere that section appears. */
+  /* The land: bands on the home page, the drawing in the hero. */
+  --soil: #9a3a1a;
+  --soil-pale: #f6d3b8;
+  --leaf: #2e5e2a;
+  --leaf-pale: #a9cf8f;
+  --forest: #17321f;
+  --turmeric: #e0a82e;
+  --turmeric-deep: #3b2a06;
+  --hill-far: #b9c2ad;
+  --hill-mid: #8c9e86;
+  --hill-near: #5d7660;
+
+  /* One accent per page, used everywhere that page appears. */
   --story: #a3401e;
   --grows: #2f6b2a;
   --farming: #7a5a12;
@@ -18,8 +30,8 @@
   --about: #6b2f5a;
   --accent: var(--ink);
 
-  /* Young Serif and Source Sans cover Latin; the Noto faces cover Kannada. */
-  --font-display: "Young Serif", "Noto Serif Kannada Variable", Georgia, serif;
+  /* Fraunces and Source Sans cover Latin; the Noto faces cover Kannada. */
+  --font-display: "Fraunces Variable", "Noto Serif Kannada Variable", Georgia, serif;
   --font-body: "Source Sans 3 Variable", "Noto Sans Kannada Variable", "Segoe UI", Roboto, sans-serif;
 
   --step--1: 0.9375rem;
@@ -29,6 +41,7 @@
   --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 2.9rem);
   --step-4: clamp(2.5rem, 1.7rem + 3.6vw, 4.6rem);
   --step-5: clamp(3.25rem, 2rem + 6vw, 7.5rem);
+  --step-6: clamp(3.75rem, 1.5rem + 10vw, 11rem);
 
   --s-1: 0.25rem;
   --s-2: 0.5rem;
@@ -41,10 +54,15 @@
   --s-9: 7rem;
 
   --gutter: clamp(16px, 4vw, 48px);
-  --max: 76rem;
+  --max: 78rem;
   --measure: 66ch;
   --radius: 4px;
+  --radius-round: 999px;
   --header-h: 3.75rem;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --quick: 180ms;
+  --slow: 700ms;
 }
 
 [data-section="story"] { --accent: var(--story); }

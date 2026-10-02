@@ -1,0 +1,58 @@
+{
+  "en": {
+    "topics": [
+      {
+        "id": "planting",
+        "name": "Planting"
+      },
+      {
+        "id": "water",
+        "name": "Water"
+      },
+      {
+        "id": "care",
+        "name": "Soil and pests"
+      },
+      {
+        "id": "animals",
+        "name": "Animals"
+      },
+      {
+        "id": "harvest",
+        "name": "Crops and harvest"
+      },
+      {
+        "id": "people",
+        "name": "People and buildings"
+      }
+    ]
+  },
+  "kn": {
+    "topics": [
+      {
+        "id": "planting",
+        "name": "ನಾಟಿ"
+      },
+      {
+        "id": "water",
+        "name": "ನೀರು"
+      },
+      {
+        "id": "care",
+        "name": "ಮಣ್ಣು ಮತ್ತು ಕೀಟ"
+      },
+      {
+        "id": "animals",
+        "name": "ಪ್ರಾಣಿಗಳು"
+      },
+      {
+        "id": "harvest",
+        "name": "ಬೆಳೆ ಮತ್ತು ಕೊಯ್ಲು"
+      },
+      {
+        "id": "people",
+        "name": "ಜನ ಮತ್ತು ಕಟ್ಟಡಗಳು"
+      }
+    ]
+  }
+}

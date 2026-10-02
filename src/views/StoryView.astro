@@ -2,8 +2,8 @@
 import Base from "../layouts/Base.astro";
 import Onward from "../components/Onward.astro";
 import Timeline from "../components/Timeline.astro";
-import { events, type Locale } from "../data/load";
-import { formatMonth, t } from "../i18n/utils";
+import { events, topics, type Locale } from "../data/load";
+import { formatMonth, lx, t } from "../i18n/utils";
 
 export interface Props {
   lang: Locale;
@@ -11,6 +11,8 @@ export interface Props {
 
 const { lang } = Astro.props;
 const title = t(lang, "story.title");
+const years = [...new Set(events.map((e) => e.date.slice(0, 4)))];
+const used = topics.filter((topic) => events.some((e) => e.topic === topic.id));
 ---
 
 <Base lang={lang} path="/story/" title={title} description={t(lang, "story.description")} section="story">
@@ -29,7 +31,227 @@ const title = t(lang, "story.title");
         )
       }
     </header>
+  </div>
+
+  {
+    events.length > 0 && (
+      <div class="tools" data-story-tools>
+        <div class="container tools-inner">
+          <nav class="years" aria-label={t(lang, "story.years")}>
+            <ul>
+              {years.map((year) => (
+                <li>
+                  <a href={`#year-${year}`} data-year-link={year}>
+                    {year}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          {used.length > 1 && (
+            <div class="topics" role="group" aria-labelledby="topics-label">
+              <span id="topics-label" class="label">
+                {t(lang, "story.show")}
+              </span>
+              <ul>
+                <li>
+                  <button type="button" data-topic="" aria-pressed="true">
+                    {t(lang, "story.all")}
+                  </button>
+                </li>
+                {used.map((topic) => (
+                  <li>
+                    <button type="button" data-topic={topic.id} aria-pressed="false">
+                      {lx(topic.name, lang)}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <p class="shown" aria-live="polite" data-template={t(lang, "story.shown")}>
+            {t(lang, "story.shown", { shown: events.length, total: events.length })}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  <div class="container">
     <Timeline events={events} lang={lang} />
   </div>
   <Onward lang={lang} current="story" />
 </Base>
+
+<script>
+  const tools = document.querySelector<HTMLElement>("[data-story-tools]");
+  if (tools) {
+    const entries = [...document.querySelectorAll<HTMLElement>(".entry[data-topic]")];
+    const years = [...document.querySelectorAll<HTMLElement>(".year[data-year]")];
+    const buttons = [...tools.querySelectorAll<HTMLButtonElement>("button[data-topic]")];
+    const shown = tools.querySelector<HTMLElement>(".shown");
+    const links = [...tools.querySelectorAll<HTMLAnchorElement>("[data-year-link]")];
+
+    // Pick a kind of entry: the others are hidden, and so is a year left empty.
+    const show = (topic: string) => {
+      for (const button of buttons) button.setAttribute("aria-pressed", String(button.dataset.topic === topic));
+      let count = 0;
+      for (const entry of entries) {
+        const on = !topic || entry.dataset.topic === topic;
+        entry.hidden = !on;
+        if (on) {
+          count++;
+          entry.classList.remove("rise-pending");
+        }
+      }
+      for (const year of years) {
+        const empty = !year.querySelector(".entry:not([hidden])");
+        year.hidden = empty;
+        links.find((link) => link.dataset.yearLink === year.dataset.year)?.toggleAttribute("hidden", empty);
+      }
+      if (shown?.dataset.template) {
+        shown.textContent = shown.dataset.template
+          .replace("{shown}", String(count))
+          .replace("{total}", String(entries.length));
+      }
+    };
+    for (const button of buttons) button.addEventListener("click", () => show(button.dataset.topic ?? ""));
+
+    // Headings and linked entries stop below the bar, however tall it wraps.
+    new ResizeObserver(() => document.body.style.setProperty("--tools-h", `${tools.offsetHeight}px`)).observe(tools);
+
+    // The year being read is marked in the jump list.
+    const spy = new IntersectionObserver(
+      (records) => {
+        for (const record of records) {
+          if (!record.isIntersecting) continue;
+          const year = (record.target as HTMLElement).dataset.year;
+          for (const link of links) {
+            if (link.dataset.yearLink === year) link.setAttribute("aria-current", "true");
+            else link.removeAttribute("aria-current");
+          }
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px" },
+    );
+    years.forEach((year) => spy.observe(year));
+  }
+</script>
+
+<style>
+  /* The year links and topic switches stay under the header while reading. */
+  .tools {
+    position: sticky;
+    inset-block-start: var(--header-h);
+    z-index: 20;
+    background: var(--paper);
+    border-block: 1px solid var(--rule);
+  }
+
+  .tools-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-2) var(--s-6);
+    padding-block: var(--s-3);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1) var(--s-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .years a {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    font-weight: 600;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+    transition: text-decoration-color var(--quick) var(--ease);
+  }
+
+  .years a:hover {
+    text-decoration-color: var(--rule-strong);
+  }
+
+  .years a[aria-current] {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  .years a[hidden] {
+    display: none;
+  }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-1) var(--s-4);
+  }
+
+  .label {
+    font-weight: 700;
+  }
+
+  .topics button {
+    padding: var(--s-1) 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+    transition: text-decoration-color var(--quick) var(--ease);
+  }
+
+  .topics button:hover {
+    text-decoration-color: var(--rule-strong);
+  }
+
+  .topics button[aria-pressed="true"] {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration-color: var(--accent);
+  }
+
+  .shown {
+    color: var(--ink-2);
+    font-size: var(--step--1);
+    margin-inline-start: auto;
+  }
+
+  /* On a phone the bar is one scrolling line of topics; years jump from the headings. */
+  @media (max-width: 47.99rem) {
+    .tools-inner {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tools ul {
+      flex-wrap: nowrap;
+    }
+
+    .topics,
+    .years {
+      flex: none;
+      flex-wrap: nowrap;
+    }
+
+    .topics button {
+      white-space: nowrap;
+    }
+
+    .shown {
+      flex: none;
+      white-space: nowrap;
+    }
+  }
+</style>

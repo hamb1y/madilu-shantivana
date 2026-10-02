@@ -25,6 +25,9 @@ const groupRows = groups
   })
   .filter((group) => group.kinds.length > 0);
 
+// The table's bars are drawn against the most planted kind.
+const most = Math.max(1, ...plantCounts.values());
+
 const BAND = 25;
 const bands = Array.from({ length: Math.ceil(plot.rows.length / BAND) }, (_, b) =>
   t(lang, "grows.rows", { from: b * BAND + 1, to: Math.min(plot.rows.length, (b + 1) * BAND) }),
@@ -60,6 +63,10 @@ const mapDate = formatDate(plot.date, lang);
           mapLabel: t(lang, "grows.mapLabel", { plants: plantTotal, rows: plot.rows.length }),
           place: t(lang, "grows.place"),
           bands,
+          find: t(lang, "grows.find"),
+          everyKind: t(lang, "grows.everyKind"),
+          found: t(lang, "grows.found"),
+          groupsTitle: t(lang, "grows.groupsTitle"),
         }}
       />
     </section>
@@ -83,13 +90,27 @@ const mapDate = formatDate(plot.date, lang);
                     <span class="swatch" style={`background: ${group.color}`} aria-hidden="true" />
                     {lx(group.name, lang)}
                   </th>
-                  <td class="num">{group.count}</td>
+                  <td class="num">
+                    <span class="count-cell">
+                      {group.count}
+                      <span />
+                    </span>
+                  </td>
                 </tr>
                 {group.kinds.map((kind) => (
                   <tr>
                     <th scope="row">{lx(kind.name, lang)}</th>
                     <td lang={other}>{lx(kind.name, other)}</td>
-                    <td class="num">{countOf(kind.id)}</td>
+                    <td class="num">
+                      <span class="count-cell">
+                        {countOf(kind.id)}
+                        <span class="bar" aria-hidden="true">
+                          <span
+                            style={`inline-size: ${((countOf(kind.id) / most) * 100).toFixed(1)}%; background: ${group.color}`}
+                          />
+                        </span>
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -98,7 +119,12 @@ const mapDate = formatDate(plot.date, lang);
           <tfoot>
             <tr>
               <th scope="row" colspan="2">{t(lang, "grows.total")}</th>
-              <td class="num">{plantTotal}</td>
+              <td class="num">
+                <span class="count-cell">
+                  {plantTotal}
+                  <span />
+                </span>
+              </td>
             </tr>
           </tfoot>
         </table>
@@ -159,7 +185,7 @@ const mapDate = formatDate(plot.date, lang);
   }
 
   .table-wrap {
-    max-inline-size: 40rem;
+    max-inline-size: 52rem;
   }
 
   table {
@@ -200,8 +226,25 @@ const mapDate = formatDate(plot.date, lang);
   }
 
   .num {
-    text-align: end;
     padding-inline-end: 0;
+  }
+
+  /* The count with a bar of its size after it. */
+  .count-cell {
+    display: inline-grid;
+    grid-template-columns: 3ch clamp(1.5rem, 30vw - 4.5rem, 14rem);
+    align-items: center;
+    gap: var(--s-2);
+    text-align: end;
+  }
+
+  .bar {
+    display: flex;
+    block-size: 0.7rem;
+  }
+
+  .bar span {
+    min-inline-size: 2px;
   }
 
   tfoot th,

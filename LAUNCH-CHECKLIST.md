@@ -4,13 +4,8 @@ Questions for the owner and steps left before the site goes live.
 
 ## Decisions
 
-- [ ] **Domain.** The site is set up for `madilufarms.pages.dev`. If there's a
-      domain, set `site` in `astro.config.mjs`, `site_url` and `display_url` in
-      `public/admin/config.yml`, and the auth worker's `ALLOWED_DOMAINS`.
-- [ ] **How visitors get in touch**, if at all: an email address, a form, or
-      nothing. The site has no contact details now, by choice: no phone numbers.
-- [ ] **Link to Bhoomi Seva?** Lakshmi is on that site's team. A link either way
-      is one line in the footer or on the About page.
+- [ ] **How visitors get in touch.** The site has no contact details for now,
+      by choice. Revisit later: an email address, a form, or nothing.
 
 ## Content to confirm
 
@@ -34,15 +29,20 @@ Questions for the owner and steps left before the site goes live.
 
 ## Before launch
 
-- [ ] Create the GitHub repository `hamb1y/madilu` and push.
-- [ ] Deploy the Sveltia auth worker and set `backend.base_url` in
-      `public/admin/config.yml` (DEVELOPING.md, "Auth worker"). Without it, the
-      CMS can't sign anyone in.
-- [ ] Add editors as collaborators on the repository.
-- [ ] Connect Cloudflare Pages to the repository: build
-      `bun run check && bun run build`, output `dist`, `BUN_VERSION` 1.4.2.
-- [ ] After the first deploy, request every route on the live domain and take a
-      screenshot of the home page.
+- [ ] **Register `madilusantivana.farm`** and add it (and `www`) to the Cloudflare
+      Pages project `madilu-shantivana` as a custom domain. The site, sitemap,
+      CMS and auth worker are already set up for it; until then it runs at
+      https://madilu-shantivana.pages.dev.
+- [ ] **Create the GitHub OAuth app** at github.com/settings/applications/new:
+      name "Madilu Shantivana CMS", homepage `https://madilusantivana.farm`,
+      callback `https://madilu-cms-auth.rishi-s-malnad.workers.dev/callback`.
+      Then, from `/home/dipshit/sites/madilu-cms-auth`, run
+      `wrangler secret put GITHUB_CLIENT_ID` and
+      `wrangler secret put GITHUB_CLIENT_SECRET`. Until both are set, nobody
+      can sign in to the CMS.
+- [ ] Add editors as collaborators on `hamb1y/madilu-shantivana`.
+- [ ] Once the domain is live, request every route on it and take a screenshot
+      of the home page.
 
 ## Housekeeping
 

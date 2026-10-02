@@ -12,13 +12,23 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100svh;
   margin: 0;
-  background: var(--paper);
+  /* A fine grain, like rough paper. */
+  background: var(--paper)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .24 0 0 0 0 .12 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
   line-height: 1.6;
   font-variant-numeric: tabular-nums;
+}
+
+/* A short page still ends with the footer at the bottom of the window. */
+main {
+  flex: 1 0 auto;
 }
 
 /* Kannada sits taller on the line. */
@@ -38,9 +48,15 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.15;
+  font-weight: 480;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 60, "WONK" 1;
+  line-height: 1.1;
   text-wrap: balance;
+}
+
+em {
+  font-style: italic;
 }
 
 :lang(kn) :is(h1, h2, h3) {
@@ -48,8 +64,17 @@ h3 {
 }
 
 h1 {
+  font-size: var(--step-5);
+  font-weight: 560;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+
+:lang(kn) h1 {
   font-size: var(--step-4);
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
 }
 
 h2 {
@@ -73,6 +98,33 @@ a {
 
 a:hover {
   text-decoration-thickness: 2px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Blocks marked data-rise slide up into place as they scroll into view. Only
+   blocks below the fold wait, and only when motion is welcome (see Base). */
+[data-rise] {
+  transition: transform var(--slow) var(--ease);
+}
+
+[data-rise].rise-pending {
+  transform: translateY(2.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
 }
 
 :focus-visible {
@@ -118,8 +170,8 @@ button {
 /* A page's opening: title, then a short lead paragraph. */
 .page-head {
   display: grid;
-  gap: var(--s-4);
-  padding-block: var(--s-7) var(--s-6);
+  gap: var(--s-5);
+  padding-block: var(--s-8) var(--s-7);
 }
 
 .page-head h1 {
@@ -127,9 +179,18 @@ button {
 }
 
 .lead {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 380;
+  font-variation-settings: "SOFT" 100;
+  line-height: 1.35;
+  max-width: 36ch;
+}
+
+:lang(kn) .lead {
   font-size: var(--step-1);
-  line-height: 1.55;
-  max-width: 62ch;
+  line-height: 1.7;
+  max-width: 48ch;
 }
 
 .section {

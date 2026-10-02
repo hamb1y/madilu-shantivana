@@ -4,10 +4,10 @@
 
 | Concern | Choice |
 | --- | --- |
-| Framework | Astro 7, static output; Svelte 5 islands for the planting map and the photo viewer |
+| Framework | Astro 7, static output; Svelte 5 islands for the planting map and the photo viewer; small inline scripts for the rest |
 | Styling | Plain CSS; tokens in `src/styles/tokens.css` |
 | Icons | `lucide-astro`, `lucide-svelte` |
-| Fonts | Fontsource, self-hosted: Young Serif, Source Sans 3, Noto Sans Kannada, Noto Serif Kannada |
+| Fonts | Fontsource, self-hosted: Fraunces, Source Sans 3, Noto Sans Kannada, Noto Serif Kannada |
 | Content | JSON in `content/` |
 | CMS | Sveltia CMS at `/admin/`, GitHub backend |
 | Hosting | Cloudflare Pages |
@@ -40,7 +40,9 @@ preview server first if it holds port 4399 (`ss -ltnp | grep 4399`). Set
 content/
   settings.json   name, tagline, location, map links, nav, logo, credit
   copy.json       interface text, one block per language
-  pages.json      page introductions, facts, crops, practices, people, page photos
+  pages.json      page introductions, facts, story chapters, crops, practices,
+                  the farming flow, people, page photos
+  topics.json     story topics (planting, water, harvest…); entries pick one
   photos.json     every photo: id, file, description, date
   plants.json     plant groups (with map colours) and kinds
   plot.json       the planting map, one line of kinds per row (not translated)
@@ -54,8 +56,10 @@ src/
   i18n/           ui.ts (copy.json → typed keys), utils.ts (t, lx, localePath, dates)
   lib/            nav.ts (page → path), onward.ts (data lines for onward tiles)
   layouts/Base.astro
-  components/     Header, Footer, Figure, Facts, Timeline, EventCard, Onward,
-                  PlotMap.svelte, PhotoGrid.svelte
+  components/     HeroScene (the drawn farm), ThenNow (slider), Chapters
+                  (story bands), FlowDiagram, Facts, Timeline, EventCard,
+                  Figure, Onward, Header, Footer, PlotMap.svelte,
+                  PhotoGrid.svelte
   views/          one view per page, shared by both languages
   pages/          thin routes; kn/ repeats them with lang="kn"
 scripts/          verify-site, check-cms-config, copy-fields, optimize-images
@@ -80,6 +84,11 @@ must be declared in `public/admin/config.yml`, or the CMS drops it on save:
 After adding or removing a key in `copy.json`, run `bun run cms:copy` and then
 `bun run cms --schema`.
 
+The home page's story chapters each cover a span of dates; the story entries
+in that span that have a photo become its moments. The home page's "since"
+date drives the live day count under the farm's name. Each step in the farming
+flow names the practice that explains it by its `id`.
+
 Photos are listed once in `content/photos.json`; pages and story entries pick
 them by id. To add one: put the file in `public/images`, run `bun run images`,
 then add it to the list with its date and a description.
@@ -95,32 +104,55 @@ them as a collaborator.
 
 ### Auth worker
 
-The CMS needs a small Cloudflare Worker to sign editors in with GitHub.
+The CMS signs editors in with GitHub through a small Cloudflare Worker,
+[sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth). Its copy lives
+in the private repository `hamb1y/madilu-cms-auth` (the `upstream` remote is
+Sveltia's) and runs at https://madilu-cms-auth.rishi-s-malnad.workers.dev.
+`backend.base_url` in `public/admin/config.yml` points there.
 
-1. Deploy [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) to a
-   Cloudflare Worker.
-2. Create a GitHub OAuth app at github.com/settings/applications/new with the
-   callback `<worker URL>/callback`.
-3. Set the worker secrets `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET`, and the
-   variable `ALLOWED_DOMAINS` to every hostname that serves `/admin/`.
-4. Check that an allowed `site_id` redirects to GitHub with a `client_id`, that
-   another hostname is refused, and that `/callback` responds.
-5. Set `backend.base_url` in `public/admin/config.yml` to the worker URL.
-   Editors hard-reload `/admin/` afterwards.
+- `ALLOWED_DOMAINS` in its `wrangler.toml` lists every hostname that serves
+  `/admin/`: `madilusantivana.farm`, `www.madilusantivana.farm` and
+  `madilu-shantivana.pages.dev`. Deploy with `wrangler deploy` after changing
+  it.
+- The GitHub OAuth app ("Madilu Shantivana CMS", created at
+  github.com/settings/applications/new) has the callback
+  `https://madilu-cms-auth.rishi-s-malnad.workers.dev/callback`.
+- Its ID and secret are worker secrets, set from the worker's folder:
+
+  ```bash
+  wrangler secret put GITHUB_CLIENT_ID
+  wrangler secret put GITHUB_CLIENT_SECRET
+  ```
+
+- To check it: `/auth?provider=github&site_id=madilusantivana.farm` redirects
+  to GitHub with a `client_id`, another `site_id` is refused, and `/callback`
+  responds.
+
+If the worker URL changes, update `base_url`; editors hard-reload `/admin/`
+afterwards.
 
 Locally, open http://localhost:4323/admin/index.html and choose "Work with Local
 Repository".
 
 ## Deploy
 
-Cloudflare Pages, connected to the GitHub repository, building `main`:
+The code is at https://github.com/hamb1y/madilu-shantivana. The Cloudflare
+Pages project `madilu-shantivana` builds every push to `main` and serves it at
+https://madilu-shantivana.pages.dev:
 
 - Build command: `bun run check && bun run build`
 - Output directory: `dist`
-- Environment variable: `BUN_VERSION` = `1.4.2` (the local `bun --version`)
+- Environment variables: `BUN_VERSION` = `1.4.2` (the local `bun --version`),
+  `NODE_VERSION` = `24`
 
-Set `site` in `astro.config.mjs` to the final domain. After a deploy, request
-every route and take a screenshot of the home page against the live domain.
+There's no Wrangler config in this repository, so manage the project with the
+`cf` CLI, for example `cf pages deployments list --project-name
+madilu-shantivana`.
+
+The site's domain is `madilusantivana.farm` (`site` in `astro.config.mjs`,
+`site_url` in the CMS config). Add it to the Pages project as a custom domain
+once it's registered. After a deploy, request every route and take a
+screenshot of the home page against the live domain.
 
 Editors commit through the CMS, so run `git pull --rebase` before pushing and
 keep their content when resolving conflicts.

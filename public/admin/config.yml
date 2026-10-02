@@ -17,8 +17,8 @@ backend:
   branch: main
   auth_scope: public_repo
   auth_methods: [oauth, token]
-  # base_url: the Sveltia auth worker. Set it before editors sign in; see
-  # DEVELOPING.md and LAUNCH-CHECKLIST.md.
+  # The GitHub sign-in worker (private repo hamb1y/madilu-cms-auth).
+  base_url: https://madilu-cms-auth.rishi-s-malnad.workers.dev
 
 site_url: https://madilusantivana.farm
 display_url: https://madilusantivana.farm
@@ -39,7 +39,8 @@ collections:
     label_singular: Story entry
     description: >-
       One entry per moment on the farm. Entries appear on the Story page under
-      their year, and the newest ones on the home page.
+      their year. On the home page, entries with a photo appear in the chapter
+      their date falls in, and the newest entries at the end.
     folder: content/events
     create: true
     format: json
@@ -56,6 +57,16 @@ collections:
         date_format: YYYY-MM-DD
         time_format: false
         i18n: duplicate
+      - label: Topic
+        name: topic
+        widget: relation
+        collection: site
+        file: topics
+        value_field: "topics.*.id"
+        search_fields: ["topics.*.name"]
+        display_fields: ["topics.*.name"]
+        i18n: duplicate
+        hint: The Story page can show one topic at a time.
       - { label: Title, name: title, widget: string, i18n: true }
       - { label: What happened, name: body, widget: text, i18n: true, hint: One or two plain sentences. }
       - label: Photo
@@ -152,7 +163,7 @@ collections:
             i18n: true
             collapsed: true
             fields:
-              - label: Main photo
+              - label: Sharing photo
                 name: hero
                 widget: relation
                 collection: site
@@ -162,6 +173,15 @@ collections:
                 display_fields: ["photos.*.alt"]
                 required: false
                 i18n: duplicate
+                hint: Shown when a link to the home page is shared.
+              - label: Count days from
+                name: since
+                widget: datetime
+                format: YYYY-MM-DD
+                date_format: YYYY-MM-DD
+                time_format: false
+                i18n: duplicate
+                hint: The day the first saplings arrived. The home page counts the days since.
               - { label: Introduction, name: intro, widget: text, i18n: true }
               - label: Facts
                 name: facts
@@ -195,6 +215,41 @@ collections:
                 display_fields: ["photos.*.alt"]
                 required: false
                 i18n: duplicate
+              - label: Chapters
+                name: chapters
+                widget: list
+                i18n: true
+                summary: "{{fields.title}}"
+                hint: >-
+                  The farm's story on the home page, in coloured bands. Story
+                  entries with a photo dated between a chapter's first and last
+                  day appear in it.
+                fields:
+                  - { label: Title, name: title, widget: string, i18n: true }
+                  - label: Colour
+                    name: tone
+                    widget: select
+                    i18n: duplicate
+                    options:
+                      - { label: Red soil, value: soil }
+                      - { label: Paper, value: paper }
+                      - { label: Turmeric, value: turmeric }
+                      - { label: Forest, value: forest }
+                  - label: First day
+                    name: start
+                    widget: datetime
+                    format: YYYY-MM-DD
+                    date_format: YYYY-MM-DD
+                    time_format: false
+                    i18n: duplicate
+                  - label: Last day
+                    name: end
+                    widget: datetime
+                    format: YYYY-MM-DD
+                    date_format: YYYY-MM-DD
+                    time_format: false
+                    i18n: duplicate
+                  - { label: Text, name: body, widget: text, i18n: true }
               - label: Latest story entries shown
                 name: latest_count
                 widget: number
@@ -240,6 +295,12 @@ collections:
                 i18n: true
                 summary: "{{fields.title}}"
                 fields:
+                  - label: Id
+                    name: id
+                    widget: string
+                    i18n: duplicate
+                    pattern: ["^[a-z0-9-]+$", "Lowercase letters, numbers and hyphens"]
+                    hint: A short name the diagram above links to, such as water or pests.
                   - { label: Title, name: title, widget: string, i18n: true }
                   - { label: Text, name: body, widget: text, i18n: true }
                   - label: Photo
@@ -252,6 +313,17 @@ collections:
                     display_fields: ["photos.*.alt"]
                     required: false
                     i18n: duplicate
+              - label: Where everything comes from
+                name: flow
+                widget: list
+                i18n: true
+                summary: "{{fields.source}} → {{fields.made}} → {{fields.use}}"
+                hint: The diagram at the top of the page. Boxes with the same words are drawn once.
+                fields:
+                  - { label: From, name: source, widget: string, i18n: true }
+                  - { label: Made into, name: made, widget: string, i18n: true }
+                  - { label: For, name: use, widget: string, i18n: true }
+                  - { label: Practice, name: practice, widget: string, i18n: duplicate, hint: The id of the practice that explains it. }
           - label: About page
             name: about
             widget: object
@@ -344,6 +416,22 @@ collections:
                 time_format: false
                 i18n: duplicate
 
+      # -------------------------------------------------------------- topics --
+      - name: topics
+        label: Story topics
+        file: content/topics.json
+        i18n: true
+        fields:
+          - label: Topics
+            name: topics
+            widget: list
+            i18n: true
+            summary: "{{fields.name}}"
+            hint: The topics the Story page can be filtered by. Each story entry has one.
+            fields:
+              - { label: Id, name: id, widget: string, i18n: duplicate, pattern: ["^[a-z0-9-]+$", "Lowercase letters, numbers and hyphens"] }
+              - { label: Name, name: name, widget: string, i18n: true }
+
       # --------------------------------------------------------------- copy --
       - name: copy
         label: Interface text
@@ -403,10 +491,6 @@ collections:
                 name: language
                 widget: string
                 i18n: true
-              - label: Language name
-                name: languageName
-                widget: string
-                i18n: true
           - label: Footer
             name: footer
             widget: object
@@ -460,6 +544,29 @@ collections:
                 name: onward
                 widget: string
                 i18n: true
+              - label: Days
+                name: days
+                widget: string
+                i18n: true
+                hint: Keep {days} as written; the site fills it in.
+              - label: Drag
+                name: drag
+                widget: string
+                i18n: true
+              - label: Compare
+                name: compare
+                widget: string
+                i18n: true
+                hint: Keep {then}, {now} as written; the site fills them in.
+              - label: Story
+                name: story
+                widget: string
+                i18n: true
+              - label: Period
+                name: period
+                widget: string
+                i18n: true
+                hint: Keep {from}, {to} as written; the site fills them in.
           - label: Onward links (one line of data per page)
             name: onward
             widget: object
@@ -510,6 +617,23 @@ collections:
                 widget: string
                 i18n: true
                 hint: Keep {count}, {from}, {to} as written; the site fills them in.
+              - label: Show
+                name: show
+                widget: string
+                i18n: true
+              - label: All
+                name: all
+                widget: string
+                i18n: true
+              - label: Years
+                name: years
+                widget: string
+                i18n: true
+              - label: Shown
+                name: shown
+                widget: string
+                i18n: true
+                hint: Keep {shown}, {total} as written; the site fills them in.
           - label: What grows page
             name: grows
             widget: object
@@ -597,6 +721,23 @@ collections:
                 name: crops
                 widget: string
                 i18n: true
+              - label: Find
+                name: find
+                widget: string
+                i18n: true
+              - label: Every kind
+                name: everyKind
+                widget: string
+                i18n: true
+              - label: Found
+                name: found
+                widget: string
+                i18n: true
+                hint: Keep {name}, {count}, {from}, {to} as written; the site fills them in.
+              - label: Groups title
+                name: groupsTitle
+                widget: string
+                i18n: true
           - label: Farming page
             name: farming
             widget: object
@@ -610,6 +751,26 @@ collections:
               - label: Description
                 name: description
                 widget: text
+                i18n: true
+              - label: Flow
+                name: flow
+                widget: string
+                i18n: true
+              - label: From
+                name: from
+                widget: string
+                i18n: true
+              - label: Via
+                name: via
+                widget: string
+                i18n: true
+              - label: To
+                name: to
+                widget: string
+                i18n: true
+              - label: Practices
+                name: practices
+                widget: string
                 i18n: true
           - label: Photos page
             name: photos
@@ -652,6 +813,14 @@ collections:
                 widget: string
                 i18n: true
                 hint: Keep {n}, {total} as written; the site fills them in.
+              - label: All years
+                name: allYears
+                widget: string
+                i18n: true
+              - label: Swipe
+                name: swipe
+                widget: string
+                i18n: true
           - label: About page
             name: about
             widget: object

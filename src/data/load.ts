@@ -12,6 +12,7 @@ import pagesFile from "../../content/pages.json";
 import plantsFile from "../../content/plants.json";
 import photosFile from "../../content/photos.json";
 import plotFile from "../../content/plot.json";
+import topicsFile from "../../content/topics.json";
 
 export type Locale = "en" | "kn";
 export type Localized = string | Partial<Record<Locale, string>>;
@@ -35,10 +36,46 @@ export interface Fact {
   note: Localized;
 }
 
+export type Tone = "soil" | "paper" | "turmeric" | "forest";
+
+export interface Chapter {
+  title: Localized;
+  tone: Tone;
+  /** First and last day the chapter covers; story entries between them belong to it. */
+  start: string;
+  end: string;
+  body: Localized;
+}
+
+export interface Practice {
+  id: string;
+  title: Localized;
+  body: Localized;
+  photo: string;
+}
+
+export interface Flow {
+  source: Localized;
+  made: Localized;
+  use: Localized;
+  /** The practice that explains this flow. */
+  practice: string;
+}
+
 export interface Pages {
-  home: { hero: string; intro: Localized; facts: Fact[]; then: string; now: string; latest_count: number };
+  home: {
+    hero: string;
+    /** The day the count of days in the hero starts from. */
+    since: string;
+    intro: Localized;
+    facts: Fact[];
+    then: string;
+    now: string;
+    chapters: Chapter[];
+    latest_count: number;
+  };
   grows: { intro: Localized; crops: { name: Localized; body: Localized; photo: string }[] };
-  farming: { intro: Localized; practices: { title: Localized; body: Localized; photo: string }[] };
+  farming: { intro: Localized; practices: Practice[]; flow: Flow[] };
   about: { photo: string; name_body: Localized; people: { name: Localized; body: Localized }[] };
 }
 
@@ -65,9 +102,15 @@ export interface Photo {
   small: string;
 }
 
+export interface Topic {
+  id: string;
+  name: Localized;
+}
+
 export interface FarmEvent {
   slug: string;
   date: string;
+  topic: string;
   title: Localized;
   body: Localized;
   photo: string;
@@ -84,6 +127,7 @@ export const pages = mergeLocales(pagesFile) as Pages;
 
 const plants = mergeLocales(plantsFile) as { groups: Group[]; species: Species[] };
 export const groups = plants.groups;
+export const topics = (mergeLocales(topicsFile) as { topics: Topic[] }).topics;
 export const species = plants.species;
 
 export const plot: Plot = {

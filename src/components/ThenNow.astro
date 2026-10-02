@@ -1,0 +1,194 @@
+---
+/**
+ * Two photos of the farm laid over each other. Dragging the line (or using the
+ * arrow keys on it) wipes from one to the other.
+ */
+import type { Locale, Photo } from "../data/load";
+import { formatMonth, lx, t } from "../i18n/utils";
+
+export interface Props {
+  then: Photo;
+  now: Photo;
+  lang: Locale;
+}
+
+const { then, now, lang } = Astro.props;
+const thenMonth = formatMonth(then.date, lang);
+const nowMonth = formatMonth(now.date, lang);
+const sizes = "(min-width: 78rem) 78rem, 100vw";
+const srcset = (p: Photo) => (p.width > 800 ? `${p.small} 800w, ${p.src} ${p.width}w` : undefined);
+---
+
+<div class="then-now" data-then-now style="--pos: 50%">
+  <div class="frame">
+    <img
+      class="now"
+      src={now.small}
+      srcset={srcset(now)}
+      sizes={sizes}
+      width={now.width}
+      height={now.height}
+      alt={lx(now.alt, lang)}
+      loading="lazy"
+      decoding="async"
+    />
+    <img
+      class="then"
+      src={then.small}
+      srcset={srcset(then)}
+      sizes={sizes}
+      width={then.width}
+      height={then.height}
+      alt={lx(then.alt, lang)}
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="label label-then" aria-hidden="true">{thenMonth}</span>
+    <span class="label label-now" aria-hidden="true">{nowMonth}</span>
+    <span class="handle" aria-hidden="true"><span class="grip"></span></span>
+    <input
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value="50"
+      aria-label={t(lang, "home.compare", { then: thenMonth, now: nowMonth })}
+    />
+  </div>
+  <p class="hint">{t(lang, "home.drag")}</p>
+</div>
+
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>("[data-then-now]")) {
+    const input = box.querySelector("input");
+    if (!input) continue;
+    const set = () => box.style.setProperty("--pos", `${input.value}%`);
+    input.addEventListener("input", set);
+    set();
+  }
+</script>
+
+<style>
+  .then-now {
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--paper-2);
+    touch-action: pan-y;
+  }
+
+  img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  /* The earlier photo covers the left of the line. */
+  .then {
+    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  }
+
+  .label {
+    position: absolute;
+    inset-block-end: var(--s-4);
+    padding: var(--s-1) var(--s-3);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    line-height: 1.3;
+    pointer-events: none;
+  }
+
+  .label-then {
+    inset-inline-start: var(--s-4);
+  }
+
+  .label-now {
+    inset-inline-end: var(--s-4);
+  }
+
+  .handle {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: var(--pos);
+    inline-size: 3px;
+    margin-inline-start: -1.5px;
+    background: var(--paper);
+    pointer-events: none;
+  }
+
+  .grip {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    translate: -50% -50%;
+    border: 3px solid var(--paper);
+    border-radius: var(--radius-round);
+    background: var(--soil);
+  }
+
+  /* Two small arrows on the grip. */
+  .grip::before,
+  .grip::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%;
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    border-block-end: 2px solid var(--paper);
+    border-inline-start: 2px solid var(--paper);
+  }
+
+  .grip::before {
+    inset-inline-start: 0.55rem;
+    translate: 0 -50%;
+    rotate: 45deg;
+  }
+
+  .grip::after {
+    inset-inline-end: 0.55rem;
+    translate: 0 -50%;
+    rotate: -135deg;
+  }
+
+  /* The range input covers the photo, so dragging anywhere moves the line. */
+  input {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  .frame:has(input:focus-visible) .grip {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
+
+  .hint {
+    color: var(--ink-2);
+    font-size: var(--step--1);
+  }
+
+  @media (min-width: 64rem) {
+    .frame {
+      aspect-ratio: 16 / 9;
+    }
+
+    .label {
+      font-size: var(--step-2);
+    }
+  }
+</style>

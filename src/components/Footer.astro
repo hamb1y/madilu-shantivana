@@ -15,6 +15,14 @@ const other = locales.find((l) => l !== lang) ?? "en";
 ---
 
 <footer class="site-footer">
+  <svg class="hills" viewBox="0 0 1600 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path
+      d="M0 120 L0 70 C 140 40 260 30 400 56 C 520 78 620 30 760 22 C 900 14 1000 60 1140 58 C 1280 56 1380 18 1600 40 L1600 120 Z"
+      fill="var(--hill-near)"></path>
+    <path
+      d="M0 120 L0 92 C 200 70 330 96 520 84 C 700 72 820 52 1000 70 C 1180 88 1360 64 1600 76 L1600 120 Z"
+      fill="var(--forest)"></path>
+  </svg>
   <div class="container inner">
     <div class="about">
       <p class="name">{lx(settings.name, lang)}</p>
@@ -59,11 +67,29 @@ const other = locales.find((l) => l !== lang) ?? "en";
 </footer>
 
 <style>
+  /* The page ends on the hills, and the footer is the forest below them. */
   .site-footer {
-    margin-block-start: var(--s-8);
-    padding-block: var(--s-7) var(--s-5);
-    border-block-start: 1px solid var(--rule);
-    background: var(--paper-2);
+    position: relative;
+    margin-block-start: calc(var(--s-8) + 5rem);
+    padding-block: var(--s-6) var(--s-5);
+    background: var(--forest);
+    color: var(--paper);
+  }
+
+  .hills {
+    position: absolute;
+    inset-block-end: calc(100% - 1px);
+    inset-inline: 0;
+    inline-size: 100%;
+    block-size: 5rem;
+  }
+
+  .site-footer :global(.muted) {
+    color: var(--leaf-pale);
+  }
+
+  a:focus-visible {
+    outline-color: var(--turmeric);
   }
 
   .inner {
@@ -101,7 +127,7 @@ const other = locales.find((l) => l !== lang) ?? "en";
   .credit {
     margin-block-start: var(--s-7);
     font-size: var(--step--1);
-    color: var(--ink-2);
+    color: var(--leaf-pale);
   }
 
   .credit p {

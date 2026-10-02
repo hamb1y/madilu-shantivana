@@ -12,8 +12,7 @@
       "farming": "Farming",
       "photos": "Photos",
       "about": "About",
-      "language": "ಕನ್ನಡ",
-      "languageName": "Kannada"
+      "language": "ಕನ್ನಡ"
     },
     "footer": {
       "pages": "Pages",
@@ -27,7 +26,12 @@
       "thenNow": "The farm, two years apart",
       "latest": "Latest from the farm",
       "allStory": "Read the whole story",
-      "onward": "More about the farm"
+      "onward": "More about the farm",
+      "days": "The first saplings arrived {days} days ago.",
+      "drag": "Drag the line to see two years pass.",
+      "compare": "Compare {then} and {now}",
+      "story": "How the farm grew",
+      "period": "{from} to {to}"
     },
     "onward": {
       "story": "{count} entries, {from} to {to}",
@@ -39,13 +43,17 @@
     "story": {
       "title": "Story",
       "description": "How Madilu Shantivana has grown, from the plan in March 2024 to today.",
-      "intro": "{count} moments from the farm, from the plan in {from} to {to}."
+      "intro": "{count} moments from the farm, from the plan in {from} to {to}.",
+      "show": "Show",
+      "all": "Everything",
+      "years": "Jump to a year",
+      "shown": "{shown} of {total} entries"
     },
     "grows": {
       "title": "What grows",
       "description": "Every fruit tree, timber tree, coconut and banana on Madilu Shantivana's planting map, and the crops between them.",
       "map": "The planting map",
-      "mapNote": "Each square is one planting place on the map of {date}. Point at or tap a square to see what grows there. Pick a group in the key to show it alone.",
+      "mapNote": "Each mark is one planting place on the map of {date}; its shape and colour show the group. Point at or tap a mark to see what grows there. Pick a group in the key, or find a kind, to show it alone.",
       "mapLabel": "Planting map of Madilu Shantivana: {plants} places planted in {rows} rows, by group. The table below lists every kind.",
       "mark": "places planted in {kinds} kinds, on the map of {date}",
       "key": "Key",
@@ -60,11 +68,20 @@
       "colOther": "In Kannada",
       "colCount": "Places",
       "total": "All planted places",
-      "crops": "Between the trees"
+      "crops": "Between the trees",
+      "find": "Find a kind",
+      "everyKind": "Every kind",
+      "found": "{name}: {count} places, between rows {from} and {to}",
+      "groupsTitle": "The map by group"
     },
     "farming": {
       "title": "Farming",
-      "description": "How Madilu Shantivana is watered, fed and protected: drip lines, jeevamrutha, sprays from its own leaves, cows and bees."
+      "description": "How Madilu Shantivana is watered, fed and protected: drip lines, jeevamrutha, sprays from its own leaves, cows and bees.",
+      "flow": "Where everything comes from",
+      "from": "From",
+      "via": "Made into",
+      "to": "For",
+      "practices": "The practices"
     },
     "photos": {
       "title": "Photos",
@@ -74,7 +91,9 @@
       "close": "Close",
       "prev": "Previous photo",
       "next": "Next photo",
-      "position": "{n} of {total}"
+      "position": "{n} of {total}",
+      "allYears": "All years",
+      "swipe": "Swipe or use the arrow keys to move between photos."
     },
     "about": {
       "title": "About",
@@ -105,8 +124,7 @@
       "farming": "ಕೃಷಿ",
       "photos": "ಫೋಟೋಗಳು",
       "about": "ನಮ್ಮ ಬಗ್ಗೆ",
-      "language": "English",
-      "languageName": "English"
+      "language": "English"
     },
     "footer": {
       "pages": "ಪುಟಗಳು",
@@ -120,7 +138,12 @@
       "thenNow": "ಎರಡು ವರ್ಷಗಳ ಅಂತರದಲ್ಲಿ ತೋಟ",
       "latest": "ತೋಟದ ಇತ್ತೀಚಿನ ಸುದ್ದಿ",
       "allStory": "ಪೂರ್ತಿ ಕಥೆ ಓದಿ",
-      "onward": "ತೋಟದ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು"
+      "onward": "ತೋಟದ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು",
+      "days": "ಮೊದಲ ಸಸಿಗಳು ಬಂದು {days} ದಿನಗಳಾದವು.",
+      "drag": "ಎರಡು ವರ್ಷಗಳು ಕಳೆದದ್ದನ್ನು ನೋಡಲು ಗೆರೆಯನ್ನು ಎಳೆಯಿರಿ.",
+      "compare": "{then} ಮತ್ತು {now} ಹೋಲಿಸಿ",
+      "story": "ತೋಟ ಬೆಳೆದ ಬಗೆ",
+      "period": "{from}ರಿಂದ {to}ವರೆಗೆ"
     },
     "onward": {
       "story": "{count} ಘಟನೆಗಳು, {from} ರಿಂದ {to} ವರೆಗೆ",
@@ -132,13 +155,17 @@
     "story": {
       "title": "ಕಥೆ",
       "description": "2024ರ ಮಾರ್ಚ್‌ನ ಯೋಜನೆಯಿಂದ ಇಂದಿನವರೆಗೆ ಮಡಿಲು ಶಾಂತಿವನ ಬೆಳೆದ ಕಥೆ.",
-      "intro": "{from} ರ ಯೋಜನೆಯಿಂದ {to} ರವರೆಗೆ ತೋಟದ {count} ಘಟನೆಗಳು."
+      "intro": "{from} ರ ಯೋಜನೆಯಿಂದ {to} ರವರೆಗೆ ತೋಟದ {count} ಘಟನೆಗಳು.",
+      "show": "ತೋರಿಸು",
+      "all": "ಎಲ್ಲವೂ",
+      "years": "ವರ್ಷಕ್ಕೆ ಹೋಗಿ",
+      "shown": "{total}ರಲ್ಲಿ {shown} ಘಟನೆಗಳು"
     },
     "grows": {
       "title": "ಏನು ಬೆಳೆಯುತ್ತದೆ",
       "description": "ಮಡಿಲು ಶಾಂತಿವನದ ನಕ್ಷೆಯಲ್ಲಿರುವ ಪ್ರತಿ ಹಣ್ಣಿನ ಮರ, ಕಾಡು ಮರ, ತೆಂಗು, ಬಾಳೆ ಮತ್ತು ಅವುಗಳ ನಡುವಿನ ಬೆಳೆಗಳು.",
       "map": "ನೆಡುತೋಪಿನ ನಕ್ಷೆ",
-      "mapNote": "{date} ರ ನಕ್ಷೆಯಲ್ಲಿ ಪ್ರತಿ ಚೌಕವೂ ಒಂದು ನೆಡುವ ಜಾಗ. ಅಲ್ಲಿ ಏನು ಬೆಳೆಯುತ್ತದೆ ಎಂದು ನೋಡಲು ಚೌಕದ ಮೇಲೆ ಮೌಸ್ ಇಡಿ ಅಥವಾ ಒತ್ತಿ. ಒಂದು ಗುಂಪನ್ನು ಮಾತ್ರ ನೋಡಲು ಸೂಚಿಯಲ್ಲಿ ಆರಿಸಿ.",
+      "mapNote": "{date} ರ ನಕ್ಷೆಯಲ್ಲಿ ಪ್ರತಿ ಗುರುತೂ ಒಂದು ನೆಡುವ ಜಾಗ; ಅದರ ಆಕಾರ ಮತ್ತು ಬಣ್ಣ ಗುಂಪನ್ನು ತೋರಿಸುತ್ತದೆ. ಅಲ್ಲಿ ಏನು ಬೆಳೆಯುತ್ತದೆ ಎಂದು ನೋಡಲು ಗುರುತಿನ ಮೇಲೆ ಮೌಸ್ ಇಡಿ ಅಥವಾ ಒತ್ತಿ. ಒಂದು ಗುಂಪನ್ನು ಅಥವಾ ಒಂದು ಬಗೆಯನ್ನು ಮಾತ್ರ ನೋಡಲು ಸೂಚಿಯಲ್ಲಿ ಆರಿಸಿ ಅಥವಾ ಹುಡುಕಿ.",
       "mapLabel": "ಮಡಿಲು ಶಾಂತಿವನದ ನೆಡುತೋಪಿನ ನಕ್ಷೆ: {rows} ಸಾಲುಗಳಲ್ಲಿ {plants} ನೆಟ್ಟ ಜಾಗಗಳು, ಗುಂಪುಗಳ ಪ್ರಕಾರ. ಕೆಳಗಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಎಲ್ಲಾ ಬಗೆಗಳಿವೆ.",
       "mark": "ನೆಟ್ಟ ಜಾಗಗಳು, {kinds} ಬಗೆ, {date} ರ ನಕ್ಷೆಯಲ್ಲಿ",
       "key": "ಸೂಚಿ",
@@ -153,11 +180,20 @@
       "colOther": "ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ",
       "colCount": "ಜಾಗಗಳು",
       "total": "ಒಟ್ಟು ನೆಟ್ಟ ಜಾಗಗಳು",
-      "crops": "ಮರಗಳ ನಡುವೆ"
+      "crops": "ಮರಗಳ ನಡುವೆ",
+      "find": "ಒಂದು ಬಗೆಯನ್ನು ಹುಡುಕಿ",
+      "everyKind": "ಎಲ್ಲ ಬಗೆಗಳು",
+      "found": "{name}: {count} ಜಾಗಗಳು, {from}ರಿಂದ {to}ನೇ ಸಾಲಿನವರೆಗೆ",
+      "groupsTitle": "ಗುಂಪುಗಳ ಪ್ರಕಾರ ನಕ್ಷೆ"
     },
     "farming": {
       "title": "ಕೃಷಿ",
-      "description": "ಮಡಿಲು ಶಾಂತಿವನಕ್ಕೆ ನೀರು, ಪೋಷಣೆ ಮತ್ತು ರಕ್ಷಣೆ: ಡ್ರಿಪ್, ಜೀವಾಮೃತ, ತೋಟದ ಎಲೆಗಳಿಂದ ಮಾಡಿದ ಸಿಂಪಡಣೆ, ಹಸುಗಳು ಮತ್ತು ಜೇನು."
+      "description": "ಮಡಿಲು ಶಾಂತಿವನಕ್ಕೆ ನೀರು, ಪೋಷಣೆ ಮತ್ತು ರಕ್ಷಣೆ: ಡ್ರಿಪ್, ಜೀವಾಮೃತ, ತೋಟದ ಎಲೆಗಳಿಂದ ಮಾಡಿದ ಸಿಂಪಡಣೆ, ಹಸುಗಳು ಮತ್ತು ಜೇನು.",
+      "flow": "ಎಲ್ಲವೂ ಎಲ್ಲಿಂದ ಬರುತ್ತದೆ",
+      "from": "ಎಲ್ಲಿಂದ",
+      "via": "ಏನಾಗಿ",
+      "to": "ಯಾವುದಕ್ಕೆ",
+      "practices": "ಕೃಷಿ ಪದ್ಧತಿಗಳು"
     },
     "photos": {
       "title": "ಫೋಟೋಗಳು",
@@ -167,7 +203,9 @@
       "close": "ಮುಚ್ಚಿ",
       "prev": "ಹಿಂದಿನ ಫೋಟೋ",
       "next": "ಮುಂದಿನ ಫೋಟೋ",
-      "position": "{total} ರಲ್ಲಿ {n}"
+      "position": "{total} ರಲ್ಲಿ {n}",
+      "allYears": "ಎಲ್ಲ ವರ್ಷಗಳು",
+      "swipe": "ಫೋಟೋಗಳ ನಡುವೆ ಸರಿಸಲು ಸ್ವೈಪ್ ಮಾಡಿ ಅಥವಾ ಬಾಣದ ಕೀಲಿಗಳನ್ನು ಬಳಸಿ."
     },
     "about": {
       "title": "ನಮ್ಮ ಬಗ್ಗೆ",

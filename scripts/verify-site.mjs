@@ -590,7 +590,7 @@ async function main() {
   await interactions.setViewport({ width: 1440, height: 900 });
   await interactions.goto(`${ORIGIN}/grows/`, { waitUntil: "load" });
   await interactions.waitForSelector("astro-island:not([ssr])", { timeout: 5000 }).catch(() => {});
-  const place = await interactions.$('rect[data-id]:not([data-id="."])');
+  const place = await interactions.$('.bands [data-id]:not([data-id="."])');
   if (!place) fail("/grows/", "planting map has no places");
   else {
     await place.hover();
@@ -601,7 +601,9 @@ async function main() {
     if (keys.length === 0) fail("/grows/", "planting map key has no group buttons");
     else {
       await keys[0].click();
-      const faded = await interactions.$$eval("rect[data-id]", (rects) =>
+      // The marks fade in a sweep across each band; let it finish.
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const faded = await interactions.$$eval(".bands [data-id]", (rects) =>
         rects.filter((r) => Number(getComputedStyle(r).opacity) < 0.5).length,
       );
       const pressed = await keys[0].evaluate((el) => el.getAttribute("aria-pressed"));
@@ -628,6 +630,44 @@ async function main() {
     else if (stepped.label === opened.label) fail("/photos/", "arrow key did not move to the next photo");
     else if (closed.open) fail("/photos/", "Escape did not close the photo viewer");
     else notes.push("photo viewer: opens, steps with arrow keys, closes on Escape");
+  }
+
+  // Planting map: finding a kind names where it grows.
+  await interactions.goto(`${ORIGIN}/grows/`, { waitUntil: "load" });
+  await interactions.waitForSelector("astro-island:not([ssr])", { timeout: 5000 }).catch(() => {});
+  const kind = await interactions.$eval("#find-kind option:nth-child(2)", (o) => o.value).catch(() => "");
+  if (!kind) fail("/grows/", "find-a-kind list is empty");
+  else {
+    await interactions.select("#find-kind", kind);
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    const found = await interactions.$eval(".found", (el) => el.textContent.trim());
+    if (!found) fail("/grows/", "finding a kind shows no result");
+    else notes.push(`find a kind: “${found}”`);
+  }
+
+  // Story: a topic shows its entries alone, and the count says so.
+  await interactions.goto(`${ORIGIN}/story/`, { waitUntil: "load" });
+  const topics = await interactions.$$(".topics button[data-topic]");
+  if (topics.length < 2) fail("/story/", "story has no topic switches");
+  else {
+    const before = await interactions.$eval(".shown", (el) => el.textContent.trim());
+    await topics[1].click();
+    const after = await interactions.$eval(".shown", (el) => el.textContent.trim());
+    const hidden = await interactions.$$eval(".entry[hidden]", (els) => els.length);
+    if (before === after || hidden === 0) fail("/story/", "topic switch does not filter the story");
+    else notes.push(`story topics: “${after}”`);
+  }
+
+  // Home: the then-and-now slider moves the line.
+  await interactions.goto(`${ORIGIN}/`, { waitUntil: "load" });
+  const slider = await interactions.$("[data-then-now] input");
+  if (!slider) fail("/", "then-and-now slider missing");
+  else {
+    await slider.focus();
+    for (let i = 0; i < 5; i++) await interactions.keyboard.press("ArrowRight");
+    const pos = await interactions.$eval("[data-then-now]", (el) => el.style.getPropertyValue("--pos"));
+    if (pos !== "55%") fail("/", `then-and-now slider did not move (${pos})`);
+    else notes.push("then-and-now slider moves with the arrow keys");
   }
 
   await interactions.close();

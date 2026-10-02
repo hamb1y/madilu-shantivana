@@ -1,6 +1,6 @@
 ---
 import Figure from "./Figure.astro";
-import { photo as photoOf, type FarmEvent, type Locale } from "../data/load";
+import { photo as photoOf, topics, type FarmEvent, type Locale } from "../data/load";
 import { formatDay, lx } from "../i18n/utils";
 
 export interface Props {
@@ -9,6 +9,7 @@ export interface Props {
 }
 
 const { events, lang } = Astro.props;
+const topicName = new Map(topics.map((topic) => [topic.id, lx(topic.name, lang)]));
 const years = [...new Set(events.map((e) => e.date.slice(0, 4)))].map((year) => ({
   year,
   entries: events.filter((e) => e.date.startsWith(year)),
@@ -18,16 +19,17 @@ const years = [...new Set(events.map((e) => e.date.slice(0, 4)))].map((year) => 
 <div class="timeline">
   {
     years.map(({ year, entries }) => (
-      <section class="year" aria-labelledby={`year-${year}`}>
-        <h2 id={`year-${year}`}>{year}</h2>
+      <section class="year" id={`year-${year}`} aria-labelledby={`year-${year}-title`} data-year={year}>
+        <h2 id={`year-${year}-title`}>{year}</h2>
         <ol>
           {entries.map((event) => {
             const photo = photoOf(event.photo);
             return (
-              <li id={event.slug} class:list={["entry", { "has-photo": photo }]}>
+              <li id={event.slug} class:list={["entry", { "has-photo": photo }]} data-topic={event.topic} data-rise>
                 <div class="text">
                   <p class="date">
                     <time datetime={event.date}>{formatDay(event.date, lang)}</time>
+                    {topicName.has(event.topic) && <span class="topic">{topicName.get(event.topic)}</span>}
                   </p>
                   <h3>{lx(event.title, lang)}</h3>
                   <p>{lx(event.body, lang)}</p>
@@ -47,12 +49,20 @@ const years = [...new Set(events.map((e) => e.date.slice(0, 4)))].map((year) => 
     display: grid;
     gap: var(--s-4);
     padding-block: var(--s-6);
-    border-block-start: 1px solid var(--rule-strong);
+    border-block-start: 2px solid var(--ink);
+    scroll-margin-block-start: calc(var(--header-h) + var(--tools-h, 0px));
+  }
+
+  .year[hidden] {
+    display: none;
   }
 
   h2 {
-    font-size: var(--step-5);
-    line-height: 1;
+    font-size: var(--step-6);
+    font-weight: 600;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
     color: var(--accent);
   }
 
@@ -67,7 +77,19 @@ const years = [...new Set(events.map((e) => e.date.slice(0, 4)))].map((year) => 
   .entry {
     display: grid;
     gap: var(--s-4);
-    scroll-margin-block-start: calc(var(--header-h) + var(--s-4));
+    scroll-margin-block-start: calc(var(--header-h) + var(--tools-h, 0px) + var(--s-4));
+  }
+
+  .entry[hidden] {
+    display: none;
+  }
+
+  /* An entry linked to from elsewhere stands out when it's arrived at. */
+  .entry:target h3 {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
   }
 
   .text {
@@ -77,21 +99,33 @@ const years = [...new Set(events.map((e) => e.date.slice(0, 4)))].map((year) => 
   }
 
   .date {
-    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--s-3);
+    font-weight: 700;
     color: var(--accent);
+  }
+
+  .topic {
+    font-weight: 400;
+    color: var(--ink-2);
+  }
+
+  .topic::before {
+    content: "· ";
   }
 
   @media (min-width: 64rem) {
     .year {
-      grid-template-columns: 14rem 1fr;
+      grid-template-columns: 16rem 1fr;
       gap: var(--s-6);
     }
 
     /* The year stays in view while its entries scroll past. */
     h2 {
-      font-size: var(--step-4);
+      font-size: var(--step-5);
       position: sticky;
-      inset-block-start: calc(var(--header-h) + var(--s-5));
+      inset-block-start: calc(var(--header-h) + var(--tools-h, 0px) + var(--s-5));
       align-self: start;
     }
 

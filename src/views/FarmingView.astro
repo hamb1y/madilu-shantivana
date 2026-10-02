@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Figure from "../components/Figure.astro";
+import FlowDiagram from "../components/FlowDiagram.astro";
 import Onward from "../components/Onward.astro";
 import { pages, photo, type Locale } from "../data/load";
 import { lx, t } from "../i18n/utils";
@@ -21,27 +22,55 @@ const farming = pages.farming;
       <p class="lead">{lx(farming.intro, lang)}</p>
     </header>
 
-    <div class="practices">
-      {
-        farming.practices.map((practice) => {
-          const p = photo(practice.photo);
-          return (
-            <section class:list={["practice", { "has-photo": p }]}>
-              <div class="text">
-                <h2>{lx(practice.title, lang)}</h2>
-                <p>{lx(practice.body, lang)}</p>
-              </div>
-              {p && <Figure photo={p} lang={lang} ratio="4 / 3" sizes="(min-width: 64rem) 560px, 100vw" />}
-            </section>
-          );
-        })
-      }
-    </div>
+    {
+      farming.flow.length > 0 && (
+        <section class="section flow-section" aria-labelledby="flow-title">
+          <h2 id="flow-title">{t(lang, "farming.flow")}</h2>
+          <FlowDiagram flow={farming.flow} lang={lang} />
+        </section>
+      )
+    }
+
+    <section class="section" aria-labelledby="practices-title">
+      <h2 id="practices-title">{t(lang, "farming.practices")}</h2>
+      <div class="practices">
+        {
+          farming.practices.map((practice) => {
+            const p = photo(practice.photo);
+            return (
+              <article class:list={["practice", { "has-photo": p }]} id={practice.id || undefined} data-rise>
+                <div class="text">
+                  <h3>{lx(practice.title, lang)}</h3>
+                  <p>{lx(practice.body, lang)}</p>
+                </div>
+                {p && <Figure photo={p} lang={lang} ratio="4 / 3" sizes="(min-width: 64rem) 560px, 100vw" />}
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
   </div>
   <Onward lang={lang} current="farming" />
 </Base>
 
 <style>
+  .section > h2 {
+    margin-block-end: var(--s-6);
+    font-size: var(--step-4);
+    font-weight: 560;
+    letter-spacing: -0.015em;
+  }
+
+  :lang(kn) .section > h2 {
+    font-size: var(--step-3);
+    letter-spacing: 0;
+  }
+
+  .flow-section {
+    padding-block-end: var(--s-8);
+  }
+
   .practices {
     display: grid;
   }
@@ -50,7 +79,8 @@ const farming = pages.farming;
     display: grid;
     gap: var(--s-4);
     padding-block: var(--s-6);
-    border-block-start: 1px solid var(--rule);
+    border-block-start: 2px solid var(--ink);
+    scroll-margin-block-start: calc(var(--header-h) + var(--s-4));
   }
 
   .text {
@@ -59,9 +89,21 @@ const farming = pages.farming;
     gap: var(--s-3);
   }
 
-  h2 {
+  h3 {
     font-size: var(--step-3);
+    font-weight: 560;
     color: var(--accent);
+  }
+
+  /* A practice arrived at from the diagram is marked by its top rule. */
+  .practice:target {
+    border-block-start-color: var(--accent);
+  }
+
+  .practice:target h3 {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.2em;
   }
 
   @media (min-width: 64rem) {
