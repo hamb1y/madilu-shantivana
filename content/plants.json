@@ -1,0 +1,524 @@
+{
+  "en": {
+    "groups": [
+      {
+        "id": "kitchen",
+        "name": "Vegetables and moringa",
+        "color": "#3d8b2f"
+      },
+      {
+        "id": "fruit",
+        "name": "Fruit trees",
+        "color": "#d9a300"
+      },
+      {
+        "id": "palms",
+        "name": "Coconut and areca",
+        "color": "#1f8a70"
+      },
+      {
+        "id": "timber",
+        "name": "Timber and native trees",
+        "color": "#8a4a9e"
+      },
+      {
+        "id": "banana",
+        "name": "Banana",
+        "color": "#e07a3a"
+      }
+    ],
+    "species": [
+      {
+        "id": "bendi",
+        "name": "Okra",
+        "group": "kitchen"
+      },
+      {
+        "id": "nugge",
+        "name": "Moringa",
+        "group": "kitchen"
+      },
+      {
+        "id": "mavu",
+        "name": "Mango",
+        "group": "fruit"
+      },
+      {
+        "id": "seebe",
+        "name": "Guava",
+        "group": "fruit"
+      },
+      {
+        "id": "sapota",
+        "name": "Sapota",
+        "group": "fruit"
+      },
+      {
+        "id": "butterfruit",
+        "name": "Butter fruit",
+        "group": "fruit"
+      },
+      {
+        "id": "nimbe",
+        "name": "Lemon",
+        "group": "fruit"
+      },
+      {
+        "id": "nerale",
+        "name": "Jamun",
+        "group": "fruit"
+      },
+      {
+        "id": "halasu",
+        "name": "Jackfruit",
+        "group": "fruit"
+      },
+      {
+        "id": "bettadanalli",
+        "name": "Amla",
+        "group": "fruit"
+      },
+      {
+        "id": "rampala",
+        "name": "Ramphal",
+        "group": "fruit"
+      },
+      {
+        "id": "orenge",
+        "name": "Orange",
+        "group": "fruit"
+      },
+      {
+        "id": "hanumapala",
+        "name": "Hanumaphal",
+        "group": "fruit"
+      },
+      {
+        "id": "apple",
+        "name": "Apple",
+        "group": "fruit"
+      },
+      {
+        "id": "waterapple",
+        "name": "Water apple",
+        "group": "fruit"
+      },
+      {
+        "id": "dalimbe",
+        "name": "Pomegranate",
+        "group": "fruit"
+      },
+      {
+        "id": "cherry",
+        "name": "Cherry",
+        "group": "fruit"
+      },
+      {
+        "id": "anjura",
+        "name": "Fig",
+        "group": "fruit"
+      },
+      {
+        "id": "litchi",
+        "name": "Litchi",
+        "group": "fruit"
+      },
+      {
+        "id": "dragonfruit",
+        "name": "Dragon fruit",
+        "group": "fruit"
+      },
+      {
+        "id": "paneer-fruit",
+        "name": "Paneer fruit",
+        "group": "fruit"
+      },
+      {
+        "id": "elakki",
+        "name": "Elakki",
+        "group": "fruit"
+      },
+      {
+        "id": "lakshmanapala",
+        "name": "Lakshmanaphal",
+        "group": "fruit"
+      },
+      {
+        "id": "elachi-fruit",
+        "name": "Elachi fruit",
+        "group": "fruit"
+      },
+      {
+        "id": "star-fruit",
+        "name": "Star fruit",
+        "group": "fruit"
+      },
+      {
+        "id": "chakkota",
+        "name": "Pomelo",
+        "group": "fruit"
+      },
+      {
+        "id": "badami",
+        "name": "Badami",
+        "group": "fruit"
+      },
+      {
+        "id": "beladamara",
+        "name": "Wood apple",
+        "group": "fruit"
+      },
+      {
+        "id": "tengu",
+        "name": "Coconut",
+        "group": "palms"
+      },
+      {
+        "id": "adike",
+        "name": "Areca",
+        "group": "palms"
+      },
+      {
+        "id": "teak",
+        "name": "Teak",
+        "group": "timber"
+      },
+      {
+        "id": "mahagani",
+        "name": "Mahogany",
+        "group": "timber"
+      },
+      {
+        "id": "hebbevu",
+        "name": "Hebbevu",
+        "group": "timber"
+      },
+      {
+        "id": "shivane",
+        "name": "Shivane",
+        "group": "timber"
+      },
+      {
+        "id": "honne",
+        "name": "Honne",
+        "group": "timber"
+      },
+      {
+        "id": "beete",
+        "name": "Beete",
+        "group": "timber"
+      },
+      {
+        "id": "agase",
+        "name": "Agase",
+        "group": "timber"
+      },
+      {
+        "id": "ashoka",
+        "name": "Ashoka",
+        "group": "timber"
+      },
+      {
+        "id": "dasavala",
+        "name": "Hibiscus",
+        "group": "timber"
+      },
+      {
+        "id": "honge",
+        "name": "Pongamia",
+        "group": "timber"
+      },
+      {
+        "id": "sampige",
+        "name": "Champak",
+        "group": "timber"
+      },
+      {
+        "id": "bevu",
+        "name": "Neem",
+        "group": "timber"
+      },
+      {
+        "id": "bamboo",
+        "name": "Bamboo",
+        "group": "timber"
+      },
+      {
+        "id": "bath-ele",
+        "name": "Bath ele",
+        "group": "timber"
+      },
+      {
+        "id": "patte-bath-ele",
+        "name": "Patte bath ele",
+        "group": "timber"
+      },
+      {
+        "id": "bale",
+        "name": "Banana",
+        "group": "banana"
+      }
+    ]
+  },
+  "kn": {
+    "groups": [
+      {
+        "id": "kitchen",
+        "name": "ತರಕಾರಿ ಮತ್ತು ನುಗ್ಗೆ",
+        "color": "#3d8b2f"
+      },
+      {
+        "id": "fruit",
+        "name": "ಹಣ್ಣಿನ ಮರಗಳು",
+        "color": "#d9a300"
+      },
+      {
+        "id": "palms",
+        "name": "ತೆಂಗು ಮತ್ತು ಅಡಿಕೆ",
+        "color": "#1f8a70"
+      },
+      {
+        "id": "timber",
+        "name": "ಕಾಡು ಮರಗಳು",
+        "color": "#8a4a9e"
+      },
+      {
+        "id": "banana",
+        "name": "ಬಾಳೆ",
+        "color": "#e07a3a"
+      }
+    ],
+    "species": [
+      {
+        "id": "bendi",
+        "name": "ಬೆಂಡೆ",
+        "group": "kitchen"
+      },
+      {
+        "id": "nugge",
+        "name": "ನುಗ್ಗೆ",
+        "group": "kitchen"
+      },
+      {
+        "id": "mavu",
+        "name": "ಮಾವು",
+        "group": "fruit"
+      },
+      {
+        "id": "seebe",
+        "name": "ಸೀಬೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "sapota",
+        "name": "ಸಪೋಟ",
+        "group": "fruit"
+      },
+      {
+        "id": "butterfruit",
+        "name": "ಬಟರ್ ಫ್ರೂಟ್",
+        "group": "fruit"
+      },
+      {
+        "id": "nimbe",
+        "name": "ನಿಂಬೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "nerale",
+        "name": "ನೇರಳೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "halasu",
+        "name": "ಹಲಸು",
+        "group": "fruit"
+      },
+      {
+        "id": "bettadanalli",
+        "name": "ಬೆಟ್ಟದ ನೆಲ್ಲಿ",
+        "group": "fruit"
+      },
+      {
+        "id": "rampala",
+        "name": "ರಾಮಫಲ",
+        "group": "fruit"
+      },
+      {
+        "id": "orenge",
+        "name": "ಕಿತ್ತಳೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "hanumapala",
+        "name": "ಹನುಮಫಲ",
+        "group": "fruit"
+      },
+      {
+        "id": "apple",
+        "name": "ಸೇಬು",
+        "group": "fruit"
+      },
+      {
+        "id": "waterapple",
+        "name": "ವಾಟರ್ ಆಪಲ್",
+        "group": "fruit"
+      },
+      {
+        "id": "dalimbe",
+        "name": "ದಾಳಿಂಬೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "cherry",
+        "name": "ಚೆರ್ರಿ",
+        "group": "fruit"
+      },
+      {
+        "id": "anjura",
+        "name": "ಅಂಜೂರ",
+        "group": "fruit"
+      },
+      {
+        "id": "litchi",
+        "name": "ಲಿಚಿ",
+        "group": "fruit"
+      },
+      {
+        "id": "dragonfruit",
+        "name": "ಡ್ರ್ಯಾಗನ್ ಫ್ರೂಟ್",
+        "group": "fruit"
+      },
+      {
+        "id": "paneer-fruit",
+        "name": "ಪನೀರ್ ಫ್ರೂಟ್",
+        "group": "fruit"
+      },
+      {
+        "id": "elakki",
+        "name": "ಏಲಕ್ಕಿ",
+        "group": "fruit"
+      },
+      {
+        "id": "lakshmanapala",
+        "name": "ಲಕ್ಷ್ಮಣಫಲ",
+        "group": "fruit"
+      },
+      {
+        "id": "elachi-fruit",
+        "name": "ಎಲಚಿ ಹಣ್ಣು",
+        "group": "fruit"
+      },
+      {
+        "id": "star-fruit",
+        "name": "ಸ್ಟಾರ್ ಫ್ರೂಟ್",
+        "group": "fruit"
+      },
+      {
+        "id": "chakkota",
+        "name": "ಚಕ್ಕೋತ",
+        "group": "fruit"
+      },
+      {
+        "id": "badami",
+        "name": "ಬಾದಾಮಿ",
+        "group": "fruit"
+      },
+      {
+        "id": "beladamara",
+        "name": "ಬೇಲ",
+        "group": "fruit"
+      },
+      {
+        "id": "tengu",
+        "name": "ತೆಂಗು",
+        "group": "palms"
+      },
+      {
+        "id": "adike",
+        "name": "ಅಡಿಕೆ",
+        "group": "palms"
+      },
+      {
+        "id": "teak",
+        "name": "ತೇಗ",
+        "group": "timber"
+      },
+      {
+        "id": "mahagani",
+        "name": "ಮಹಾಗನಿ",
+        "group": "timber"
+      },
+      {
+        "id": "hebbevu",
+        "name": "ಹೆಬ್ಬೇವು",
+        "group": "timber"
+      },
+      {
+        "id": "shivane",
+        "name": "ಶಿವನೆ",
+        "group": "timber"
+      },
+      {
+        "id": "honne",
+        "name": "ಹೊನ್ನೆ",
+        "group": "timber"
+      },
+      {
+        "id": "beete",
+        "name": "ಬೀಟೆ",
+        "group": "timber"
+      },
+      {
+        "id": "agase",
+        "name": "ಅಗಸೆ",
+        "group": "timber"
+      },
+      {
+        "id": "ashoka",
+        "name": "ಅಶೋಕ",
+        "group": "timber"
+      },
+      {
+        "id": "dasavala",
+        "name": "ದಾಸವಾಳ",
+        "group": "timber"
+      },
+      {
+        "id": "honge",
+        "name": "ಹೊಂಗೆ",
+        "group": "timber"
+      },
+      {
+        "id": "sampige",
+        "name": "ಸಂಪಿಗೆ",
+        "group": "timber"
+      },
+      {
+        "id": "bevu",
+        "name": "ಬೇವು",
+        "group": "timber"
+      },
+      {
+        "id": "bamboo",
+        "name": "ಬಿದಿರು",
+        "group": "timber"
+      },
+      {
+        "id": "bath-ele",
+        "name": "ಬಾತ್ ಎಲೆ",
+        "group": "timber"
+      },
+      {
+        "id": "patte-bath-ele",
+        "name": "ಪಟ್ಟೆ ಬಾತ್ ಎಲೆ",
+        "group": "timber"
+      },
+      {
+        "id": "bale",
+        "name": "ಬಾಳೆ",
+        "group": "banana"
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+/*
+ * Design tokens. Paper and ink, one accent per section, two typefaces.
+ * Every accent passes 4.5:1 on paper, and paper text passes 4.5:1 on it.
+ */
+:root {
+  --paper: #f6efe2;
+  --paper-2: #efe5d2;
+  --ink: #2a2118;
+  --ink-2: #5e5247;
+  --rule: #d9ccb4;
+  --rule-strong: #a8977a;
+
+  /* One accent per section, used everywhere that section appears. */
+  --story: #a3401e;
+  --grows: #2f6b2a;
+  --farming: #7a5a12;
+  --photos: #2f5d7a;
+  --about: #6b2f5a;
+  --accent: var(--ink);
+
+  /* Young Serif and Source Sans cover Latin; the Noto faces cover Kannada. */
+  --font-display: "Young Serif", "Noto Serif Kannada Variable", Georgia, serif;
+  --font-body: "Source Sans 3 Variable", "Noto Sans Kannada Variable", "Segoe UI", Roboto, sans-serif;
+
+  --step--1: 0.9375rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.4rem, 1.2rem + 0.9vw, 1.9rem);
+  --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 2.9rem);
+  --step-4: clamp(2.5rem, 1.7rem + 3.6vw, 4.6rem);
+  --step-5: clamp(3.25rem, 2rem + 6vw, 7.5rem);
+
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 76rem;
+  --measure: 66ch;
+  --radius: 4px;
+  --header-h: 3.75rem;
+}
+
+[data-section="story"] { --accent: var(--story); }
+[data-section="grows"] { --accent: var(--grows); }
+[data-section="farming"] { --accent: var(--farming); }
+[data-section="photos"] { --accent: var(--photos); }
+[data-section="about"] { --accent: var(--about); }

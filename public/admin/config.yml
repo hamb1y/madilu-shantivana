@@ -1,0 +1,738 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Sveltia CMS for the Madilu Shantivana site.
+#
+# Locally: run `bun run dev` and open http://localhost:4323/admin/index.html,
+# then choose "Work with Local Repository" (Chromium browsers) to edit the files
+# in this folder. Online, editors sign in with GitHub and each save is a commit
+# to the branch below.
+#
+# The content files are the source of truth; the site reads them at build time
+# (src/data/load.ts). Sveltia drops any field that is not declared here when it
+# saves, so declare every key: `bun run cms` checks that.
+
+backend:
+  name: github
+  repo: hamb1y/madilu-shantivana
+  branch: main
+  auth_scope: public_repo
+  auth_methods: [oauth, token]
+  # base_url: the Sveltia auth worker. Set it before editors sign in; see
+  # DEVELOPING.md and LAUNCH-CHECKLIST.md.
+
+site_url: https://madilusantivana.farm
+display_url: https://madilusantivana.farm
+
+media_folder: public/images
+public_folder: /images
+
+# English and Kannada, both kept in one file per entry: { en: {…}, kn: {…} }.
+i18n:
+  structure: single_file
+  locales: [en, kn]
+  default_locale: en
+
+collections:
+  # ------------------------------------------------------------------ story ---
+  - name: events
+    label: Story
+    label_singular: Story entry
+    description: >-
+      One entry per moment on the farm. Entries appear on the Story page under
+      their year, and the newest ones on the home page.
+    folder: content/events
+    create: true
+    format: json
+    i18n: true
+    identifier_field: title
+    slug: "{{fields.date}}-{{slug}}"
+    summary: "{{date}} · {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - label: Date
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: YYYY-MM-DD
+        time_format: false
+        i18n: duplicate
+      - { label: Title, name: title, widget: string, i18n: true }
+      - { label: What happened, name: body, widget: text, i18n: true, hint: One or two plain sentences. }
+      - label: Photo
+        name: photo
+        widget: relation
+        collection: site
+        file: photos
+        value_field: "photos.*.id"
+        search_fields: ["photos.*.alt", "photos.*.id"]
+        display_fields: ["photos.*.alt"]
+        required: false
+        i18n: duplicate
+        hint: Add the photo under Site › Photos first.
+
+  # ------------------------------------------------------------------- site ---
+  - name: site
+    label: Site
+    i18n: true
+    files:
+      # ------------------------------------------------------------ settings --
+      - name: settings
+        label: Settings
+        file: content/settings.json
+        i18n: true
+        fields:
+          - { label: Farm name, name: name, widget: string, i18n: true }
+          - { label: Tagline, name: tagline, widget: string, i18n: true, hint: One line under the name on the home page. }
+          - { label: Description, name: description, widget: text, i18n: true, hint: Shown by search engines and link previews. }
+          - label: Location
+            name: location
+            widget: object
+            i18n: true
+            fields:
+              - { label: Village, name: village, widget: string, i18n: true }
+              - { label: Taluk, name: taluk, widget: string, i18n: true, hint: The name only; the site adds "taluk". }
+              - { label: District, name: district, widget: string, i18n: true }
+              - { label: State, name: state, widget: string, i18n: true }
+          - label: Map search link
+            name: map_url
+            widget: string
+            i18n: duplicate
+            hint: Used when there is no map pin.
+          - label: Map pin
+            name: map_pin
+            widget: string
+            required: false
+            i18n: duplicate
+            hint: A Google Maps link to the farm gate. Replaces the search link on the About page.
+          - label: Navigation
+            name: nav
+            widget: list
+            i18n: duplicate
+            hint: The pages in the header, in order.
+            field:
+              label: Page
+              name: page
+              widget: select
+              options:
+                - { label: Story, value: story }
+                - { label: What grows, value: grows }
+                - { label: Farming, value: farming }
+                - { label: Photos, value: photos }
+                - { label: About, value: about }
+          - label: Logo
+            name: logo
+            widget: image
+            required: false
+            i18n: duplicate
+            hint: Leave empty to show the farm name as text.
+          - label: Sharing image
+            name: share_image
+            widget: image
+            i18n: duplicate
+            hint: The picture shown when a link to the site is shared.
+          - label: Site credit
+            name: credit
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: Name, name: name, widget: string, i18n: true }
+              - { label: Link, name: url, widget: string, i18n: duplicate }
+              - { label: Source code, name: repo, widget: string, i18n: duplicate }
+
+      # --------------------------------------------------------------- pages --
+      - name: pages
+        label: Page content
+        file: content/pages.json
+        i18n: true
+        fields:
+          - label: Home page
+            name: home
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - label: Main photo
+                name: hero
+                widget: relation
+                collection: site
+                file: photos
+                value_field: "photos.*.id"
+                search_fields: ["photos.*.alt", "photos.*.id"]
+                display_fields: ["photos.*.alt"]
+                required: false
+                i18n: duplicate
+              - { label: Introduction, name: intro, widget: text, i18n: true }
+              - label: Facts
+                name: facts
+                widget: list
+                i18n: true
+                summary: "{{fields.label}}: {{fields.value}}"
+                hint: >-
+                  {plants}, {kinds} and {date} are filled in from the planting
+                  map.
+                fields:
+                  - { label: Label, name: label, widget: string, i18n: true }
+                  - { label: Value, name: value, widget: string, i18n: true }
+                  - { label: Note, name: note, widget: string, i18n: true }
+              - label: Then (earlier photo)
+                name: then
+                widget: relation
+                collection: site
+                file: photos
+                value_field: "photos.*.id"
+                search_fields: ["photos.*.alt", "photos.*.id"]
+                display_fields: ["photos.*.alt"]
+                required: false
+                i18n: duplicate
+              - label: Now (later photo)
+                name: now
+                widget: relation
+                collection: site
+                file: photos
+                value_field: "photos.*.id"
+                search_fields: ["photos.*.alt", "photos.*.id"]
+                display_fields: ["photos.*.alt"]
+                required: false
+                i18n: duplicate
+              - label: Latest story entries shown
+                name: latest_count
+                widget: number
+                value_type: int
+                min: 0
+                max: 12
+                i18n: duplicate
+          - label: What grows page
+            name: grows
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: Introduction, name: intro, widget: text, i18n: true }
+              - label: Crops
+                name: crops
+                widget: list
+                i18n: true
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: Name, name: name, widget: string, i18n: true }
+                  - { label: Text, name: body, widget: text, i18n: true }
+                  - label: Photo
+                    name: photo
+                    widget: relation
+                    collection: site
+                    file: photos
+                    value_field: "photos.*.id"
+                    search_fields: ["photos.*.alt", "photos.*.id"]
+                    display_fields: ["photos.*.alt"]
+                    required: false
+                    i18n: duplicate
+          - label: Farming page
+            name: farming
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - { label: Introduction, name: intro, widget: text, i18n: true }
+              - label: Practices
+                name: practices
+                widget: list
+                i18n: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string, i18n: true }
+                  - { label: Text, name: body, widget: text, i18n: true }
+                  - label: Photo
+                    name: photo
+                    widget: relation
+                    collection: site
+                    file: photos
+                    value_field: "photos.*.id"
+                    search_fields: ["photos.*.alt", "photos.*.id"]
+                    display_fields: ["photos.*.alt"]
+                    required: false
+                    i18n: duplicate
+          - label: About page
+            name: about
+            widget: object
+            i18n: true
+            collapsed: true
+            fields:
+              - label: Photo
+                name: photo
+                widget: relation
+                collection: site
+                file: photos
+                value_field: "photos.*.id"
+                search_fields: ["photos.*.alt", "photos.*.id"]
+                display_fields: ["photos.*.alt"]
+                required: false
+                i18n: duplicate
+              - { label: About the name, name: name_body, widget: text, i18n: true }
+              - label: People
+                name: people
+                widget: list
+                i18n: true
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: Name, name: name, widget: string, i18n: true }
+                  - { label: What they do, name: body, widget: text, i18n: true }
+
+      # -------------------------------------------------------------- plants --
+      - name: plants
+        label: Plants
+        file: content/plants.json
+        i18n: true
+        fields:
+          - label: Groups
+            name: groups
+            widget: list
+            i18n: true
+            summary: "{{fields.name}}"
+            hint: The groups on the planting map key, each with its colour.
+            fields:
+              - { label: Id, name: id, widget: string, i18n: duplicate, pattern: ["^[a-z0-9-]+$", "Lowercase letters, numbers and hyphens"] }
+              - { label: Name, name: name, widget: string, i18n: true }
+              - { label: Map colour, name: color, widget: color, i18n: duplicate }
+          - label: Kinds
+            name: species
+            widget: list
+            i18n: true
+            summary: "{{fields.name}}"
+            hint: Every kind on the planting map. The id is what the map rows use.
+            fields:
+              - { label: Id, name: id, widget: string, i18n: duplicate, pattern: ["^[a-z0-9-]+$", "Lowercase letters, numbers and hyphens"] }
+              - { label: Name, name: name, widget: string, i18n: true }
+              - label: Group
+                name: group
+                widget: relation
+                collection: site
+                file: plants
+                value_field: "groups.*.id"
+                search_fields: ["groups.*.name"]
+                display_fields: ["groups.*.name"]
+                i18n: duplicate
+
+      # -------------------------------------------------------------- photos --
+      - name: photos
+        label: Photos
+        file: content/photos.json
+        i18n: true
+        fields:
+          - label: Photos
+            name: photos
+            widget: list
+            i18n: true
+            summary: "{{fields.date}} · {{fields.alt}}"
+            hint: >-
+              Every photo on the site. Other pages pick photos from this list by
+              id. Upload JPEG or WebP; run `bun run images` to resize them.
+            fields:
+              - label: Id
+                name: id
+                widget: string
+                i18n: duplicate
+                pattern: ["^[a-z0-9-]+$", "Lowercase letters, numbers and hyphens"]
+                hint: The date and a few words, such as 2025-05-29-papaya-harvest.
+              - { label: Image, name: src, widget: image, i18n: duplicate }
+              - { label: Description, name: alt, widget: string, i18n: true, hint: "What the photo shows, for people who can't see it. It is also the caption." }
+              - label: Date taken
+                name: date
+                widget: datetime
+                format: YYYY-MM-DD
+                date_format: YYYY-MM-DD
+                time_format: false
+                i18n: duplicate
+
+      # --------------------------------------------------------------- copy --
+      - name: copy
+        label: Interface text
+        file: content/copy.json
+        i18n: true
+        fields:
+          # copy-fields:start
+          - label: Screen readers
+            name: a11y
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Skip
+                name: skip
+                widget: string
+                i18n: true
+              - label: Menu
+                name: menu
+                widget: string
+                i18n: true
+              - label: Primary nav
+                name: primaryNav
+                widget: string
+                i18n: true
+          - label: Navigation
+            name: nav
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Home
+                name: home
+                widget: string
+                i18n: true
+              - label: Story
+                name: story
+                widget: string
+                i18n: true
+              - label: Grows
+                name: grows
+                widget: string
+                i18n: true
+              - label: Farming
+                name: farming
+                widget: string
+                i18n: true
+              - label: Photos
+                name: photos
+                widget: string
+                i18n: true
+              - label: About
+                name: about
+                widget: string
+                i18n: true
+              - label: Language
+                name: language
+                widget: string
+                i18n: true
+              - label: Language name
+                name: languageName
+                widget: string
+                i18n: true
+          - label: Footer
+            name: footer
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Pages
+                name: pages
+                widget: string
+                i18n: true
+              - label: Site by
+                name: siteBy
+                widget: string
+                i18n: true
+              - label: Source
+                name: source
+                widget: string
+                i18n: true
+              - label: Licence
+                name: licence
+                widget: string
+                i18n: true
+              - label: Where
+                name: where
+                widget: string
+                i18n: true
+                hint: Keep {village}, {taluk}, {district}, {state} as written; the site fills them in.
+          - label: Home page
+            name: home
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Facts
+                name: facts
+                widget: string
+                i18n: true
+              - label: Then now
+                name: thenNow
+                widget: string
+                i18n: true
+              - label: Latest
+                name: latest
+                widget: string
+                i18n: true
+              - label: All story
+                name: allStory
+                widget: string
+                i18n: true
+              - label: Onward
+                name: onward
+                widget: string
+                i18n: true
+          - label: Onward links (one line of data per page)
+            name: onward
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Story
+                name: story
+                widget: string
+                i18n: true
+                hint: Keep {count}, {from}, {to} as written; the site fills them in.
+              - label: Grows
+                name: grows
+                widget: string
+                i18n: true
+                hint: Keep {plants}, {kinds} as written; the site fills them in.
+              - label: Farming
+                name: farming
+                widget: string
+                i18n: true
+                hint: Keep {count}, {first}, {last} as written; the site fills them in.
+              - label: Photos
+                name: photos
+                widget: string
+                i18n: true
+                hint: Keep {count}, {from}, {to} as written; the site fills them in.
+              - label: About
+                name: about
+                widget: string
+                i18n: true
+                hint: Keep {village}, {taluk} as written; the site fills them in.
+          - label: Story page
+            name: story
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Description
+                name: description
+                widget: string
+                i18n: true
+              - label: Intro
+                name: intro
+                widget: string
+                i18n: true
+                hint: Keep {count}, {from}, {to} as written; the site fills them in.
+          - label: What grows page
+            name: grows
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Description
+                name: description
+                widget: text
+                i18n: true
+              - label: Map
+                name: map
+                widget: string
+                i18n: true
+              - label: Map note
+                name: mapNote
+                widget: text
+                i18n: true
+                hint: Keep {date} as written; the site fills it in.
+              - label: Map label
+                name: mapLabel
+                widget: text
+                i18n: true
+                hint: Keep {plants}, {rows} as written; the site fills them in.
+              - label: Mark
+                name: mark
+                widget: string
+                i18n: true
+                hint: Keep {kinds}, {date} as written; the site fills them in.
+              - label: Key
+                name: key
+                widget: string
+                i18n: true
+              - label: Show all
+                name: showAll
+                widget: string
+                i18n: true
+              - label: Road
+                name: road
+                widget: string
+                i18n: true
+              - label: Rows
+                name: rows
+                widget: string
+                i18n: true
+                hint: Keep {from}, {to} as written; the site fills them in.
+              - label: Place
+                name: place
+                widget: string
+                i18n: true
+                hint: Keep {row}, {place} as written; the site fills them in.
+              - label: Empty
+                name: empty
+                widget: string
+                i18n: true
+              - label: House
+                name: house
+                widget: string
+                i18n: true
+              - label: Table
+                name: table
+                widget: string
+                i18n: true
+              - label: Col plant
+                name: colPlant
+                widget: string
+                i18n: true
+              - label: Col other
+                name: colOther
+                widget: string
+                i18n: true
+              - label: Col count
+                name: colCount
+                widget: string
+                i18n: true
+              - label: Total
+                name: total
+                widget: string
+                i18n: true
+              - label: Crops
+                name: crops
+                widget: string
+                i18n: true
+          - label: Farming page
+            name: farming
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Description
+                name: description
+                widget: text
+                i18n: true
+          - label: Photos page
+            name: photos
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Description
+                name: description
+                widget: string
+                i18n: true
+              - label: Intro
+                name: intro
+                widget: string
+                i18n: true
+                hint: Keep {count}, {from}, {to} as written; the site fills them in.
+              - label: Open
+                name: open
+                widget: string
+                i18n: true
+                hint: Keep {alt} as written; the site fills it in.
+              - label: Close
+                name: close
+                widget: string
+                i18n: true
+              - label: Prev
+                name: prev
+                widget: string
+                i18n: true
+              - label: Next
+                name: next
+                widget: string
+                i18n: true
+              - label: Position
+                name: position
+                widget: string
+                i18n: true
+                hint: Keep {n}, {total} as written; the site fills them in.
+          - label: About page
+            name: about
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Description
+                name: description
+                widget: string
+                i18n: true
+              - label: Name
+                name: name
+                widget: string
+                i18n: true
+              - label: People
+                name: people
+                widget: string
+                i18n: true
+              - label: Where
+                name: where
+                widget: string
+                i18n: true
+              - label: Taluk
+                name: taluk
+                widget: string
+                i18n: true
+                hint: Keep {taluk} as written; the site fills it in.
+              - label: Map link
+                name: mapLink
+                widget: string
+                i18n: true
+          - label: Page not found
+            name: notFound
+            widget: object
+            collapsed: true
+            i18n: true
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                i18n: true
+              - label: Description
+                name: description
+                widget: string
+                i18n: true
+              - label: Body
+                name: body
+                widget: string
+                i18n: true
+              - label: Home
+                name: home
+                widget: string
+                i18n: true
+          # copy-fields:end
+
+  # ------------------------------------------------------------------- plot ---
+  - name: plot
+    label: Planting map
+    files:
+      - name: plot
+        label: Planting map
+        file: content/plot.json
+        fields:
+          - label: Date of the map
+            name: date
+            widget: datetime
+            format: YYYY-MM-DD
+            date_format: YYYY-MM-DD
+            time_format: false
+          - label: Rows
+            name: rows
+            widget: list
+            summary: "{{fields.cells}}"
+            hint: >-
+              Row 1 is by the gate. Each row lists its places from the road
+              side, separated by commas, using the kind ids from Site › Plants.
+              "empty" is a pit with nothing in it yet, "house" is the helper's
+              house and "." is a gap with no pit.
+            fields:
+              - { label: Places, name: cells, widget: text }

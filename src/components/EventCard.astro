@@ -1,0 +1,73 @@
+---
+import Figure from "./Figure.astro";
+import { photo as photoOf, type FarmEvent, type Locale } from "../data/load";
+import { formatDate, localePath, lx } from "../i18n/utils";
+
+export interface Props {
+  event: FarmEvent;
+  lang: Locale;
+}
+
+const { event, lang } = Astro.props;
+const photo = photoOf(event.photo);
+const [year, month, day] = event.date.split("-");
+const monthYear = formatDate(`${year}-${month}`, lang);
+---
+
+<article class="card" data-section="story">
+  {
+    photo ? (
+      <Figure photo={photo} lang={lang} ratio="4 / 3" sizes="(min-width: 64rem) 380px, (min-width: 40rem) 50vw, 100vw" />
+    ) : (
+      <div class="block" aria-hidden="true">
+        <span class="day">{Number(day)}</span>
+        <span class="month">{monthYear}</span>
+      </div>
+    )
+  }
+  <p class="date"><time datetime={event.date}>{formatDate(event.date, lang)}</time></p>
+  <h3><a href={`${localePath("/story/", lang)}#${event.slug}`}>{lx(event.title, lang)}</a></h3>
+  <p class="body">{lx(event.body, lang)}</p>
+</article>
+
+<style>
+  .card {
+    display: grid;
+    align-content: start;
+    gap: var(--s-2);
+  }
+
+  /* No photo: a solid block in the story colour with the date large. */
+  .block {
+    display: grid;
+    align-content: end;
+    aspect-ratio: 4 / 3;
+    padding: var(--s-5);
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .day {
+    font-family: var(--font-display);
+    font-size: var(--step-5);
+    line-height: 1;
+  }
+
+  .month {
+    font-size: var(--step-1);
+  }
+
+  .date {
+    margin-block-start: var(--s-2);
+    color: var(--ink-2);
+    font-size: var(--step--1);
+  }
+
+  h3 {
+    font-size: var(--step-2);
+  }
+
+  h3 a {
+    text-decoration-color: var(--accent);
+  }
+</style>

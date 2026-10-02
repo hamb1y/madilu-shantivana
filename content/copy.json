@@ -1,0 +1,188 @@
+{
+  "en": {
+    "a11y": {
+      "skip": "Skip to content",
+      "menu": "Menu",
+      "primaryNav": "Main"
+    },
+    "nav": {
+      "home": "Home",
+      "story": "Story",
+      "grows": "What grows",
+      "farming": "Farming",
+      "photos": "Photos",
+      "about": "About",
+      "language": "ಕನ್ನಡ",
+      "languageName": "Kannada"
+    },
+    "footer": {
+      "pages": "Pages",
+      "siteBy": "Site by",
+      "source": "Source code",
+      "licence": "CWSL-1.0",
+      "where": "{village}, {taluk} taluk, {district}, {state}"
+    },
+    "home": {
+      "facts": "The farm in figures",
+      "thenNow": "The farm, two years apart",
+      "latest": "Latest from the farm",
+      "allStory": "Read the whole story",
+      "onward": "More about the farm"
+    },
+    "onward": {
+      "story": "{count} entries, {from} to {to}",
+      "grows": "{plants} places planted, {kinds} kinds",
+      "farming": "{count} practices, from {first} to {last}",
+      "photos": "{count} photos, {from} to {to}",
+      "about": "{village}, {taluk} taluk"
+    },
+    "story": {
+      "title": "Story",
+      "description": "How Madilu Shantivana has grown, from the plan in March 2024 to today.",
+      "intro": "{count} moments from the farm, from the plan in {from} to {to}."
+    },
+    "grows": {
+      "title": "What grows",
+      "description": "Every fruit tree, timber tree, coconut and banana on Madilu Shantivana's planting map, and the crops between them.",
+      "map": "The planting map",
+      "mapNote": "Each square is one planting place on the map of {date}. Point at or tap a square to see what grows there. Pick a group in the key to show it alone.",
+      "mapLabel": "Planting map of Madilu Shantivana: {plants} places planted in {rows} rows, by group. The table below lists every kind.",
+      "mark": "places planted in {kinds} kinds, on the map of {date}",
+      "key": "Key",
+      "showAll": "Show all",
+      "road": "Road",
+      "rows": "Rows {from} to {to}",
+      "place": "Row {row}, place {place}",
+      "empty": "Empty pit",
+      "house": "Helper's house",
+      "table": "Every kind on the map",
+      "colPlant": "Plant",
+      "colOther": "In Kannada",
+      "colCount": "Places",
+      "total": "All planted places",
+      "crops": "Between the trees"
+    },
+    "farming": {
+      "title": "Farming",
+      "description": "How Madilu Shantivana is watered, fed and protected: drip lines, jeevamrutha, sprays from its own leaves, cows and bees."
+    },
+    "photos": {
+      "title": "Photos",
+      "description": "Photos from Madilu Shantivana, from the first pits in 2024 to the latest harvest.",
+      "intro": "{count} photos from the farm, {from} to {to}.",
+      "open": "Open photo: {alt}",
+      "close": "Close",
+      "prev": "Previous photo",
+      "next": "Next photo",
+      "position": "{n} of {total}"
+    },
+    "about": {
+      "title": "About",
+      "description": "Who runs Madilu Shantivana, what the name means, and where the farm is.",
+      "name": "The name",
+      "people": "Who runs it",
+      "where": "Where it is",
+      "taluk": "{taluk} taluk",
+      "mapLink": "Open in Google Maps"
+    },
+    "notFound": {
+      "title": "Page not found",
+      "description": "There is no page at this address.",
+      "body": "There is no page at this address. It may have moved.",
+      "home": "Go to the home page"
+    }
+  },
+  "kn": {
+    "a11y": {
+      "skip": "ವಿಷಯಕ್ಕೆ ಹೋಗಿ",
+      "menu": "ಮೆನು",
+      "primaryNav": "ಮುಖ್ಯ"
+    },
+    "nav": {
+      "home": "ಮುಖಪುಟ",
+      "story": "ಕಥೆ",
+      "grows": "ಏನು ಬೆಳೆಯುತ್ತದೆ",
+      "farming": "ಕೃಷಿ",
+      "photos": "ಫೋಟೋಗಳು",
+      "about": "ನಮ್ಮ ಬಗ್ಗೆ",
+      "language": "English",
+      "languageName": "English"
+    },
+    "footer": {
+      "pages": "ಪುಟಗಳು",
+      "siteBy": "ಜಾಲತಾಣ",
+      "source": "ಸೋರ್ಸ್ ಕೋಡ್",
+      "licence": "CWSL-1.0",
+      "where": "{village}, {taluk} ತಾಲ್ಲೂಕು, {district}, {state}"
+    },
+    "home": {
+      "facts": "ಅಂಕಿಗಳಲ್ಲಿ ತೋಟ",
+      "thenNow": "ಎರಡು ವರ್ಷಗಳ ಅಂತರದಲ್ಲಿ ತೋಟ",
+      "latest": "ತೋಟದ ಇತ್ತೀಚಿನ ಸುದ್ದಿ",
+      "allStory": "ಪೂರ್ತಿ ಕಥೆ ಓದಿ",
+      "onward": "ತೋಟದ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು"
+    },
+    "onward": {
+      "story": "{count} ಘಟನೆಗಳು, {from} ರಿಂದ {to} ವರೆಗೆ",
+      "grows": "{plants} ನೆಟ್ಟ ಜಾಗಗಳು, {kinds} ಬಗೆ",
+      "farming": "{count} ಪದ್ಧತಿಗಳು: {first} ರಿಂದ {last} ವರೆಗೆ",
+      "photos": "{count} ಫೋಟೋಗಳು, {from} ರಿಂದ {to} ವರೆಗೆ",
+      "about": "{village}, {taluk} ತಾಲ್ಲೂಕು"
+    },
+    "story": {
+      "title": "ಕಥೆ",
+      "description": "2024ರ ಮಾರ್ಚ್‌ನ ಯೋಜನೆಯಿಂದ ಇಂದಿನವರೆಗೆ ಮಡಿಲು ಶಾಂತಿವನ ಬೆಳೆದ ಕಥೆ.",
+      "intro": "{from} ರ ಯೋಜನೆಯಿಂದ {to} ರವರೆಗೆ ತೋಟದ {count} ಘಟನೆಗಳು."
+    },
+    "grows": {
+      "title": "ಏನು ಬೆಳೆಯುತ್ತದೆ",
+      "description": "ಮಡಿಲು ಶಾಂತಿವನದ ನಕ್ಷೆಯಲ್ಲಿರುವ ಪ್ರತಿ ಹಣ್ಣಿನ ಮರ, ಕಾಡು ಮರ, ತೆಂಗು, ಬಾಳೆ ಮತ್ತು ಅವುಗಳ ನಡುವಿನ ಬೆಳೆಗಳು.",
+      "map": "ನೆಡುತೋಪಿನ ನಕ್ಷೆ",
+      "mapNote": "{date} ರ ನಕ್ಷೆಯಲ್ಲಿ ಪ್ರತಿ ಚೌಕವೂ ಒಂದು ನೆಡುವ ಜಾಗ. ಅಲ್ಲಿ ಏನು ಬೆಳೆಯುತ್ತದೆ ಎಂದು ನೋಡಲು ಚೌಕದ ಮೇಲೆ ಮೌಸ್ ಇಡಿ ಅಥವಾ ಒತ್ತಿ. ಒಂದು ಗುಂಪನ್ನು ಮಾತ್ರ ನೋಡಲು ಸೂಚಿಯಲ್ಲಿ ಆರಿಸಿ.",
+      "mapLabel": "ಮಡಿಲು ಶಾಂತಿವನದ ನೆಡುತೋಪಿನ ನಕ್ಷೆ: {rows} ಸಾಲುಗಳಲ್ಲಿ {plants} ನೆಟ್ಟ ಜಾಗಗಳು, ಗುಂಪುಗಳ ಪ್ರಕಾರ. ಕೆಳಗಿನ ಪಟ್ಟಿಯಲ್ಲಿ ಎಲ್ಲಾ ಬಗೆಗಳಿವೆ.",
+      "mark": "ನೆಟ್ಟ ಜಾಗಗಳು, {kinds} ಬಗೆ, {date} ರ ನಕ್ಷೆಯಲ್ಲಿ",
+      "key": "ಸೂಚಿ",
+      "showAll": "ಎಲ್ಲಾ ತೋರಿಸಿ",
+      "road": "ರಸ್ತೆ",
+      "rows": "{from} ರಿಂದ {to} ಸಾಲುಗಳು",
+      "place": "ಸಾಲು {row}, ಜಾಗ {place}",
+      "empty": "ಖಾಲಿ ಗುಂಡಿ",
+      "house": "ಸಹಾಯಕರ ಮನೆ",
+      "table": "ನಕ್ಷೆಯಲ್ಲಿರುವ ಎಲ್ಲಾ ಬಗೆಗಳು",
+      "colPlant": "ಗಿಡ",
+      "colOther": "ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ",
+      "colCount": "ಜಾಗಗಳು",
+      "total": "ಒಟ್ಟು ನೆಟ್ಟ ಜಾಗಗಳು",
+      "crops": "ಮರಗಳ ನಡುವೆ"
+    },
+    "farming": {
+      "title": "ಕೃಷಿ",
+      "description": "ಮಡಿಲು ಶಾಂತಿವನಕ್ಕೆ ನೀರು, ಪೋಷಣೆ ಮತ್ತು ರಕ್ಷಣೆ: ಡ್ರಿಪ್, ಜೀವಾಮೃತ, ತೋಟದ ಎಲೆಗಳಿಂದ ಮಾಡಿದ ಸಿಂಪಡಣೆ, ಹಸುಗಳು ಮತ್ತು ಜೇನು."
+    },
+    "photos": {
+      "title": "ಫೋಟೋಗಳು",
+      "description": "2024ರ ಮೊದಲ ಗುಂಡಿಗಳಿಂದ ಇತ್ತೀಚಿನ ಕೊಯ್ಲಿನವರೆಗೆ ಮಡಿಲು ಶಾಂತಿವನದ ಫೋಟೋಗಳು.",
+      "intro": "{from} ರಿಂದ {to} ರವರೆಗೆ ತೋಟದ {count} ಫೋಟೋಗಳು.",
+      "open": "ಫೋಟೋ ತೆರೆಯಿರಿ: {alt}",
+      "close": "ಮುಚ್ಚಿ",
+      "prev": "ಹಿಂದಿನ ಫೋಟೋ",
+      "next": "ಮುಂದಿನ ಫೋಟೋ",
+      "position": "{total} ರಲ್ಲಿ {n}"
+    },
+    "about": {
+      "title": "ನಮ್ಮ ಬಗ್ಗೆ",
+      "description": "ಮಡಿಲು ಶಾಂತಿವನ ಯಾರದು, ಹೆಸರಿನ ಅರ್ಥ ಏನು, ಮತ್ತು ತೋಟ ಎಲ್ಲಿದೆ.",
+      "name": "ಹೆಸರು",
+      "people": "ಯಾರು ನಡೆಸುತ್ತಾರೆ",
+      "where": "ಎಲ್ಲಿದೆ",
+      "taluk": "{taluk} ತಾಲ್ಲೂಕು",
+      "mapLink": "ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್‌ನಲ್ಲಿ ತೆರೆಯಿರಿ"
+    },
+    "notFound": {
+      "title": "ಪುಟ ಸಿಗಲಿಲ್ಲ",
+      "description": "ಈ ವಿಳಾಸದಲ್ಲಿ ಯಾವ ಪುಟವೂ ಇಲ್ಲ.",
+      "body": "ಈ ವಿಳಾಸದಲ್ಲಿ ಯಾವ ಪುಟವೂ ಇಲ್ಲ. ಅದು ಬೇರೆಡೆಗೆ ಹೋಗಿರಬಹುದು.",
+      "home": "ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ"
+    }
+  }
+}

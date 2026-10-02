@@ -1,0 +1,79 @@
+---
+import Base from "../layouts/Base.astro";
+import Figure from "../components/Figure.astro";
+import Onward from "../components/Onward.astro";
+import { pages, photo, type Locale } from "../data/load";
+import { lx, t } from "../i18n/utils";
+
+export interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const title = t(lang, "farming.title");
+const farming = pages.farming;
+---
+
+<Base lang={lang} path="/farming/" title={title} description={t(lang, "farming.description")} section="farming">
+  <div class="container">
+    <header class="page-head">
+      <h1>{title}</h1>
+      <p class="lead">{lx(farming.intro, lang)}</p>
+    </header>
+
+    <div class="practices">
+      {
+        farming.practices.map((practice) => {
+          const p = photo(practice.photo);
+          return (
+            <section class:list={["practice", { "has-photo": p }]}>
+              <div class="text">
+                <h2>{lx(practice.title, lang)}</h2>
+                <p>{lx(practice.body, lang)}</p>
+              </div>
+              {p && <Figure photo={p} lang={lang} ratio="4 / 3" sizes="(min-width: 64rem) 560px, 100vw" />}
+            </section>
+          );
+        })
+      }
+    </div>
+  </div>
+  <Onward lang={lang} current="farming" />
+</Base>
+
+<style>
+  .practices {
+    display: grid;
+  }
+
+  .practice {
+    display: grid;
+    gap: var(--s-4);
+    padding-block: var(--s-6);
+    border-block-start: 1px solid var(--rule);
+  }
+
+  .text {
+    display: grid;
+    align-content: start;
+    gap: var(--s-3);
+  }
+
+  h2 {
+    font-size: var(--step-3);
+    color: var(--accent);
+  }
+
+  @media (min-width: 64rem) {
+    .practice {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--s-7);
+      align-items: start;
+    }
+
+    /* Alternate the photo side so the page reads down in a zigzag. */
+    .practice.has-photo:nth-child(even) .text {
+      order: 2;
+    }
+  }
+</style>

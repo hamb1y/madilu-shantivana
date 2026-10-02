@@ -1,0 +1,87 @@
+---
+import { settings, type Locale } from "../data/load";
+import { localePath, t } from "../i18n/utils";
+import { PAGES, isPageId, type PageId } from "../lib/nav";
+import { onwardLine } from "../lib/onward";
+
+export interface Props {
+  lang: Locale;
+  current: PageId;
+}
+
+const { lang, current } = Astro.props;
+const ids = settings.nav.filter(isPageId).filter((id) => id !== current && id !== "home");
+---
+
+{
+  ids.length > 0 && (
+    <section class="container section onward" aria-labelledby="onward-title">
+      <h2 id="onward-title">{t(lang, "home.onward")}</h2>
+      <ul>
+        {ids.map((id) => (
+          <li>
+            <a href={localePath(PAGES[id].path, lang)} data-section={id}>
+              <span class="title">{t(lang, PAGES[id].key)}</span>
+              <span class="line">{onwardLine(id, lang)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  h2 {
+    margin-block-end: var(--s-5);
+  }
+
+  ul {
+    display: grid;
+    gap: var(--s-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    display: grid;
+    align-content: space-between;
+    gap: var(--s-5);
+    min-block-size: 9rem;
+    block-size: 100%;
+    padding: var(--s-5);
+    background: var(--accent);
+    color: var(--paper);
+    text-decoration: none;
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.2;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover .title {
+    text-decoration-thickness: 2px;
+  }
+
+  .line {
+    font-size: var(--step-0);
+  }
+
+  @media (min-width: 40rem) {
+    ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    ul {
+      grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+  }
+</style>

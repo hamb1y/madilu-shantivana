@@ -1,0 +1,55 @@
+---
+import Base from "../layouts/Base.astro";
+import Onward from "../components/Onward.astro";
+import PhotoGrid from "../components/PhotoGrid.svelte";
+import { photos, type Locale } from "../data/load";
+import { formatDate, formatMonth, lx, t } from "../i18n/utils";
+
+export interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const title = t(lang, "photos.title");
+const sorted = [...photos].sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+---
+
+<Base lang={lang} path="/photos/" title={title} description={t(lang, "photos.description")} section="photos">
+  <div class="container">
+    <header class="page-head">
+      <h1>{title}</h1>
+      {
+        sorted.length > 0 && (
+          <p class="lead">
+            {t(lang, "photos.intro", {
+              count: sorted.length,
+              from: formatMonth(sorted[0].date, lang),
+              to: formatMonth(sorted.at(-1)?.date ?? "", lang),
+            })}
+          </p>
+        )
+      }
+    </header>
+    <PhotoGrid
+      client:load
+      photos={sorted.map((p) => ({
+        id: p.id,
+        src: p.src,
+        small: p.small,
+        width: p.width,
+        height: p.height,
+        alt: lx(p.alt, lang),
+        date: formatDate(p.date, lang),
+        year: p.date.slice(0, 4),
+      }))}
+      labels={{
+        open: t(lang, "photos.open"),
+        close: t(lang, "photos.close"),
+        prev: t(lang, "photos.prev"),
+        next: t(lang, "photos.next"),
+        position: t(lang, "photos.position"),
+      }}
+    />
+  </div>
+  <Onward lang={lang} current="photos" />
+</Base>

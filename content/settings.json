@@ -1,0 +1,44 @@
+{
+  "en": {
+    "name": "Madilu Shantivana",
+    "tagline": "Fruit and timber trees on three acres in Kanakapura",
+    "description": "Madilu Shantivana is three acres of fruit trees and native timber trees at Tenginamaradoddi, Kanakapura taluk, planted from June 2024 and farmed with manure and jeevamrutha made on the farm.",
+    "location": {
+      "village": "Tenginamaradoddi",
+      "taluk": "Kanakapura",
+      "district": "Bengaluru South district",
+      "state": "Karnataka"
+    },
+    "map_url": "https://www.google.com/maps/search/?api=1&query=Tenginamaradoddi%2C+Kanakapura",
+    "map_pin": "",
+    "nav": ["story", "grows", "farming", "photos", "about"],
+    "logo": "",
+    "share_image": "/images/2026-06-12-ploughed-rows.webp",
+    "credit": {
+      "name": "Rishi Malnad",
+      "url": "https://github.com/hamb1y",
+      "repo": "https://github.com/hamb1y/madilu-shantivana"
+    }
+  },
+  "kn": {
+    "name": "ಮಡಿಲು ಶಾಂತಿವನ",
+    "tagline": "ಕನಕಪುರದಲ್ಲಿ ಮೂರು ಎಕರೆಯಲ್ಲಿ ಹಣ್ಣಿನ ಮರಗಳು ಮತ್ತು ಕಾಡು ಮರಗಳು",
+    "description": "ಮಡಿಲು ಶಾಂತಿವನ ಕನಕಪುರ ತಾಲ್ಲೂಕಿನ ತೆಂಗಿನಮರದೊಡ್ಡಿಯಲ್ಲಿರುವ ಮೂರು ಎಕರೆ ತೋಟ. 2024ರ ಜೂನ್‌ನಿಂದ ಹಣ್ಣಿನ ಮರಗಳು ಮತ್ತು ನಾಟಿ ಕಾಡು ಮರಗಳನ್ನು ನೆಡಲಾಗಿದೆ; ಗೊಬ್ಬರ ಮತ್ತು ಜೀವಾಮೃತ ತೋಟದಲ್ಲೇ ತಯಾರಾಗುತ್ತದೆ.",
+    "location": {
+      "village": "ತೆಂಗಿನಮರದೊಡ್ಡಿ",
+      "taluk": "ಕನಕಪುರ",
+      "district": "ಬೆಂಗಳೂರು ದಕ್ಷಿಣ ಜಿಲ್ಲೆ",
+      "state": "ಕರ್ನಾಟಕ"
+    },
+    "map_url": "https://www.google.com/maps/search/?api=1&query=Tenginamaradoddi%2C+Kanakapura",
+    "map_pin": "",
+    "nav": ["story", "grows", "farming", "photos", "about"],
+    "logo": "",
+    "share_image": "/images/2026-06-12-ploughed-rows.webp",
+    "credit": {
+      "name": "Rishi Malnad",
+      "url": "https://github.com/hamb1y",
+      "repo": "https://github.com/hamb1y/madilu-shantivana"
+    }
+  }
+}

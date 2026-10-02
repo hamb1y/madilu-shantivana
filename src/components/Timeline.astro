@@ -1,0 +1,103 @@
+---
+import Figure from "./Figure.astro";
+import { photo as photoOf, type FarmEvent, type Locale } from "../data/load";
+import { formatDay, lx } from "../i18n/utils";
+
+export interface Props {
+  events: FarmEvent[];
+  lang: Locale;
+}
+
+const { events, lang } = Astro.props;
+const years = [...new Set(events.map((e) => e.date.slice(0, 4)))].map((year) => ({
+  year,
+  entries: events.filter((e) => e.date.startsWith(year)),
+}));
+---
+
+<div class="timeline">
+  {
+    years.map(({ year, entries }) => (
+      <section class="year" aria-labelledby={`year-${year}`}>
+        <h2 id={`year-${year}`}>{year}</h2>
+        <ol>
+          {entries.map((event) => {
+            const photo = photoOf(event.photo);
+            return (
+              <li id={event.slug} class:list={["entry", { "has-photo": photo }]}>
+                <div class="text">
+                  <p class="date">
+                    <time datetime={event.date}>{formatDay(event.date, lang)}</time>
+                  </p>
+                  <h3>{lx(event.title, lang)}</h3>
+                  <p>{lx(event.body, lang)}</p>
+                </div>
+                {photo && <Figure photo={photo} lang={lang} ratio="4 / 3" sizes="(min-width: 64rem) 420px, 100vw" />}
+              </li>
+            );
+          })}
+        </ol>
+      </section>
+    ))
+  }
+</div>
+
+<style>
+  .year {
+    display: grid;
+    gap: var(--s-4);
+    padding-block: var(--s-6);
+    border-block-start: 1px solid var(--rule-strong);
+  }
+
+  h2 {
+    font-size: var(--step-5);
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  ol {
+    display: grid;
+    gap: var(--s-7);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .entry {
+    display: grid;
+    gap: var(--s-4);
+    scroll-margin-block-start: calc(var(--header-h) + var(--s-4));
+  }
+
+  .text {
+    display: grid;
+    align-content: start;
+    gap: var(--s-2);
+  }
+
+  .date {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  @media (min-width: 64rem) {
+    .year {
+      grid-template-columns: 14rem 1fr;
+      gap: var(--s-6);
+    }
+
+    /* The year stays in view while its entries scroll past. */
+    h2 {
+      font-size: var(--step-4);
+      position: sticky;
+      inset-block-start: calc(var(--header-h) + var(--s-5));
+      align-self: start;
+    }
+
+    .entry.has-photo {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+      gap: var(--s-6);
+    }
+  }
+</style>

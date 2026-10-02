@@ -1,0 +1,121 @@
+---
+import { settings, type Locale } from "../data/load";
+import { localePath, locales, lx, t } from "../i18n/utils";
+import { PAGES, isPageId } from "../lib/nav";
+
+export interface Props {
+  lang: Locale;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const { location, credit } = settings;
+const ids = ["home" as const, ...settings.nav.filter(isPageId).filter((id) => id !== "home")];
+const other = locales.find((l) => l !== lang) ?? "en";
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="about">
+      <p class="name">{lx(settings.name, lang)}</p>
+      <p>{lx(settings.tagline, lang)}</p>
+      <p class="muted">
+        {
+          t(lang, "footer.where", {
+            village: lx(location.village, lang),
+            taluk: lx(location.taluk, lang),
+            district: lx(location.district, lang),
+            state: lx(location.state, lang),
+          })
+        }
+      </p>
+    </div>
+
+    <nav aria-labelledby="footer-pages">
+      <h2 id="footer-pages">{t(lang, "footer.pages")}</h2>
+      <ul>
+        {
+          ids.map((id) => (
+            <li>
+              <a href={localePath(PAGES[id].path, lang)}>{t(lang, PAGES[id].key)}</a>
+            </li>
+          ))
+        }
+        <li>
+          <a href={localePath(path, other)} lang={other} hreflang={other}>{t(lang, "nav.language")}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container credit">
+    <p>
+      {t(lang, "footer.siteBy")}{" "}
+      <a href={credit.url} target="_blank" rel="noopener">{lx(credit.name, lang)}</a>{" · "}
+      <a href={credit.repo} target="_blank" rel="noopener">{t(lang, "footer.source")}</a>{" · "}
+      <a href="/license.txt">{t(lang, "footer.licence")}</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: var(--s-8);
+    padding-block: var(--s-7) var(--s-5);
+    border-block-start: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  .inner {
+    display: grid;
+    gap: var(--s-6);
+  }
+
+  .about {
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    font-weight: 700;
+    margin-block-end: var(--s-3);
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
+    gap: var(--s-2) var(--s-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .credit {
+    margin-block-start: var(--s-7);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+
+  .credit p {
+    max-width: none;
+  }
+
+  @media (min-width: 48rem) {
+    .inner {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+
+    ul {
+      grid-template-columns: repeat(3, max-content);
+    }
+  }
+</style>

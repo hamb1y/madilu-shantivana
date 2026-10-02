@@ -1,0 +1,187 @@
+---
+import Base from "../layouts/Base.astro";
+import EventCard from "../components/EventCard.astro";
+import Facts from "../components/Facts.astro";
+import Figure from "../components/Figure.astro";
+import Onward from "../components/Onward.astro";
+import { events, kindTotal, pages, photo, plantTotal, plot, settings, type Locale } from "../data/load";
+import { formatDate, formatMonth, localePath, lx, t } from "../i18n/utils";
+
+export interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const home = pages.home;
+const hero = photo(home.hero);
+const then = photo(home.then);
+const now = photo(home.now);
+const latest = events.slice(-Math.max(0, home.latest_count)).reverse();
+
+// Facts may carry figures computed from the planting map.
+const fill = (text: string) =>
+  text
+    .replaceAll("{plants}", String(plantTotal))
+    .replaceAll("{kinds}", String(kindTotal))
+    .replaceAll("{date}", formatDate(plot.date, lang));
+const facts = home.facts.map((fact) => ({
+  label: lx(fact.label, lang),
+  value: fill(lx(fact.value, lang)),
+  note: fill(lx(fact.note, lang)),
+}));
+---
+
+<Base lang={lang} path="/" image={hero?.src}>
+  <section class="container hero">
+    <div class="hero-text">
+      <h1>{lx(settings.name, lang)}</h1>
+      <p class="tagline">{lx(settings.tagline, lang)}</p>
+      <p class="intro">{lx(home.intro, lang)}</p>
+    </div>
+    {
+      hero && (
+        <Figure
+          photo={hero}
+          lang={lang}
+          eager
+          class="hero-photo"
+          ratio="4 / 3"
+          sizes="(min-width: 64rem) 640px, 100vw"
+          caption={`${formatDate(hero.date, lang)} · ${lx(hero.alt, lang)}`}
+        />
+      )
+    }
+  </section>
+
+  {
+    facts.length > 0 && (
+      <section class="container section" aria-labelledby="facts-title">
+        <h2 id="facts-title" class="section-title">{t(lang, "home.facts")}</h2>
+        <Facts facts={facts} />
+      </section>
+    )
+  }
+
+  {
+    then && now && (
+      <section class="container section" aria-labelledby="then-now-title">
+        <h2 id="then-now-title" class="section-title">{t(lang, "home.thenNow")}</h2>
+        <div class="pair">
+          {[then, now].map((p) => (
+            <div class="pair-item">
+              <p class="pair-date">{formatMonth(p.date, lang)}</p>
+              <Figure photo={p} lang={lang} ratio="4 / 3" sizes="(min-width: 48rem) 50vw, 100vw" caption={lx(p.alt, lang)} />
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  {
+    latest.length > 0 && (
+      <section class="container section" aria-labelledby="latest-title">
+        <div class="section-head">
+          <h2 id="latest-title" class="section-title">{t(lang, "home.latest")}</h2>
+          <a class="more" href={localePath("/story/", lang)}>{t(lang, "home.allStory")}</a>
+        </div>
+        <div class="latest">
+          {latest.map((event) => (
+            <EventCard event={event} lang={lang} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <Onward lang={lang} current="home" />
+</Base>
+
+<style>
+  .hero {
+    display: grid;
+    gap: var(--s-6);
+    padding-block: var(--s-6) var(--s-7);
+  }
+
+  .hero-text {
+    display: grid;
+    align-content: center;
+    gap: var(--s-4);
+  }
+
+  h1 {
+    font-size: var(--step-5);
+    line-height: 0.95;
+    color: var(--story);
+  }
+
+  :lang(kn) h1 {
+    font-size: var(--step-4);
+    line-height: 1.2;
+  }
+
+  .tagline {
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    line-height: 1.25;
+  }
+
+  .intro {
+    font-size: var(--step-1);
+    line-height: 1.55;
+  }
+
+  .section-title {
+    margin-block-end: var(--s-5);
+  }
+
+  .section-head .section-title {
+    margin-block-end: 0;
+  }
+
+  .more {
+    font-weight: 600;
+  }
+
+  .pair {
+    display: grid;
+    gap: var(--s-6) var(--s-5);
+  }
+
+  .pair-date {
+    margin-block-end: var(--s-2);
+    font-family: var(--font-display);
+    font-size: var(--step-3);
+    line-height: 1.1;
+  }
+
+  .latest {
+    display: grid;
+    gap: var(--s-7) var(--s-5);
+  }
+
+  @media (min-width: 48rem) {
+    .pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 40rem) and (max-width: 63.99rem) {
+    .latest {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .hero {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: var(--s-7);
+      padding-block: var(--s-7) var(--s-8);
+    }
+
+    .latest {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

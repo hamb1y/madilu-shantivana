@@ -1,0 +1,252 @@
+{
+  "en": {
+    "home": {
+      "hero": "2026-06-12-ploughed-rows",
+      "intro": "Madilu Shantivana is three acres of fruit trees and native timber trees at Tenginamaradoddi in Kanakapura taluk. Santhosh K and Lakshmi planned it in March 2024, and Mahesh has lived on the farm and looked after it since June 2024. Between the trees grow ragi, tur, papaya and vegetables for the family's kitchen.",
+      "facts": [
+        {
+          "label": "Land",
+          "value": "3 acres",
+          "note": "At Tenginamaradoddi, Kanakapura taluk"
+        },
+        {
+          "label": "First saplings",
+          "value": "June 2024",
+          "note": "Planted after the drip lines were finished in May 2024"
+        },
+        {
+          "label": "On the planting map",
+          "value": "{plants}",
+          "note": "Planting places in {kinds} kinds, on the map of {date}"
+        },
+        {
+          "label": "Looked after by",
+          "value": "Mahesh",
+          "note": "Living on the farm since 10 June 2024"
+        }
+      ],
+      "then": "2024-05-03-pits",
+      "now": "2026-06-12-ploughed-rows-2",
+      "latest_count": 3
+    },
+    "grows": {
+      "intro": "The farm is laid out in 100 rows. Ashoka trees stand by the gate, okra and moringa grow at the front, the fruit orchard fills the middle, timber trees grow behind it, and banana fills the far end. A line of coconut runs down one side.",
+      "crops": [
+        {
+          "name": "Papaya",
+          "body": "300 Red Lady papaya saplings were planted between the young trees in July 2024. The first harvest, on 29 May 2025, weighed 40 kg, and the one on 17 June 2025 weighed 79 kg.",
+          "photo": "2025-06-16-papaya-tree"
+        },
+        {
+          "name": "Ragi",
+          "body": "Ragi was first sown between the timber trees in September 2024. In June 2026 the whole farm was ploughed for ragi, which was sown in August and came up well.",
+          "photo": "2024-09-27-ragi-rows"
+        },
+        {
+          "name": "Tur",
+          "body": "The tur was harvested, cleaned and milled into dal in March 2026.",
+          "photo": ""
+        },
+        {
+          "name": "Vegetables",
+          "body": "Okra, gourds, tomato, chilli and greens are grown for the family's kitchen. The first sowing was in August 2024; 100 chilli and 100 tomato seedlings followed in July 2025.",
+          "photo": "2025-05-12-gourd-frame"
+        },
+        {
+          "name": "Ash gourd",
+          "body": "A whole row was sown with ash gourd in March 2026.",
+          "photo": "2026-05-05-ash-gourd"
+        }
+      ]
+    },
+    "farming": {
+      "intro": "The farm is fed and protected with what it grows: dung and urine from the cows, leaves from its own neem, pongamia and custard apple, and seed it keeps itself.",
+      "practices": [
+        {
+          "title": "Drip water",
+          "body": "Drip lines carry water from two borewells to the trees. The pipes run above ground wherever no vehicle needs to cross. When the new borewell ran dry in April 2026, a groundwater survey marked a point where the aquifer is good.",
+          "photo": "2024-07-13-drip-sapling"
+        },
+        {
+          "title": "Feeding the soil",
+          "body": "Cow dung went into the planting pits in 2024, and weak trees get more. Jeevamrutha is made on the farm from native cow dung and urine, jaggery and gram flour; the first batch, in September 2024, used dung and urine from neighbours' cows.",
+          "photo": "2024-04-05-manure"
+        },
+        {
+          "title": "Seeds",
+          "body": "No hybrid seed is used; the family brings its own. Before sowing, seeds are treated with beejamrutha and dried in the shade for an hour.",
+          "photo": ""
+        },
+        {
+          "title": "Pests",
+          "body": "Pests are kept down with neem spray, brahmastra brewed in a clay pot from the farm's neem, pongamia and custard-apple leaves with cow urine, and neemamrutha against disease and mites on the sapota and custard apple.",
+          "photo": "2025-05-22-clay-pots"
+        },
+        {
+          "title": "A living fence",
+          "body": "Gliricidia cuttings were planted along the fence in October 2024, kept back from the borewell pipeline.",
+          "photo": "2024-10-09-gliricidia"
+        },
+        {
+          "title": "Weeds",
+          "body": "Since September 2024 a brush cutter and a tiller keep the weeds down between the rows. Around the saplings Mahesh weeds by hand.",
+          "photo": "2025-07-01-tilled"
+        },
+        {
+          "title": "Cows",
+          "body": "The first cow arrived on 30 April 2025, and a bull calf was born on the farm on 29 March 2026. Their dung and urine go into the jeevamrutha.",
+          "photo": "2026-01-15-cow"
+        },
+        {
+          "title": "Bees",
+          "body": "Ten bee boxes were set up on 13 June 2026. Their iron stands are greased, the ground around them is dusted with ant powder, and in summer each box gets a tile on top. In September the bees left two of the boxes.",
+          "photo": "2026-06-13-bee-box"
+        },
+        {
+          "title": "Sharing the harvest",
+          "body": "Produce the family can't use is given away. In June 2025 they kept ten papayas from a harvest and gave the rest to a school.",
+          "photo": "2025-05-29-papaya-harvest"
+        }
+      ]
+    },
+    "about": {
+      "photo": "2024-08-11-farm-view",
+      "name_body": "Madilu (ಮಡಿಲು) is Kannada for lap.",
+      "people": [
+        {
+          "name": "Santhosh K and Lakshmi",
+          "body": "Planned the farm in March 2024 and decide what is planted on it."
+        },
+        {
+          "name": "Mahesh",
+          "body": "Has lived on the farm and looked after it since 10 June 2024. He keeps the cows and the bees and makes the jeevamrutha and the sprays."
+        }
+      ]
+    }
+  },
+  "kn": {
+    "home": {
+      "hero": "2026-06-12-ploughed-rows",
+      "intro": "ಮಡಿಲು ಶಾಂತಿವನ ಕನಕಪುರ ತಾಲ್ಲೂಕಿನ ತೆಂಗಿನಮರದೊಡ್ಡಿಯಲ್ಲಿರುವ ಹಣ್ಣಿನ ಮರಗಳು ಮತ್ತು ನಾಟಿ ಕಾಡು ಮರಗಳ ಮೂರು ಎಕರೆ ತೋಟ. ಸಂತೋಷ್ ಕೆ ಮತ್ತು ಲಕ್ಷ್ಮಿ 2024ರ ಮಾರ್ಚ್‌ನಲ್ಲಿ ಇದರ ಯೋಜನೆ ಮಾಡಿದರು; 2024ರ ಜೂನ್‌ನಿಂದ ಮಹೇಶ್ ತೋಟದಲ್ಲೇ ವಾಸವಿದ್ದು ಅದನ್ನು ನೋಡಿಕೊಳ್ಳುತ್ತಿದ್ದಾರೆ. ಮರಗಳ ನಡುವೆ ರಾಗಿ, ತೊಗರಿ, ಪಪ್ಪಾಯಿ ಮತ್ತು ಮನೆಯ ಅಡುಗೆಗೆ ತರಕಾರಿ ಬೆಳೆಯುತ್ತದೆ.",
+      "facts": [
+        {
+          "label": "ಜಮೀನು",
+          "value": "3 ಎಕರೆ",
+          "note": "ಕನಕಪುರ ತಾಲ್ಲೂಕಿನ ತೆಂಗಿನಮರದೊಡ್ಡಿಯಲ್ಲಿ"
+        },
+        {
+          "label": "ಮೊದಲ ಸಸಿಗಳು",
+          "value": "ಜೂನ್ 2024",
+          "note": "2024ರ ಮೇನಲ್ಲಿ ಡ್ರಿಪ್ ಮುಗಿದ ನಂತರ ನೆಡಲಾಯಿತು"
+        },
+        {
+          "label": "ನೆಡುತೋಪಿನ ನಕ್ಷೆಯಲ್ಲಿ",
+          "value": "{plants}",
+          "note": "{date} ರ ನಕ್ಷೆಯಲ್ಲಿ {kinds} ಬಗೆಯ ನೆಟ್ಟ ಜಾಗಗಳು"
+        },
+        {
+          "label": "ನೋಡಿಕೊಳ್ಳುವವರು",
+          "value": "ಮಹೇಶ್",
+          "note": "10 ಜೂನ್ 2024 ರಿಂದ ತೋಟದಲ್ಲೇ ವಾಸ"
+        }
+      ],
+      "then": "2024-05-03-pits",
+      "now": "2026-06-12-ploughed-rows-2",
+      "latest_count": 3
+    },
+    "grows": {
+      "intro": "ತೋಟವನ್ನು 100 ಸಾಲುಗಳಲ್ಲಿ ನೆಡಲಾಗಿದೆ. ಗೇಟಿನ ಪಕ್ಕ ಅಶೋಕ ಮರಗಳು, ಮುಂಭಾಗದಲ್ಲಿ ಬೆಂಡೆ ಮತ್ತು ನುಗ್ಗೆ, ಮಧ್ಯದಲ್ಲಿ ಹಣ್ಣಿನ ತೋಟ, ಅದರ ಹಿಂದೆ ಕಾಡು ಮರಗಳು, ಕೊನೆಯಲ್ಲಿ ಬಾಳೆ. ಒಂದು ಬದಿಯ ಉದ್ದಕ್ಕೂ ತೆಂಗಿನ ಸಾಲು ಇದೆ.",
+      "crops": [
+        {
+          "name": "ಪಪ್ಪಾಯಿ",
+          "body": "2024ರ ಜುಲೈನಲ್ಲಿ ಎಳೆಯ ಮರಗಳ ನಡುವೆ 300 ರೆಡ್ ಲೇಡಿ ಪಪ್ಪಾಯಿ ಸಸಿಗಳನ್ನು ನೆಡಲಾಯಿತು. 29 ಮೇ 2025 ರ ಮೊದಲ ಕೊಯ್ಲು 40 ಕೆಜಿ, 17 ಜೂನ್ 2025 ರದ್ದು 79 ಕೆಜಿ.",
+          "photo": "2025-06-16-papaya-tree"
+        },
+        {
+          "name": "ರಾಗಿ",
+          "body": "2024ರ ಸೆಪ್ಟೆಂಬರ್‌ನಲ್ಲಿ ಮೊದಲ ಬಾರಿ ಕಾಡು ಮರಗಳ ನಡುವೆ ರಾಗಿ ಬಿತ್ತಲಾಯಿತು. 2026ರ ಜೂನ್‌ನಲ್ಲಿ ರಾಗಿಗಾಗಿ ಇಡೀ ತೋಟ ಉಳುಮೆ ಮಾಡಲಾಯಿತು; ಆಗಸ್ಟ್‌ನಲ್ಲಿ ಬಿತ್ತಿದ ರಾಗಿ ಚೆನ್ನಾಗಿ ಬಂದಿದೆ.",
+          "photo": "2024-09-27-ragi-rows"
+        },
+        {
+          "name": "ತೊಗರಿ",
+          "body": "2026ರ ಮಾರ್ಚ್‌ನಲ್ಲಿ ತೊಗರಿ ಕೊಯ್ದು, ಕ್ಲೀನ್ ಮಾಡಿ, ಮಿಲ್‌ನಲ್ಲಿ ಬೇಳೆ ಮಾಡಿಸಲಾಯಿತು.",
+          "photo": ""
+        },
+        {
+          "name": "ತರಕಾರಿ",
+          "body": "ಮನೆಯ ಅಡುಗೆಗೆ ಬೆಂಡೆ, ಸೋರೆ, ಹೀರೆ, ಟೊಮ್ಯಾಟೋ, ಮೆಣಸಿನಕಾಯಿ ಮತ್ತು ಸೊಪ್ಪು ಬೆಳೆಯಲಾಗುತ್ತದೆ. ಮೊದಲ ಬಿತ್ತನೆ 2024ರ ಆಗಸ್ಟ್‌ನಲ್ಲಿ; 2025ರ ಜುಲೈನಲ್ಲಿ 100 ಮೆಣಸಿನಕಾಯಿ ಮತ್ತು 100 ಟೊಮ್ಯಾಟೋ ಸಸಿಗಳು ಬಂದವು.",
+          "photo": "2025-05-12-gourd-frame"
+        },
+        {
+          "name": "ಬೂದುಗುಂಬಳ",
+          "body": "2026ರ ಮಾರ್ಚ್‌ನಲ್ಲಿ ಒಂದು ಸಾಲು ಪೂರ್ತಿ ಬೂದುಗುಂಬಳ ಬಿತ್ತಲಾಯಿತು.",
+          "photo": "2026-05-05-ash-gourd"
+        }
+      ]
+    },
+    "farming": {
+      "intro": "ತೋಟ ತಾನೇ ಬೆಳೆಯುವುದರಿಂದಲೇ ಪೋಷಣೆ ಮತ್ತು ರಕ್ಷಣೆ ಪಡೆಯುತ್ತದೆ: ಹಸುಗಳ ಸಗಣಿ ಮತ್ತು ಗಂಜಲ, ತೋಟದ ಬೇವು, ಹೊಂಗೆ ಮತ್ತು ಸೀತಾಫಲದ ಎಲೆಗಳು, ಮತ್ತು ತಾವೇ ಇಟ್ಟುಕೊಂಡ ಬೀಜ.",
+      "practices": [
+        {
+          "title": "ಡ್ರಿಪ್ ನೀರು",
+          "body": "ಎರಡು ಬೋರ್‌ವೆಲ್‌ಗಳ ನೀರು ಡ್ರಿಪ್ ಮೂಲಕ ಮರಗಳಿಗೆ ಹೋಗುತ್ತದೆ. ವಾಹನ ದಾಟಬೇಕಿಲ್ಲದ ಕಡೆ ಪೈಪ್‌ಗಳು ನೆಲದ ಮೇಲೆಯೇ ಇವೆ. 2026ರ ಏಪ್ರಿಲ್‌ನಲ್ಲಿ ಹೊಸ ಬೋರ್‌ವೆಲ್ ಬತ್ತಿದಾಗ, ಅಂತರ್ಜಲ ಸಮೀಕ್ಷೆ ಜಲಮೂಲ ಚೆನ್ನಾಗಿರುವ ಜಾಗವನ್ನು ಗುರುತಿಸಿತು.",
+          "photo": "2024-07-13-drip-sapling"
+        },
+        {
+          "title": "ಮಣ್ಣಿಗೆ ಪೋಷಣೆ",
+          "body": "2024ರಲ್ಲಿ ನೆಡುವ ಗುಂಡಿಗಳಿಗೆ ಸಗಣಿ ಗೊಬ್ಬರ ಹಾಕಲಾಯಿತು; ವೀಕ್ ಆದ ಗಿಡಗಳಿಗೆ ಇನ್ನಷ್ಟು. ನಾಟಿ ಹಸುವಿನ ಸಗಣಿ, ಗಂಜಲ, ಬೆಲ್ಲ ಮತ್ತು ಕಡಲೆ ಹಿಟ್ಟಿನಿಂದ ತೋಟದಲ್ಲೇ ಜೀವಾಮೃತ ತಯಾರಾಗುತ್ತದೆ; 2024ರ ಸೆಪ್ಟೆಂಬರ್‌ನ ಮೊದಲ ಜೀವಾಮೃತಕ್ಕೆ ಅಕ್ಕಪಕ್ಕದ ಮನೆಗಳ ಹಸುಗಳ ಸಗಣಿ ಗಂಜಲ ಬಳಸಲಾಯಿತು.",
+          "photo": "2024-04-05-manure"
+        },
+        {
+          "title": "ಬೀಜ",
+          "body": "ಹೈಬ್ರಿಡ್ ಬೀಜ ಬಳಸುವುದಿಲ್ಲ; ಮನೆಯವರೇ ತಮ್ಮ ಬೀಜ ತರುತ್ತಾರೆ. ಬಿತ್ತುವ ಮೊದಲು ಬೀಜಗಳಿಗೆ ಬೀಜಾಮೃತದ ಉಪಚಾರ ಮಾಡಿ ಒಂದು ಗಂಟೆ ನೆರಳಲ್ಲಿ ಒಣಗಿಸಲಾಗುತ್ತದೆ.",
+          "photo": ""
+        },
+        {
+          "title": "ಕೀಟಗಳು",
+          "body": "ಬೇವಿನ ಸಿಂಪಡಣೆ, ತೋಟದ ಬೇವು, ಹೊಂಗೆ, ಸೀತಾಫಲದ ಎಲೆ ಮತ್ತು ಗಂಜಲವನ್ನು ಮಣ್ಣಿನ ಮಡಕೆಯಲ್ಲಿ ಕಾಯಿಸಿ ಮಾಡಿದ ಬ್ರಹ್ಮಾಸ್ತ್ರ, ಮತ್ತು ಸಪೋಟ, ಸೀತಾಫಲದ ರೋಗ ಮತ್ತು ನುಸಿಗೆ ನೀಮಾಮೃತ.",
+          "photo": "2025-05-22-clay-pots"
+        },
+        {
+          "title": "ಜೀವಂತ ಬೇಲಿ",
+          "body": "2024ರ ಅಕ್ಟೋಬರ್‌ನಲ್ಲಿ ಬೇಲಿಯ ಉದ್ದಕ್ಕೂ ಗ್ಲಿರಿಸಿಡಿಯಾ ಕಡ್ಡಿಗಳನ್ನು ನೆಡಲಾಯಿತು, ಬೋರ್‌ವೆಲ್ ಪೈಪ್‌ಲೈನ್‌ನಿಂದ ದೂರ.",
+          "photo": "2024-10-09-gliricidia"
+        },
+        {
+          "title": "ಕಳೆ",
+          "body": "2024ರ ಸೆಪ್ಟೆಂಬರ್‌ನಿಂದ ಸಾಲುಗಳ ನಡುವಿನ ಕಳೆಗೆ ಬ್ರಷ್ ಕಟರ್ ಮತ್ತು ಟಿಲ್ಲರ್. ಸಸಿಗಳ ಬುಡದಲ್ಲಿ ಮಹೇಶ್ ಕೈಯಲ್ಲೇ ಕಳೆ ತೆಗೆಯುತ್ತಾರೆ.",
+          "photo": "2025-07-01-tilled"
+        },
+        {
+          "title": "ಹಸುಗಳು",
+          "body": "ಮೊದಲ ಹಸು 30 ಏಪ್ರಿಲ್ 2025 ರಂದು ಬಂತು; 29 ಮಾರ್ಚ್ 2026 ರಂದು ತೋಟದಲ್ಲೇ ಗಂಡು ಕರು ಹುಟ್ಟಿತು. ಅವುಗಳ ಸಗಣಿ ಗಂಜಲ ಜೀವಾಮೃತಕ್ಕೆ ಹೋಗುತ್ತದೆ.",
+          "photo": "2026-01-15-cow"
+        },
+        {
+          "title": "ಜೇನು",
+          "body": "13 ಜೂನ್ 2026 ರಂದು ಹತ್ತು ಜೇನು ಪೆಟ್ಟಿಗೆಗಳನ್ನು ಕೂರಿಸಲಾಯಿತು. ಕೆಳಗಿನ ಕಬ್ಬಿಣದ ಪೈಪಿಗೆ ಗ್ರೀಸ್, ಸುತ್ತಲೂ ಇರುವೆ ಪುಡಿ, ಬೇಸಿಗೆಯಲ್ಲಿ ಪ್ರತಿ ಪೆಟ್ಟಿಗೆಯ ಮೇಲೆ ಒಂದು ಟೈಲ್ಸ್. ಸೆಪ್ಟೆಂಬರ್‌ನಲ್ಲಿ ಜೇನು ಎರಡು ಪೆಟ್ಟಿಗೆಗಳನ್ನು ಬಿಟ್ಟು ಹೋಯಿತು.",
+          "photo": "2026-06-13-bee-box"
+        },
+        {
+          "title": "ಕೊಯ್ಲು ಹಂಚಿಕೆ",
+          "body": "ಮನೆಗೆ ಬೇಕಾಗದ್ದನ್ನು ಕೊಡಲಾಗುತ್ತದೆ. 2025ರ ಜೂನ್‌ನಲ್ಲಿ ಒಂದು ಕೊಯ್ಲಿನಲ್ಲಿ ಹತ್ತು ಪಪ್ಪಾಯಿ ಇಟ್ಟುಕೊಂಡು ಉಳಿದದ್ದನ್ನು ಒಂದು ಶಾಲೆಗೆ ಕೊಡಲಾಯಿತು.",
+          "photo": "2025-05-29-papaya-harvest"
+        }
+      ]
+    },
+    "about": {
+      "photo": "2024-08-11-farm-view",
+      "name_body": "ಮಡಿಲು ಎಂಬುದು ಕನ್ನಡ ಪದ; ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಇದನ್ನು lap ಎನ್ನುತ್ತಾರೆ.",
+      "people": [
+        {
+          "name": "ಸಂತೋಷ್ ಕೆ ಮತ್ತು ಲಕ್ಷ್ಮಿ",
+          "body": "2024ರ ಮಾರ್ಚ್‌ನಲ್ಲಿ ತೋಟದ ಯೋಜನೆ ಮಾಡಿದರು; ಏನು ನೆಡಬೇಕು ಎಂದು ತೀರ್ಮಾನಿಸುತ್ತಾರೆ."
+        },
+        {
+          "name": "ಮಹೇಶ್",
+          "body": "10 ಜೂನ್ 2024 ರಿಂದ ತೋಟದಲ್ಲೇ ವಾಸವಿದ್ದು ಅದನ್ನು ನೋಡಿಕೊಳ್ಳುತ್ತಿದ್ದಾರೆ. ಹಸುಗಳು ಮತ್ತು ಜೇನನ್ನು ನೋಡಿಕೊಳ್ಳುತ್ತಾರೆ, ಜೀವಾಮೃತ ಮತ್ತು ಸಿಂಪಡಣೆಗಳನ್ನು ಮಾಡುತ್ತಾರೆ."
+        }
+      ]
+    }
+  }
+}

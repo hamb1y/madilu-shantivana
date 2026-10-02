@@ -1,0 +1,598 @@
+{
+  "en": {
+    "photos": [
+      {
+        "id": "2024-04-03-drip-trench",
+        "src": "/images/2024-04-03-drip-trench.webp",
+        "alt": "A digger cuts the trench for the drip line",
+        "date": "2024-04-03"
+      },
+      {
+        "id": "2024-04-05-manure",
+        "src": "/images/2024-04-05-manure.webp",
+        "alt": "A heap of cow dung by the fence, before planting",
+        "date": "2024-04-05"
+      },
+      {
+        "id": "2024-05-03-pits",
+        "src": "/images/2024-05-03-pits.webp",
+        "alt": "Freshly dug pits across bare ground",
+        "date": "2024-05-03"
+      },
+      {
+        "id": "2024-05-16-house",
+        "src": "/images/2024-05-16-house.webp",
+        "alt": "The helper's house, newly built",
+        "date": "2024-05-16"
+      },
+      {
+        "id": "2024-06-14-rows",
+        "src": "/images/2024-06-14-rows.webp",
+        "alt": "Rows of pits marked out in red soil",
+        "date": "2024-06-14"
+      },
+      {
+        "id": "2024-06-16-saplings",
+        "src": "/images/2024-06-16-saplings.webp",
+        "alt": "Saplings in bags, waiting to be planted",
+        "date": "2024-06-16"
+      },
+      {
+        "id": "2024-06-25-first-coconut",
+        "src": "/images/2024-06-25-first-coconut.webp",
+        "alt": "A coconut sapling planted with a puja offering",
+        "date": "2024-06-25"
+      },
+      {
+        "id": "2024-07-12-seedlings",
+        "src": "/images/2024-07-12-seedlings.webp",
+        "alt": "Seedlings in a tray",
+        "date": "2024-07-12"
+      },
+      {
+        "id": "2024-07-13-drip-sapling",
+        "src": "/images/2024-07-13-drip-sapling.webp",
+        "alt": "A new sapling beside the drip line",
+        "date": "2024-07-13"
+      },
+      {
+        "id": "2024-08-11-farm-view",
+        "src": "/images/2024-08-11-farm-view.webp",
+        "alt": "The young farm under the hills",
+        "date": "2024-08-11"
+      },
+      {
+        "id": "2024-08-11-farm-from-house",
+        "src": "/images/2024-08-11-farm-from-house.webp",
+        "alt": "The farm seen from the helper's house",
+        "date": "2024-08-11"
+      },
+      {
+        "id": "2024-08-16-greens",
+        "src": "/images/2024-08-16-greens.webp",
+        "alt": "Greens coming up in a bed",
+        "date": "2024-08-16"
+      },
+      {
+        "id": "2024-08-16-tomato",
+        "src": "/images/2024-08-16-tomato.webp",
+        "alt": "Tomato plants along a row",
+        "date": "2024-08-16"
+      },
+      {
+        "id": "2024-08-21-tilled-rows",
+        "src": "/images/2024-08-21-tilled-rows.webp",
+        "alt": "Tilled rows of vegetables between the trees",
+        "date": "2024-08-21"
+      },
+      {
+        "id": "2024-08-31-okra",
+        "src": "/images/2024-08-31-okra.webp",
+        "alt": "Okra picked from the farm",
+        "date": "2024-08-31"
+      },
+      {
+        "id": "2024-09-08-ridge-gourd",
+        "src": "/images/2024-09-08-ridge-gourd.webp",
+        "alt": "Ridge gourd on the vine",
+        "date": "2024-09-08"
+      },
+      {
+        "id": "2024-09-27-ragi-rows",
+        "src": "/images/2024-09-27-ragi-rows.webp",
+        "alt": "Furrows ready for ragi",
+        "date": "2024-09-27"
+      },
+      {
+        "id": "2024-10-06-moringa",
+        "src": "/images/2024-10-06-moringa.webp",
+        "alt": "Moringa trees growing fast",
+        "date": "2024-10-06"
+      },
+      {
+        "id": "2024-10-09-gliricidia",
+        "src": "/images/2024-10-09-gliricidia.webp",
+        "alt": "A pile of gliricidia cuttings for the fence",
+        "date": "2024-10-09"
+      },
+      {
+        "id": "2024-11-26-banana",
+        "src": "/images/2024-11-26-banana.webp",
+        "alt": "Young banana plants among the saplings",
+        "date": "2024-11-26"
+      },
+      {
+        "id": "2025-03-08-greens",
+        "src": "/images/2025-03-08-greens.webp",
+        "alt": "A bed of greens ready to pick",
+        "date": "2025-03-08"
+      },
+      {
+        "id": "2025-04-05-moringa",
+        "src": "/images/2025-04-05-moringa.webp",
+        "alt": "A moringa tree after pruning",
+        "date": "2025-04-05"
+      },
+      {
+        "id": "2025-04-12-cow-shed",
+        "src": "/images/2025-04-12-cow-shed.webp",
+        "alt": "The cow shed going up beside the house",
+        "date": "2025-04-12"
+      },
+      {
+        "id": "2025-04-30-cow",
+        "src": "/images/2025-04-30-cow.webp",
+        "alt": "The first cow, garlanded on arrival",
+        "date": "2025-04-30"
+      },
+      {
+        "id": "2025-05-12-gourd-frame",
+        "src": "/images/2025-05-12-gourd-frame.webp",
+        "alt": "Gourds hanging from a pole frame",
+        "date": "2025-05-12"
+      },
+      {
+        "id": "2025-05-22-clay-pots",
+        "src": "/images/2025-05-22-clay-pots.webp",
+        "alt": "Clay pots at the market, one of them for brahmastra",
+        "date": "2025-05-22"
+      },
+      {
+        "id": "2025-05-29-papaya-harvest",
+        "src": "/images/2025-05-29-papaya-harvest.webp",
+        "alt": "The first papaya harvest",
+        "date": "2025-05-29"
+      },
+      {
+        "id": "2025-06-16-papaya-tree",
+        "src": "/images/2025-06-16-papaya-tree.webp",
+        "alt": "A papaya tree heavy with fruit",
+        "date": "2025-06-16"
+      },
+      {
+        "id": "2025-06-24-butter-fruit",
+        "src": "/images/2025-06-24-butter-fruit.webp",
+        "alt": "Butter fruit saplings from a Kanakapura nursery",
+        "date": "2025-06-24"
+      },
+      {
+        "id": "2025-06-28-planting",
+        "src": "/images/2025-06-28-planting.webp",
+        "alt": "A young palm in a fresh pit",
+        "date": "2025-06-28"
+      },
+      {
+        "id": "2025-07-01-tilled",
+        "src": "/images/2025-07-01-tilled.webp",
+        "alt": "Tilled red soil between fruit trees",
+        "date": "2025-07-01"
+      },
+      {
+        "id": "2025-07-05-chilli-tomato",
+        "src": "/images/2025-07-05-chilli-tomato.webp",
+        "alt": "Chilli and tomato seedlings from the Sathanur nursery",
+        "date": "2025-07-05"
+      },
+      {
+        "id": "2025-07-16-beds",
+        "src": "/images/2025-07-16-beds.webp",
+        "alt": "Two new beds with manure and drip lines",
+        "date": "2025-07-16"
+      },
+      {
+        "id": "2025-07-17-banana-bunch",
+        "src": "/images/2025-07-17-banana-bunch.webp",
+        "alt": "A banana bunch on the plant",
+        "date": "2025-07-17"
+      },
+      {
+        "id": "2025-12-17-calf",
+        "src": "/images/2025-12-17-calf.webp",
+        "alt": "The cattle at the trough",
+        "date": "2025-12-17"
+      },
+      {
+        "id": "2025-12-22-fruit-rows",
+        "src": "/images/2025-12-22-fruit-rows.webp",
+        "alt": "Rows of fruit trees in the dry season",
+        "date": "2025-12-22"
+      },
+      {
+        "id": "2026-01-12-timber-rows",
+        "src": "/images/2026-01-12-timber-rows.webp",
+        "alt": "Timber rows with the drip line running through",
+        "date": "2026-01-12"
+      },
+      {
+        "id": "2026-01-15-cow",
+        "src": "/images/2026-01-15-cow.webp",
+        "alt": "The cow decorated for the festival",
+        "date": "2026-01-15"
+      },
+      {
+        "id": "2026-01-19-citrus",
+        "src": "/images/2026-01-19-citrus.webp",
+        "alt": "A citrus bush in fruit",
+        "date": "2026-01-19"
+      },
+      {
+        "id": "2026-01-26-jackfruit",
+        "src": "/images/2026-01-26-jackfruit.webp",
+        "alt": "A jackfruit sapling where a lemon tree died",
+        "date": "2026-01-26"
+      },
+      {
+        "id": "2026-03-29-calf-born",
+        "src": "/images/2026-03-29-calf-born.webp",
+        "alt": "The cow with her newborn calf",
+        "date": "2026-03-29"
+      },
+      {
+        "id": "2026-03-30-ash-gourd-flowers",
+        "src": "/images/2026-03-30-ash-gourd-flowers.webp",
+        "alt": "Ash gourd in flower",
+        "date": "2026-03-30"
+      },
+      {
+        "id": "2026-05-05-ash-gourd",
+        "src": "/images/2026-05-05-ash-gourd.webp",
+        "alt": "Ash gourds on the vine",
+        "date": "2026-05-05"
+      },
+      {
+        "id": "2026-06-12-ploughed-rows",
+        "src": "/images/2026-06-12-ploughed-rows.webp",
+        "alt": "Ploughed rows between the timber trees",
+        "date": "2026-06-12"
+      },
+      {
+        "id": "2026-06-12-ploughed-rows-2",
+        "src": "/images/2026-06-12-ploughed-rows-2.webp",
+        "alt": "Ploughed rows between the fruit trees",
+        "date": "2026-06-12"
+      },
+      {
+        "id": "2026-06-13-bee-box",
+        "src": "/images/2026-06-13-bee-box.webp",
+        "alt": "One of the ten bee boxes",
+        "date": "2026-06-13"
+      },
+      {
+        "id": "2026-06-30-custard-apple",
+        "src": "/images/2026-06-30-custard-apple.webp",
+        "alt": "Custard apples on the tree",
+        "date": "2026-06-30"
+      },
+      {
+        "id": "2026-06-30-lemons",
+        "src": "/images/2026-06-30-lemons.webp",
+        "alt": "Lemons ripening on the tree",
+        "date": "2026-06-30"
+      },
+      {
+        "id": "2026-06-30-star-fruit",
+        "src": "/images/2026-06-30-star-fruit.webp",
+        "alt": "A star fruit tree in fruit",
+        "date": "2026-06-30"
+      }
+    ]
+  },
+  "kn": {
+    "photos": [
+      {
+        "id": "2024-04-03-drip-trench",
+        "src": "/images/2024-04-03-drip-trench.webp",
+        "alt": "ಡ್ರಿಪ್ ಪೈಪ್‌ಗಾಗಿ ಜೆಸಿಬಿ ಕಾಲುವೆ ತೋಡುತ್ತಿದೆ",
+        "date": "2024-04-03"
+      },
+      {
+        "id": "2024-04-05-manure",
+        "src": "/images/2024-04-05-manure.webp",
+        "alt": "ನೆಡುವ ಮೊದಲು ಬೇಲಿಯ ಪಕ್ಕ ಸಗಣಿ ಗೊಬ್ಬರದ ರಾಶಿ",
+        "date": "2024-04-05"
+      },
+      {
+        "id": "2024-05-03-pits",
+        "src": "/images/2024-05-03-pits.webp",
+        "alt": "ಬರಿಯ ನೆಲದಲ್ಲಿ ಹೊಸದಾಗಿ ತೋಡಿದ ಗುಂಡಿಗಳು",
+        "date": "2024-05-03"
+      },
+      {
+        "id": "2024-05-16-house",
+        "src": "/images/2024-05-16-house.webp",
+        "alt": "ಹೊಸದಾಗಿ ಕಟ್ಟಿದ ಸಹಾಯಕರ ಮನೆ",
+        "date": "2024-05-16"
+      },
+      {
+        "id": "2024-06-14-rows",
+        "src": "/images/2024-06-14-rows.webp",
+        "alt": "ಕೆಂಪು ಮಣ್ಣಿನಲ್ಲಿ ಸಾಲಾಗಿ ಗುರುತು ಮಾಡಿದ ಗುಂಡಿಗಳು",
+        "date": "2024-06-14"
+      },
+      {
+        "id": "2024-06-16-saplings",
+        "src": "/images/2024-06-16-saplings.webp",
+        "alt": "ನೆಡಲು ಕಾಯುತ್ತಿರುವ ಚೀಲದ ಸಸಿಗಳು",
+        "date": "2024-06-16"
+      },
+      {
+        "id": "2024-06-25-first-coconut",
+        "src": "/images/2024-06-25-first-coconut.webp",
+        "alt": "ಪೂಜೆ ಮಾಡಿ ನೆಟ್ಟ ತೆಂಗಿನ ಸಸಿ",
+        "date": "2024-06-25"
+      },
+      {
+        "id": "2024-07-12-seedlings",
+        "src": "/images/2024-07-12-seedlings.webp",
+        "alt": "ಟ್ರೇಯಲ್ಲಿರುವ ಸಸಿಗಳು",
+        "date": "2024-07-12"
+      },
+      {
+        "id": "2024-07-13-drip-sapling",
+        "src": "/images/2024-07-13-drip-sapling.webp",
+        "alt": "ಡ್ರಿಪ್ ಪೈಪ್ ಪಕ್ಕದ ಹೊಸ ಸಸಿ",
+        "date": "2024-07-13"
+      },
+      {
+        "id": "2024-08-11-farm-view",
+        "src": "/images/2024-08-11-farm-view.webp",
+        "alt": "ಬೆಟ್ಟಗಳ ಕೆಳಗೆ ಹೊಸ ತೋಟ",
+        "date": "2024-08-11"
+      },
+      {
+        "id": "2024-08-11-farm-from-house",
+        "src": "/images/2024-08-11-farm-from-house.webp",
+        "alt": "ಸಹಾಯಕರ ಮನೆಯಿಂದ ಕಾಣುವ ತೋಟ",
+        "date": "2024-08-11"
+      },
+      {
+        "id": "2024-08-16-greens",
+        "src": "/images/2024-08-16-greens.webp",
+        "alt": "ಮಡಿಯಲ್ಲಿ ಬೆಳೆಯುತ್ತಿರುವ ಸೊಪ್ಪು",
+        "date": "2024-08-16"
+      },
+      {
+        "id": "2024-08-16-tomato",
+        "src": "/images/2024-08-16-tomato.webp",
+        "alt": "ಸಾಲಿನಲ್ಲಿ ಟೊಮ್ಯಾಟೋ ಗಿಡಗಳು",
+        "date": "2024-08-16"
+      },
+      {
+        "id": "2024-08-21-tilled-rows",
+        "src": "/images/2024-08-21-tilled-rows.webp",
+        "alt": "ಮರಗಳ ನಡುವೆ ಉಳುಮೆ ಮಾಡಿದ ತರಕಾರಿ ಸಾಲುಗಳು",
+        "date": "2024-08-21"
+      },
+      {
+        "id": "2024-08-31-okra",
+        "src": "/images/2024-08-31-okra.webp",
+        "alt": "ತೋಟದಲ್ಲಿ ಕಿತ್ತ ಬೆಂಡೆಕಾಯಿ",
+        "date": "2024-08-31"
+      },
+      {
+        "id": "2024-09-08-ridge-gourd",
+        "src": "/images/2024-09-08-ridge-gourd.webp",
+        "alt": "ಬಳ್ಳಿಯಲ್ಲಿ ಹೀರೇಕಾಯಿ",
+        "date": "2024-09-08"
+      },
+      {
+        "id": "2024-09-27-ragi-rows",
+        "src": "/images/2024-09-27-ragi-rows.webp",
+        "alt": "ರಾಗಿಗೆ ಸಿದ್ಧವಾದ ಸಾಲುಗಳು",
+        "date": "2024-09-27"
+      },
+      {
+        "id": "2024-10-06-moringa",
+        "src": "/images/2024-10-06-moringa.webp",
+        "alt": "ಬೇಗ ಬೆಳೆಯುತ್ತಿರುವ ನುಗ್ಗೆ ಮರಗಳು",
+        "date": "2024-10-06"
+      },
+      {
+        "id": "2024-10-09-gliricidia",
+        "src": "/images/2024-10-09-gliricidia.webp",
+        "alt": "ಬೇಲಿಗಾಗಿ ತಂದ ಗ್ಲಿರಿಸಿಡಿಯಾ ಕಡ್ಡಿಗಳ ರಾಶಿ",
+        "date": "2024-10-09"
+      },
+      {
+        "id": "2024-11-26-banana",
+        "src": "/images/2024-11-26-banana.webp",
+        "alt": "ಸಸಿಗಳ ನಡುವೆ ಎಳೆಯ ಬಾಳೆ ಗಿಡಗಳು",
+        "date": "2024-11-26"
+      },
+      {
+        "id": "2025-03-08-greens",
+        "src": "/images/2025-03-08-greens.webp",
+        "alt": "ಕೀಳಲು ಸಿದ್ಧವಾದ ಸೊಪ್ಪಿನ ಮಡಿ",
+        "date": "2025-03-08"
+      },
+      {
+        "id": "2025-04-05-moringa",
+        "src": "/images/2025-04-05-moringa.webp",
+        "alt": "ಸವರಿದ ನಂತರ ನುಗ್ಗೆ ಮರ",
+        "date": "2025-04-05"
+      },
+      {
+        "id": "2025-04-12-cow-shed",
+        "src": "/images/2025-04-12-cow-shed.webp",
+        "alt": "ಮನೆಯ ಪಕ್ಕದಲ್ಲಿ ಕಟ್ಟುತ್ತಿರುವ ಹಸುವಿನ ಕೊಟ್ಟಿಗೆ",
+        "date": "2025-04-12"
+      },
+      {
+        "id": "2025-04-30-cow",
+        "src": "/images/2025-04-30-cow.webp",
+        "alt": "ಹಾರ ಹಾಕಿ ಬರಮಾಡಿಕೊಂಡ ಮೊದಲ ಹಸು",
+        "date": "2025-04-30"
+      },
+      {
+        "id": "2025-05-12-gourd-frame",
+        "src": "/images/2025-05-12-gourd-frame.webp",
+        "alt": "ಚಪ್ಪರದಲ್ಲಿ ನೇತಾಡುತ್ತಿರುವ ಕಾಯಿಗಳು",
+        "date": "2025-05-12"
+      },
+      {
+        "id": "2025-05-22-clay-pots",
+        "src": "/images/2025-05-22-clay-pots.webp",
+        "alt": "ಸಂತೆಯಲ್ಲಿ ಮಣ್ಣಿನ ಮಡಕೆಗಳು; ಬ್ರಹ್ಮಾಸ್ತ್ರಕ್ಕೆ ಒಂದು",
+        "date": "2025-05-22"
+      },
+      {
+        "id": "2025-05-29-papaya-harvest",
+        "src": "/images/2025-05-29-papaya-harvest.webp",
+        "alt": "ಮೊದಲ ಪಪ್ಪಾಯಿ ಕೊಯ್ಲು",
+        "date": "2025-05-29"
+      },
+      {
+        "id": "2025-06-16-papaya-tree",
+        "src": "/images/2025-06-16-papaya-tree.webp",
+        "alt": "ಹಣ್ಣು ತುಂಬಿದ ಪಪ್ಪಾಯಿ ಮರ",
+        "date": "2025-06-16"
+      },
+      {
+        "id": "2025-06-24-butter-fruit",
+        "src": "/images/2025-06-24-butter-fruit.webp",
+        "alt": "ಕನಕಪುರದ ನರ್ಸರಿಯಿಂದ ತಂದ ಬಟರ್ ಫ್ರೂಟ್ ಸಸಿಗಳು",
+        "date": "2025-06-24"
+      },
+      {
+        "id": "2025-06-28-planting",
+        "src": "/images/2025-06-28-planting.webp",
+        "alt": "ಹೊಸ ಗುಂಡಿಯಲ್ಲಿ ಎಳೆಯ ಸಸಿ",
+        "date": "2025-06-28"
+      },
+      {
+        "id": "2025-07-01-tilled",
+        "src": "/images/2025-07-01-tilled.webp",
+        "alt": "ಹಣ್ಣಿನ ಮರಗಳ ನಡುವೆ ಉಳುಮೆ ಮಾಡಿದ ಕೆಂಪು ಮಣ್ಣು",
+        "date": "2025-07-01"
+      },
+      {
+        "id": "2025-07-05-chilli-tomato",
+        "src": "/images/2025-07-05-chilli-tomato.webp",
+        "alt": "ಸಾತನೂರು ನರ್ಸರಿಯಿಂದ ತಂದ ಮೆಣಸಿನಕಾಯಿ ಮತ್ತು ಟೊಮ್ಯಾಟೋ ಸಸಿಗಳು",
+        "date": "2025-07-05"
+      },
+      {
+        "id": "2025-07-16-beds",
+        "src": "/images/2025-07-16-beds.webp",
+        "alt": "ಗೊಬ್ಬರ ಮತ್ತು ಡ್ರಿಪ್ ಪೈಪ್ ಹಾಕಿದ ಎರಡು ಹೊಸ ಮಡಿಗಳು",
+        "date": "2025-07-16"
+      },
+      {
+        "id": "2025-07-17-banana-bunch",
+        "src": "/images/2025-07-17-banana-bunch.webp",
+        "alt": "ಗಿಡದಲ್ಲಿ ಬಾಳೆಗೊನೆ",
+        "date": "2025-07-17"
+      },
+      {
+        "id": "2025-12-17-calf",
+        "src": "/images/2025-12-17-calf.webp",
+        "alt": "ತೊಟ್ಟಿಯ ಬಳಿ ದನಕರುಗಳು",
+        "date": "2025-12-17"
+      },
+      {
+        "id": "2025-12-22-fruit-rows",
+        "src": "/images/2025-12-22-fruit-rows.webp",
+        "alt": "ಬೇಸಿಗೆಯಲ್ಲಿ ಹಣ್ಣಿನ ಮರಗಳ ಸಾಲುಗಳು",
+        "date": "2025-12-22"
+      },
+      {
+        "id": "2026-01-12-timber-rows",
+        "src": "/images/2026-01-12-timber-rows.webp",
+        "alt": "ಡ್ರಿಪ್ ಪೈಪ್ ಹಾದುಹೋಗುವ ಕಾಡು ಮರಗಳ ಸಾಲುಗಳು",
+        "date": "2026-01-12"
+      },
+      {
+        "id": "2026-01-15-cow",
+        "src": "/images/2026-01-15-cow.webp",
+        "alt": "ಹಬ್ಬಕ್ಕೆ ಅಲಂಕರಿಸಿದ ಹಸು",
+        "date": "2026-01-15"
+      },
+      {
+        "id": "2026-01-19-citrus",
+        "src": "/images/2026-01-19-citrus.webp",
+        "alt": "ಕಾಯಿ ಬಿಟ್ಟ ನಿಂಬೆಜಾತಿಯ ಗಿಡ",
+        "date": "2026-01-19"
+      },
+      {
+        "id": "2026-01-26-jackfruit",
+        "src": "/images/2026-01-26-jackfruit.webp",
+        "alt": "ನಿಂಬೆ ಗಿಡ ಒಣಗಿದ ಜಾಗದಲ್ಲಿ ನೆಟ್ಟ ಹಲಸಿನ ಸಸಿ",
+        "date": "2026-01-26"
+      },
+      {
+        "id": "2026-03-29-calf-born",
+        "src": "/images/2026-03-29-calf-born.webp",
+        "alt": "ಹೊಸದಾಗಿ ಹುಟ್ಟಿದ ಕರುವಿನೊಂದಿಗೆ ಹಸು",
+        "date": "2026-03-29"
+      },
+      {
+        "id": "2026-03-30-ash-gourd-flowers",
+        "src": "/images/2026-03-30-ash-gourd-flowers.webp",
+        "alt": "ಹೂ ಬಿಟ್ಟ ಬೂದುಗುಂಬಳ",
+        "date": "2026-03-30"
+      },
+      {
+        "id": "2026-05-05-ash-gourd",
+        "src": "/images/2026-05-05-ash-gourd.webp",
+        "alt": "ಬಳ್ಳಿಯಲ್ಲಿ ಬೂದುಗುಂಬಳಕಾಯಿಗಳು",
+        "date": "2026-05-05"
+      },
+      {
+        "id": "2026-06-12-ploughed-rows",
+        "src": "/images/2026-06-12-ploughed-rows.webp",
+        "alt": "ಕಾಡು ಮರಗಳ ನಡುವೆ ಉಳುಮೆ ಮಾಡಿದ ಸಾಲುಗಳು",
+        "date": "2026-06-12"
+      },
+      {
+        "id": "2026-06-12-ploughed-rows-2",
+        "src": "/images/2026-06-12-ploughed-rows-2.webp",
+        "alt": "ಹಣ್ಣಿನ ಮರಗಳ ನಡುವೆ ಉಳುಮೆ ಮಾಡಿದ ಸಾಲುಗಳು",
+        "date": "2026-06-12"
+      },
+      {
+        "id": "2026-06-13-bee-box",
+        "src": "/images/2026-06-13-bee-box.webp",
+        "alt": "ಹತ್ತು ಜೇನು ಪೆಟ್ಟಿಗೆಗಳಲ್ಲಿ ಒಂದು",
+        "date": "2026-06-13"
+      },
+      {
+        "id": "2026-06-30-custard-apple",
+        "src": "/images/2026-06-30-custard-apple.webp",
+        "alt": "ಮರದಲ್ಲಿ ಸೀತಾಫಲ",
+        "date": "2026-06-30"
+      },
+      {
+        "id": "2026-06-30-lemons",
+        "src": "/images/2026-06-30-lemons.webp",
+        "alt": "ಮರದಲ್ಲಿ ಹಣ್ಣಾಗುತ್ತಿರುವ ನಿಂಬೆಹಣ್ಣುಗಳು",
+        "date": "2026-06-30"
+      },
+      {
+        "id": "2026-06-30-star-fruit",
+        "src": "/images/2026-06-30-star-fruit.webp",
+        "alt": "ಹಣ್ಣು ಬಿಟ್ಟ ಸ್ಟಾರ್ ಫ್ರೂಟ್ ಮರ",
+        "date": "2026-06-30"
+      }
+    ]
+  }
+}

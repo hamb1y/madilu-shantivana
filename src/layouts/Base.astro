@@ -1,0 +1,75 @@
+---
+import "@fontsource/young-serif/400.css";
+import "@fontsource-variable/source-sans-3/wght.css";
+import "@fontsource-variable/noto-sans-kannada/wght.css";
+import "@fontsource-variable/noto-serif-kannada/wght.css";
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { settings, type Locale } from "../data/load";
+import { localePath, locales, lx, t } from "../i18n/utils";
+import type { PageId } from "../lib/nav";
+
+export interface Props {
+  lang: Locale;
+  /** Locale-free path of this page, e.g. "/story/". */
+  path: string;
+  /** Page title; the home page leaves it out. */
+  title?: string;
+  description?: string;
+  /** A photo path under /images for the social card. */
+  image?: string;
+  section?: PageId;
+  noindex?: boolean;
+}
+
+const { lang, path, title, description, image, section, noindex = false } = Astro.props;
+const origin = Astro.site ?? new URL("https://madilusantivana.farm");
+const name = lx(settings.name, lang);
+const pageTitle = title ? `${title} · ${name}` : `${name} · ${lx(settings.tagline, lang)}`;
+const metaDescription = description ?? lx(settings.description, lang);
+const canonical = new URL(localePath(path, lang), origin).href;
+const socialImage = new URL(image || settings.share_image, origin).href;
+const ogLocale = { en: "en_IN", kn: "kn_IN" } as const;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {
+      !noindex &&
+        locales.map((locale) => (
+          <link rel="alternate" hreflang={locale} href={new URL(localePath(path, locale), origin).href} />
+        ))
+    }
+    {!noindex && <link rel="alternate" hreflang="x-default" href={new URL(localePath(path, "en"), origin).href} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#f6efe2" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body data-section={section}>
+    <a class="skip-link" href="#content">{t(lang, "a11y.skip")}</a>
+    <Header lang={lang} path={path} current={section} />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer lang={lang} path={path} />
+  </body>
+</html>

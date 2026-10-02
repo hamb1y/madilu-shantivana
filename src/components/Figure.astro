@@ -1,0 +1,59 @@
+---
+import type { Photo, Locale } from "../data/load";
+import { lx } from "../i18n/utils";
+
+export interface Props {
+  photo: Photo;
+  lang: Locale;
+  /** Caption under the photo. Left out, there is none; the alt text still describes it. */
+  caption?: string;
+  /** The `sizes` attribute: how wide the photo shows. */
+  sizes?: string;
+  /** Crop to this aspect ratio, e.g. "4 / 3". */
+  ratio?: string;
+  eager?: boolean;
+  class?: string;
+}
+
+const { photo, lang, caption, sizes = "(min-width: 76rem) 600px, 100vw", ratio, eager = false, class: className } = Astro.props;
+const scale = Math.min(1, 800 / Math.max(photo.width, photo.height));
+const smallWidth = Math.round(photo.width * scale);
+const srcset = photo.width > smallWidth ? `${photo.small} ${smallWidth}w, ${photo.src} ${photo.width}w` : undefined;
+---
+
+<figure class:list={["figure", className]} style={ratio ? `--ratio: ${ratio}` : undefined}>
+  <img
+    src={photo.width > smallWidth ? photo.small : photo.src}
+    srcset={srcset}
+    sizes={srcset ? sizes : undefined}
+    width={photo.width}
+    height={photo.height}
+    alt={lx(photo.alt, lang)}
+    loading={eager ? "eager" : "lazy"}
+    decoding="async"
+    class:list={{ cropped: Boolean(ratio) }}
+  />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .figure {
+    margin: 0;
+  }
+
+  img {
+    inline-size: 100%;
+    background: var(--paper-2);
+  }
+
+  .cropped {
+    aspect-ratio: var(--ratio);
+    object-fit: cover;
+  }
+
+  figcaption {
+    margin-block-start: var(--s-2);
+    font-size: var(--step--1);
+    color: var(--ink-2);
+  }
+</style>

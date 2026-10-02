@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import Onward from "../components/Onward.astro";
+import Timeline from "../components/Timeline.astro";
+import { events, type Locale } from "../data/load";
+import { formatMonth, t } from "../i18n/utils";
+
+export interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const title = t(lang, "story.title");
+---
+
+<Base lang={lang} path="/story/" title={title} description={t(lang, "story.description")} section="story">
+  <div class="container">
+    <header class="page-head">
+      <h1>{title}</h1>
+      {
+        events.length > 0 && (
+          <p class="lead">
+            {t(lang, "story.intro", {
+              count: events.length,
+              from: formatMonth(events[0].date, lang),
+              to: formatMonth(events.at(-1)?.date ?? "", lang),
+            })}
+          </p>
+        )
+      }
+    </header>
+    <Timeline events={events} lang={lang} />
+  </div>
+  <Onward lang={lang} current="story" />
+</Base>

@@ -1,0 +1,241 @@
+---
+import Base from "../layouts/Base.astro";
+import Figure from "../components/Figure.astro";
+import Onward from "../components/Onward.astro";
+import PlotMap from "../components/PlotMap.svelte";
+import { groups, kindTotal, pages, photo, plantCounts, plantTotal, plot, species, type Locale } from "../data/load";
+import { formatDate, lx, t } from "../i18n/utils";
+
+export interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const other: Locale = lang === "en" ? "kn" : "en";
+const title = t(lang, "grows.title");
+const grows = pages.grows;
+
+const countOf = (id: string) => plantCounts.get(id) ?? 0;
+const groupRows = groups
+  .map((group) => {
+    const kinds = species
+      .filter((s) => s.group === group.id && countOf(s.id) > 0)
+      .sort((a, b) => countOf(b.id) - countOf(a.id) || lx(a.name, lang).localeCompare(lx(b.name, lang)));
+    return { ...group, kinds, count: kinds.reduce((sum, s) => sum + countOf(s.id), 0) };
+  })
+  .filter((group) => group.kinds.length > 0);
+
+const BAND = 25;
+const bands = Array.from({ length: Math.ceil(plot.rows.length / BAND) }, (_, b) =>
+  t(lang, "grows.rows", { from: b * BAND + 1, to: Math.min(plot.rows.length, (b + 1) * BAND) }),
+);
+const mapDate = formatDate(plot.date, lang);
+---
+
+<Base lang={lang} path="/grows/" title={title} description={t(lang, "grows.description")} section="grows">
+  <div class="container">
+    <header class="page-head">
+      <h1>{title}</h1>
+      <p class="lead">{lx(grows.intro, lang)}</p>
+      <p class="figure-mark">
+        <span class="big">{plantTotal}</span>
+        <span>{t(lang, "grows.mark", { kinds: kindTotal, date: mapDate })}</span>
+      </p>
+    </header>
+
+    <section class="section" aria-labelledby="map-title">
+      <h2 id="map-title">{t(lang, "grows.map")}</h2>
+      <p class="note">{t(lang, "grows.mapNote", { date: mapDate })}</p>
+      <PlotMap
+        client:load
+        rows={plot.rows}
+        kinds={Object.fromEntries(species.map((s) => [s.id, { name: lx(s.name, lang), group: s.group }]))}
+        groups={groupRows.map((g) => ({ id: g.id, name: lx(g.name, lang), color: g.color, count: g.count }))}
+        labels={{
+          key: t(lang, "grows.key"),
+          showAll: t(lang, "grows.showAll"),
+          road: t(lang, "grows.road"),
+          empty: t(lang, "grows.empty"),
+          house: t(lang, "grows.house"),
+          mapLabel: t(lang, "grows.mapLabel", { plants: plantTotal, rows: plot.rows.length }),
+          place: t(lang, "grows.place"),
+          bands,
+        }}
+      />
+    </section>
+
+    <section class="section" aria-labelledby="table-title">
+      <h2 id="table-title">{t(lang, "grows.table")}</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{t(lang, "grows.colPlant")}</th>
+              <th scope="col" lang={other}>{t(lang, "grows.colOther")}</th>
+              <th scope="col" class="num">{t(lang, "grows.colCount")}</th>
+            </tr>
+          </thead>
+          {
+            groupRows.map((group) => (
+              <tbody>
+                <tr class="group">
+                  <th scope="rowgroup" colspan="2">
+                    <span class="swatch" style={`background: ${group.color}`} aria-hidden="true" />
+                    {lx(group.name, lang)}
+                  </th>
+                  <td class="num">{group.count}</td>
+                </tr>
+                {group.kinds.map((kind) => (
+                  <tr>
+                    <th scope="row">{lx(kind.name, lang)}</th>
+                    <td lang={other}>{lx(kind.name, other)}</td>
+                    <td class="num">{countOf(kind.id)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            ))
+          }
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="2">{t(lang, "grows.total")}</th>
+              <td class="num">{plantTotal}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    {
+      grows.crops.length > 0 && (
+        <section class="section" aria-labelledby="crops-title">
+          <h2 id="crops-title">{t(lang, "grows.crops")}</h2>
+          <div class="crops">
+            {grows.crops.map((crop) => {
+              const p = photo(crop.photo);
+              return (
+                <article class="crop">
+                  {p && <Figure photo={p} lang={lang} ratio="4 / 3" sizes="(min-width: 64rem) 380px, (min-width: 40rem) 50vw, 100vw" />}
+                  <h3>{lx(crop.name, lang)}</h3>
+                  <p>{lx(crop.body, lang)}</p>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )
+    }
+  </div>
+  <Onward lang={lang} current="grows" />
+</Base>
+
+<style>
+  .figure-mark {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--s-2) var(--s-4);
+    margin-block-start: var(--s-3);
+    font-size: var(--step-1);
+  }
+
+  .big {
+    font-family: var(--font-display);
+    font-size: var(--step-5);
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .section > h2 {
+    margin-block-end: var(--s-3);
+  }
+
+  .note {
+    margin-block-end: var(--s-5);
+    color: var(--ink-2);
+  }
+
+  #table-title {
+    margin-block-end: var(--s-5);
+  }
+
+  .table-wrap {
+    max-inline-size: 40rem;
+  }
+
+  table {
+    inline-size: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: var(--s-2) var(--s-3) var(--s-2) 0;
+    border-block-end: 1px solid var(--rule);
+    text-align: start;
+    font-weight: 400;
+    vertical-align: baseline;
+  }
+
+  thead th {
+    font-weight: 700;
+    border-block-end: 1px solid var(--rule-strong);
+  }
+
+  .group th,
+  .group td {
+    padding-block-start: var(--s-5);
+    font-weight: 700;
+    border-block-end: 1px solid var(--rule-strong);
+  }
+
+  .swatch {
+    display: inline-block;
+    inline-size: 0.8rem;
+    block-size: 0.8rem;
+    margin-inline-end: var(--s-2);
+  }
+
+  tbody td[lang] {
+    color: var(--ink-2);
+  }
+
+  .num {
+    text-align: end;
+    padding-inline-end: 0;
+  }
+
+  tfoot th,
+  tfoot td {
+    padding-block-start: var(--s-4);
+    font-weight: 700;
+    border-block-end: 0;
+  }
+
+  .crops {
+    display: grid;
+    gap: var(--s-7) var(--s-5);
+    margin-block-start: var(--s-5);
+  }
+
+  .crop {
+    display: grid;
+    align-content: start;
+    gap: var(--s-2);
+  }
+
+  .crop h3 {
+    margin-block-start: var(--s-2);
+  }
+
+  @media (min-width: 40rem) {
+    .crops {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .crops {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,207 @@
+---
+import { logo, settings, type Locale } from "../data/load";
+import { localePath, locales, lx, t } from "../i18n/utils";
+import { PAGES, isPageId, type PageId } from "../lib/nav";
+
+export interface Props {
+  lang: Locale;
+  path: string;
+  current?: PageId;
+}
+
+const { lang, path, current } = Astro.props;
+const name = lx(settings.name, lang);
+const items = settings.nav.filter(isPageId).map((id) => ({
+  id,
+  href: localePath(PAGES[id].path, lang),
+  label: t(lang, PAGES[id].key),
+}));
+const other = locales.find((l) => l !== lang) ?? "en";
+const switchHref = localePath(path, other);
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={localePath("/", lang)}>
+      {logo ? <img src={logo.src} width={logo.width} height={logo.height} alt={name} /> : <span>{name}</span>}
+    </a>
+
+    <nav class="site-nav" aria-label={t(lang, "a11y.primaryNav")}>
+      <ul class="nav-inline">
+        {
+          items.map((item) => (
+            <li>
+              <a href={item.href} aria-current={item.id === current ? "page" : undefined} data-section={item.id}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+        <li class="switch">
+          <a href={switchHref} lang={other} hreflang={other}>{t(lang, "nav.language")}</a>
+        </li>
+      </ul>
+
+      <details class="nav-details">
+        <summary>{t(lang, "a11y.menu")}</summary>
+        <ul class="nav-panel">
+          {
+            items.map((item) => (
+              <li>
+                <a href={item.href} aria-current={item.id === current ? "page" : undefined} data-section={item.id}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+          <li class="switch">
+            <a href={switchHref} lang={other} hreflang={other}>{t(lang, "nav.language")}</a>
+          </li>
+        </ul>
+      </details>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Sticky, and the containing block for the open mobile menu. */
+  .site-header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 30;
+    background: var(--paper);
+    border-block-end: 1px solid var(--rule);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-5);
+    min-block-size: var(--header-h);
+  }
+
+  .brand {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.1;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .brand img {
+    max-block-size: 2.5rem;
+    inline-size: auto;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-inline {
+    display: none;
+    align-items: center;
+    gap: var(--s-5);
+  }
+
+  a[data-section] {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.45em;
+  }
+
+  a[data-section]:hover {
+    text-decoration-color: var(--rule-strong);
+  }
+
+  a[aria-current="page"] {
+    text-decoration-color: var(--accent);
+  }
+
+  a[aria-current="page"]:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  .nav-inline a {
+    white-space: nowrap;
+  }
+
+  .switch a {
+    font-weight: 600;
+  }
+
+  .nav-details summary {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    padding: var(--s-1) var(--s-3);
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .nav-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-details summary::after {
+    content: "";
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    margin-block-start: -0.2rem;
+    border-inline-end: 2px solid currentColor;
+    border-block-end: 2px solid currentColor;
+    rotate: 45deg;
+  }
+
+  .nav-details[open] summary::after {
+    margin-block-start: 0.2rem;
+    rotate: -135deg;
+  }
+
+  /* The open menu spans the width, directly beneath the bar. */
+  .nav-panel {
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline: 0;
+    padding: var(--s-2) var(--gutter) var(--s-5);
+    background: var(--paper);
+    border-block-end: 1px solid var(--rule);
+  }
+
+  .nav-panel a {
+    display: block;
+    padding-block: var(--s-3);
+    border-block-end: 1px solid var(--rule);
+    font-family: var(--font-display);
+    font-size: var(--step-2);
+    text-decoration: none;
+  }
+
+  .nav-panel a[aria-current="page"] {
+    color: var(--accent);
+  }
+
+  .nav-panel .switch a {
+    font-family: var(--font-body);
+    font-size: var(--step-1);
+    border-block-end: 0;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+
+  @media (min-width: 60rem) {
+    .nav-inline {
+      display: flex;
+    }
+
+    .nav-details {
+      display: none;
+    }
+  }
+</style>

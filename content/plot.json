@@ -1,0 +1,305 @@
+{
+  "date": "2026-06-07",
+  "rows": [
+    {
+      "cells": "ashoka, ashoka, ashoka, ashoka, ashoka, ashoka, ashoka, ashoka, ashoka"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, rampala, orenge, nerale"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, rampala, orenge, tengu"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, hanumapala, orenge, nerale"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, hanumapala, apple, tengu"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, lakshmanapala, apple, nerale"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, rampala, nimbe, tengu"
+    },
+    {
+      "cells": "bendi, bendi, bendi, bendi, bendi, bendi, waterapple, nimbe, nerale"
+    },
+    {
+      "cells": "nugge, nugge, nugge, nugge, nugge, nugge, waterapple, elachi-fruit, tengu"
+    },
+    {
+      "cells": "nugge, nugge, nugge, nugge, nugge, nugge, star-fruit, dalimbe, nerale"
+    },
+    {
+      "cells": "nugge, nugge, nugge, nugge, nugge, nugge, sapota, dalimbe, tengu"
+    },
+    {
+      "cells": "., ., ., ., ., ., chakkota, cherry, nerale"
+    },
+    {
+      "cells": "anjura, tengu, anjura, tengu, litchi, tengu, badami, cherry, tengu"
+    },
+    {
+      "cells": "nimbe, nimbe, bath-ele, patte-bath-ele, empty, litchi, seebe, seebe, nerale"
+    },
+    {
+      "cells": "beladamara, dragonfruit, dragonfruit, butterfruit, bettadanalli, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "adike, paneer-fruit, sapota, nimbe, butterfruit, seebe, seebe, seebe, nerale"
+    },
+    {
+      "cells": "adike, halasu, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "empty, paneer-fruit, sapota, nimbe, butterfruit, seebe, seebe, seebe, nerale"
+    },
+    {
+      "cells": "house, halasu, elakki, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "house, empty, sapota, nimbe, butterfruit, seebe, seebe, seebe, nerale"
+    },
+    {
+      "cells": "house, halasu, elakki, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "house, honge, sapota, nimbe, butterfruit, seebe, seebe, seebe, nerale"
+    },
+    {
+      "cells": "house, halasu, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "house, honge, sapota, nimbe, butterfruit, seebe, seebe, seebe, nerale"
+    },
+    {
+      "cells": "house, dasavala, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "house, dasavala, sapota, nimbe, butterfruit, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, butterfruit, sapota, nimbe, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, butterfruit, sapota, nimbe, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, butterfruit, sapota, nimbe, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, butterfruit, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, empty, sapota, nimbe, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, empty, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, empty, sapota, sapota, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, empty, butterfruit, nimbe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, empty, sapota, sapota, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, empty, butterfruit, seebe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "halasu, empty, sapota, sapota, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, empty, butterfruit, seebe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "empty, empty, sapota, sapota, mavu, seebe, seebe, seebe, bettadanalli"
+    },
+    {
+      "cells": "tengu, sapota, empty, sapota, seebe, mavu, mavu, mavu, tengu"
+    },
+    {
+      "cells": "empty, empty, empty, sapota, mavu, seebe, seebe, shivane, mahagani"
+    },
+    {
+      "cells": "tengu, empty, empty, sapota, seebe, mavu, mahagani, teak, tengu"
+    },
+    {
+      "cells": "bevu, teak, honne, hebbevu, mahagani, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, mahagani, beete, teak, hebbevu, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "bevu, hebbevu, honne, hebbevu, mahagani, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, beete, hebbevu, beete, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "bevu, mahagani, honne, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, hebbevu, beete, beete, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "bevu, mahagani, honne, hebbevu, teak, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "empty, teak, beete, teak, beete, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, beete, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "honge, teak, beete, hebbevu, beete, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "honge, empty, hebbevu, hebbevu, shivane, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, teak, hebbevu, hebbevu, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "honge, teak, beete, empty, shivane, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, teak, empty, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "dasavala, teak, beete, hebbevu, shivane, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "dasavala, teak, beete, hebbevu, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "dasavala, teak, beete, hebbevu, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "agase, mahagani, honne, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, beete, hebbevu, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "dasavala, honne, honne, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, honne, empty, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "dasavala, beete, hebbevu, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "dasavala, beete, beete, teak, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "dasavala, beete, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "sampige, beete, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, teak, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "sampige, beete, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, honne, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "sampige, teak, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "agase, honne, honne, mahagani, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "empty, teak, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "teak, honne, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "honne, teak, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "sampige, honne, honne, empty, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "honne, beete, beete, honne, hebbevu, shivane, mahagani, shivane, mahagani"
+    },
+    {
+      "cells": "honne, honne, honne, beete, mahagani, teak, hebbevu, teak, tengu"
+    },
+    {
+      "cells": "beete, sampige, beete, honne, hebbevu, shivane, teak, ., ."
+    },
+    {
+      "cells": "honne, honne, honne, beete, mahagani, teak, ., ., ."
+    },
+    {
+      "cells": "beete, honne, beete, honne, hebbevu, shivane, ., ., ."
+    },
+    {
+      "cells": "., ., teak, bamboo, mahagani, bamboo, ., ., ."
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    },
+    {
+      "cells": "bale, bale, bale, bale, bale, bale, bale, bale, bale"
+    }
+  ]
+}
