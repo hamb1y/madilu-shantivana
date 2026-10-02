@@ -20,7 +20,7 @@ The site is in English and Kannada (`/kn/`).
 - **Photos**: every photo on the site, by year.
 - **About**: who runs the farm, what the name means, and where it is.
 
-The site is at https://madilusantivana.farm.
+The site is at https://madilushantivana.org.
 
 ## Licence
 

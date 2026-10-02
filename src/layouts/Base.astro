@@ -25,7 +25,7 @@ export interface Props {
 }
 
 const { lang, path, title, description, image, section, noindex = false } = Astro.props;
-const origin = Astro.site ?? new URL("https://madilusantivana.farm");
+const origin = Astro.site ?? new URL("https://madilushantivana.org");
 const name = lx(settings.name, lang);
 const pageTitle = title ? `${title} · ${name}` : `${name} · ${lx(settings.tagline, lang)}`;
 const metaDescription = description ?? lx(settings.description, lang);

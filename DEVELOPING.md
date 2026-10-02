@@ -111,20 +111,19 @@ Sveltia's) and runs at https://madilu-cms-auth.rishi-s-malnad.workers.dev.
 `backend.base_url` in `public/admin/config.yml` points there.
 
 - `ALLOWED_DOMAINS` in its `wrangler.toml` lists every hostname that serves
-  `/admin/`: `madilusantivana.farm`, `www.madilusantivana.farm` and
+  `/admin/`: `madilushantivana.org`, `www.madilushantivana.org` and
   `madilu-shantivana.pages.dev`. Deploy with `wrangler deploy` after changing
   it.
 - The GitHub OAuth app ("Madilu Shantivana CMS", created at
   github.com/settings/applications/new) has the callback
   `https://madilu-cms-auth.rishi-s-malnad.workers.dev/callback`.
-- Its ID and secret are worker secrets, set from the worker's folder:
+- Its Client ID and client secret are the worker secrets `GITHUB_CLIENT_ID`
+  and `GITHUB_CLIENT_SECRET`. Set them in the Cloudflare dashboard (Workers &
+  Pages → `madilu-cms-auth` → Settings → Variables and Secrets, type Secret),
+  or from the worker's folder with `wrangler secret put GITHUB_CLIENT_ID`,
+  which asks for the value.
 
-  ```bash
-  wrangler secret put GITHUB_CLIENT_ID
-  wrangler secret put GITHUB_CLIENT_SECRET
-  ```
-
-- To check it: `/auth?provider=github&site_id=madilusantivana.farm` redirects
+- To check it: `/auth?provider=github&site_id=madilushantivana.org` redirects
   to GitHub with a `client_id`, another `site_id` is refused, and `/callback`
   responds.
 
@@ -149,9 +148,10 @@ There's no Wrangler config in this repository, so manage the project with the
 `cf` CLI, for example `cf pages deployments list --project-name
 madilu-shantivana`.
 
-The site's domain is `madilusantivana.farm` (`site` in `astro.config.mjs`,
-`site_url` in the CMS config). Add it to the Pages project as a custom domain
-once it's registered. After a deploy, request every route and take a
+The site's domain is `madilushantivana.org` (`site` in `astro.config.mjs`,
+`site_url` in the CMS config). It and `www.madilushantivana.org` are custom
+domains on the Pages project, each a proxied CNAME to
+`madilu-shantivana.pages.dev` in the domain's Cloudflare zone. After a deploy, request every route and take a
 screenshot of the home page against the live domain.
 
 Editors commit through the CMS, so run `git pull --rebase` before pushing and

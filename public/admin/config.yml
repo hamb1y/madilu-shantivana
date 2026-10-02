@@ -20,8 +20,8 @@ backend:
   # The GitHub sign-in worker (private repo hamb1y/madilu-cms-auth).
   base_url: https://madilu-cms-auth.rishi-s-malnad.workers.dev
 
-site_url: https://madilusantivana.farm
-display_url: https://madilusantivana.farm
+site_url: https://madilushantivana.org
+display_url: https://madilushantivana.org
 
 media_folder: public/images
 public_folder: /images

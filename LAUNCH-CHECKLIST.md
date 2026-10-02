@@ -29,20 +29,19 @@ Questions for the owner and steps left before the site goes live.
 
 ## Before launch
 
-- [ ] **Register `madilusantivana.farm`** and add it (and `www`) to the Cloudflare
-      Pages project `madilu-shantivana` as a custom domain. The site, sitemap,
-      CMS and auth worker are already set up for it; until then it runs at
-      https://madilu-shantivana.pages.dev.
-- [ ] **Create the GitHub OAuth app** at github.com/settings/applications/new:
-      name "Madilu Shantivana CMS", homepage `https://madilusantivana.farm`,
-      callback `https://madilu-cms-auth.rishi-s-malnad.workers.dev/callback`.
-      Then, from `/home/dipshit/sites/madilu-cms-auth`, run
-      `wrangler secret put GITHUB_CLIENT_ID` and
-      `wrangler secret put GITHUB_CLIENT_SECRET`. Until both are set, nobody
-      can sign in to the CMS.
+- [ ] **Create the GitHub OAuth app** so editors can sign in to the CMS. Until
+      it exists and its two values are saved in the worker, nobody can sign in.
+      1. Open github.com/settings/applications/new and fill in: name "Madilu
+         Shantivana CMS", homepage `https://madilushantivana.org`, callback
+         `https://madilu-cms-auth.rishi-s-malnad.workers.dev/callback`.
+         Register it.
+      2. Copy the Client ID it shows. Press "Generate a new client secret" and
+         copy that too; GitHub shows it only once.
+      3. In the Cloudflare dashboard, open Workers & Pages → `madilu-cms-auth`
+         → Settings → Variables and Secrets. Add `GITHUB_CLIENT_ID` (type
+         Secret, the Client ID as its value) and `GITHUB_CLIENT_SECRET` (type
+         Secret, the client secret), then Deploy.
 - [ ] Add editors as collaborators on `hamb1y/madilu-shantivana`.
-- [ ] Once the domain is live, request every route on it and take a screenshot
-      of the home page.
 
 ## Housekeeping
 
