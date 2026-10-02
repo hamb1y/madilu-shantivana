@@ -64,6 +64,21 @@
         "group": "fruit"
       },
       {
+        "id": "sihi-nimbe",
+        "name": "Sweet lemon",
+        "group": "fruit"
+      },
+      {
+        "id": "seedless-nimbe",
+        "name": "Seedless lemon",
+        "group": "fruit"
+      },
+      {
+        "id": "moosambi",
+        "name": "Mosambi",
+        "group": "fruit"
+      },
+      {
         "id": "nerale",
         "name": "Jamun",
         "group": "fruit"
@@ -91,6 +106,11 @@
       {
         "id": "hanumapala",
         "name": "Hanumaphal",
+        "group": "fruit"
+      },
+      {
+        "id": "sitaphal",
+        "name": "Custard apple",
         "group": "fruit"
       },
       {
@@ -130,7 +150,7 @@
       },
       {
         "id": "paneer-fruit",
-        "name": "Paneer fruit",
+        "name": "Rose apple",
         "group": "fruit"
       },
       {
@@ -214,6 +234,11 @@
         "group": "timber"
       },
       {
+        "id": "vange",
+        "name": "Vange",
+        "group": "timber"
+      },
+      {
         "id": "ashoka",
         "name": "Ashoka",
         "group": "timber"
@@ -221,6 +246,11 @@
       {
         "id": "dasavala",
         "name": "Hibiscus",
+        "group": "timber"
+      },
+      {
+        "id": "mallige",
+        "name": "Jasmine",
         "group": "timber"
       },
       {
@@ -325,6 +355,21 @@
         "group": "fruit"
       },
       {
+        "id": "sihi-nimbe",
+        "name": "ಸಿಹಿ ನಿಂಬೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "seedless-nimbe",
+        "name": "ಸೀಡ್‌ಲೆಸ್ ನಿಂಬೆ",
+        "group": "fruit"
+      },
+      {
+        "id": "moosambi",
+        "name": "ಮೂಸಂಬಿ",
+        "group": "fruit"
+      },
+      {
         "id": "nerale",
         "name": "ನೇರಳೆ",
         "group": "fruit"
@@ -352,6 +397,11 @@
       {
         "id": "hanumapala",
         "name": "ಹನುಮಫಲ",
+        "group": "fruit"
+      },
+      {
+        "id": "sitaphal",
+        "name": "ಸೀತಾಫಲ",
         "group": "fruit"
       },
       {
@@ -391,7 +441,7 @@
       },
       {
         "id": "paneer-fruit",
-        "name": "ಪನೀರ್ ಫ್ರೂಟ್",
+        "name": "ಪನ್ನೇರಳೆ",
         "group": "fruit"
       },
       {
@@ -475,6 +525,11 @@
         "group": "timber"
       },
       {
+        "id": "vange",
+        "name": "ವಂಗೆ",
+        "group": "timber"
+      },
+      {
         "id": "ashoka",
         "name": "ಅಶೋಕ",
         "group": "timber"
@@ -482,6 +537,11 @@
       {
         "id": "dasavala",
         "name": "ದಾಸವಾಳ",
+        "group": "timber"
+      },
+      {
+        "id": "mallige",
+        "name": "ಮಲ್ಲಿಗೆ",
         "group": "timber"
       },
       {

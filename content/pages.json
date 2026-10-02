@@ -55,13 +55,13 @@
           "tone": "forest",
           "start": "2026-01-01",
           "end": "2026-12-31",
-          "body": "In 2026 a bull calf was born on the farm, the tur came home as dal, and ten bee boxes went up. The whole farm was ploughed and sown with ragi, and a planting map marked every place across 100 rows."
+          "body": "In 2026 a bull calf was born on the farm, the tur came home as dal, and ten bee boxes went up. The whole farm was ploughed and sown with ragi, and a planting map marked every place in two blocks."
         }
       ],
       "latest_count": 3
     },
     "grows": {
-      "intro": "The farm is laid out in 100 rows. Ashoka trees stand by the gate, okra and moringa grow at the front, the fruit orchard fills the middle, timber trees grow behind it, and banana fills the far end. A line of coconut runs down one side.",
+      "intro": "The farm is planted in two blocks, each drawn on its own sheet of the planting map. The fruit block holds mango, butter fruit, guava, sapota and other fruit trees, with moringa and vegetables in one corner and the helper's house among the trees. The forest block holds teak, mahogany, hebbevu, shivane and other timber trees. Coconut runs down one edge of both, every other row.",
       "crops": [
         {
           "name": "Papaya",
@@ -252,13 +252,13 @@
           "tone": "forest",
           "start": "2026-01-01",
           "end": "2026-12-31",
-          "body": "2026ರಲ್ಲಿ ತೋಟದಲ್ಲಿ ಒಂದು ಹೋರಿ ಕರು ಹುಟ್ಟಿತು, ತೊಗರಿ ಬೇಳೆಯಾಗಿ ಮನೆಗೆ ಬಂತು, ಮತ್ತು ಹತ್ತು ಜೇನುಪೆಟ್ಟಿಗೆಗಳನ್ನು ಇಡಲಾಯಿತು. ಇಡೀ ತೋಟವನ್ನು ಉಳುಮೆ ಮಾಡಿ ರಾಗಿ ಬಿತ್ತಲಾಯಿತು, ಮತ್ತು ನೆಡುತೋಪಿನ ನಕ್ಷೆ 100 ಸಾಲುಗಳ ಪ್ರತಿ ಜಾಗವನ್ನೂ ಗುರುತಿಸಿತು."
+          "body": "2026ರಲ್ಲಿ ತೋಟದಲ್ಲಿ ಒಂದು ಹೋರಿ ಕರು ಹುಟ್ಟಿತು, ತೊಗರಿ ಬೇಳೆಯಾಗಿ ಮನೆಗೆ ಬಂತು, ಮತ್ತು ಹತ್ತು ಜೇನುಪೆಟ್ಟಿಗೆಗಳನ್ನು ಇಡಲಾಯಿತು. ಇಡೀ ತೋಟವನ್ನು ಉಳುಮೆ ಮಾಡಿ ರಾಗಿ ಬಿತ್ತಲಾಯಿತು, ಮತ್ತು ನೆಡುತೋಪಿನ ನಕ್ಷೆ ಎರಡು ಭಾಗಗಳ ಪ್ರತಿ ಜಾಗವನ್ನೂ ಗುರುತಿಸಿತು."
         }
       ],
       "latest_count": 3
     },
     "grows": {
-      "intro": "ತೋಟವನ್ನು 100 ಸಾಲುಗಳಲ್ಲಿ ನೆಡಲಾಗಿದೆ. ಗೇಟಿನ ಪಕ್ಕ ಅಶೋಕ ಮರಗಳು, ಮುಂಭಾಗದಲ್ಲಿ ಬೆಂಡೆ ಮತ್ತು ನುಗ್ಗೆ, ಮಧ್ಯದಲ್ಲಿ ಹಣ್ಣಿನ ತೋಟ, ಅದರ ಹಿಂದೆ ಕಾಡು ಮರಗಳು, ಕೊನೆಯಲ್ಲಿ ಬಾಳೆ. ಒಂದು ಬದಿಯ ಉದ್ದಕ್ಕೂ ತೆಂಗಿನ ಸಾಲು ಇದೆ.",
+      "intro": "ತೋಟವನ್ನು ಎರಡು ಭಾಗಗಳಲ್ಲಿ ನೆಡಲಾಗಿದೆ, ಪ್ರತಿ ಭಾಗಕ್ಕೂ ನಕ್ಷೆಯ ಒಂದು ಹಾಳೆ. ಹಣ್ಣಿನ ಭಾಗದಲ್ಲಿ ಮಾವು, ಬಟರ್ ಫ್ರೂಟ್, ಸೀಬೆ, ಸಪೋಟ ಮತ್ತು ಇತರ ಹಣ್ಣಿನ ಮರಗಳಿವೆ; ಒಂದು ಮೂಲೆಯಲ್ಲಿ ನುಗ್ಗೆ ಮತ್ತು ತರಕಾರಿ, ಮರಗಳ ನಡುವೆ ಸಹಾಯಕರ ಮನೆ. ಕಾಡು ಭಾಗದಲ್ಲಿ ತೇಗ, ಮಹಾಗನಿ, ಹೆಬ್ಬೇವು, ಶಿವನೆ ಮತ್ತು ಇತರ ಕಾಡು ಮರಗಳಿವೆ. ಎರಡೂ ಭಾಗಗಳ ಒಂದು ಅಂಚಿನಲ್ಲಿ, ಸಾಲು ಬಿಟ್ಟು ಸಾಲಿಗೆ ತೆಂಗು ಇದೆ.",
       "crops": [
         {
           "name": "ಪಪ್ಪಾಯಿ",

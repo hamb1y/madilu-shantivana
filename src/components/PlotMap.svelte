@@ -1,10 +1,12 @@
 <script lang="ts">
   /**
-   * The planting map: one mark per planting place, its shape and colour by
-   * group. Rows run left to right in bands of 25; place 1 of each row, on the
-   * road side, is at the bottom. Hover or tap a mark for what grows there; pick
-   * a group in the key, or a kind in the list, to show it alone. The table after
-   * the map lists the same data.
+   * The planting map, drawn from the hand-made sheets: one block per sheet, one
+   * mark per planting place, its shape and colour by group. On a phone each
+   * block stands as on paper, rows running down and the nine places across; on
+   * a wider screen it is turned a quarter left, so row 1 is on the left and
+   * place 1 at the bottom. Hover or tap a mark for what grows there; pick a
+   * group or the empty pits in the key, or a kind in the list, to show it alone.
+   * The table after the map lists the same data.
    */
   import { onMount } from "svelte";
 
@@ -15,55 +17,76 @@
     count: number;
   }
 
-  interface Props {
+  interface Block {
+    name: string;
     rows: string[][];
+    /** "42 rows · 314 planted · 21 empty pits" */
+    stats: string;
+  }
+
+  interface Props {
+    blocks: Block[];
     kinds: Record<string, { name: string; group: string }>;
     groups: Group[];
     labels: {
       key: string;
       showAll: string;
-      road: string;
       empty: string;
       house: string;
       mapLabel: string;
       /** "Row {row}, place {place}" */
       place: string;
-      /** One label per band, e.g. "Rows 1 to 25". */
-      bands: string[];
       find: string;
       everyKind: string;
-      /** "{name}: {count} places, between rows {from} and {to}" */
+      /** "{name}: {count} places" */
       found: string;
+      /** "{block}, rows {from} to {to}: {count}" */
+      foundIn: string;
       groupsTitle: string;
     };
   }
 
-  let { rows, kinds, groups, labels }: Props = $props();
+  let { blocks, kinds, groups, labels }: Props = $props();
 
-  const BAND = 25;
   const CELL = 20;
-  const places = $derived(Math.max(...rows.map((row) => row.length)));
-  const bands = $derived(
-    Array.from({ length: Math.ceil(rows.length / BAND) }, (_, b) => ({
-      start: b * BAND,
-      rows: rows.slice(b * BAND, (b + 1) * BAND),
-    })),
-  );
+  /** Room for the row numbers beside a block. */
+  const AXIS = 24;
+  const places = $derived(Math.max(...blocks.flatMap((block) => block.rows.map((row) => row.length))));
+  const longest = $derived(Math.max(...blocks.map((block) => block.rows.length)));
   const colour = $derived(Object.fromEntries(groups.map((g) => [g.id, g.color])));
   const groupName = $derived(Object.fromEntries(groups.map((g) => [g.id, g.name])));
   const total = $derived(groups.reduce((sum, g) => sum + g.count, 0));
+  const emptyCount = $derived(blocks.reduce((sum, block) => sum + block.rows.flat().filter((id) => id === "empty").length, 0));
 
-  /** Where each kind grows: how many places, and its first and last row. */
-  const spread = $derived.by(() => {
-    const out = new Map<string, { count: number; from: number; to: number }>();
-    rows.forEach((row, r) => {
-      for (const id of row) {
-        if (!kinds[id]) continue;
-        const seen = out.get(id) ?? { count: 0, from: r + 1, to: r + 1 };
-        seen.count++;
-        seen.to = r + 1;
-        out.set(id, seen);
+  /** The helper's house, one run of cells in a place, drawn as one block. */
+  function houses(rows: string[][]) {
+    const out: { place: number; from: number; length: number }[] = [];
+    for (let p = 0; p < places; p++) {
+      for (let r = 0; r < rows.length; r++) {
+        if (rows[r][p] !== "house") continue;
+        const from = r;
+        while (r + 1 < rows.length && rows[r + 1][p] === "house") r++;
+        out.push({ place: p, from, length: r - from + 1 });
       }
+    }
+    return out;
+  }
+
+  /** Where each kind grows, block by block: how many places, first and last row. */
+  const spread = $derived.by(() => {
+    const out = new Map<string, { block: string; count: number; from: number; to: number }[]>();
+    blocks.forEach((block) => {
+      block.rows.forEach((row, r) => {
+        for (const id of row) {
+          if (!kinds[id]) continue;
+          const list = out.get(id) ?? [];
+          let seen = list.find((s) => s.block === block.name);
+          if (!seen) list.push((seen = { block: block.name, count: 0, from: r + 1, to: r + 1 }));
+          seen.count++;
+          seen.to = r + 1;
+          out.set(id, list);
+        }
+      });
     });
     return out;
   });
@@ -79,12 +102,18 @@
 
   const found = $derived.by(() => {
     const where = spread.get(pick);
-    if (!pick || !where) return "";
-    return labels.found
-      .replace("{name}", kinds[pick].name)
-      .replace("{count}", String(where.count))
-      .replace("{from}", String(where.from))
-      .replace("{to}", String(where.to));
+    if (!pick || !where) return null;
+    const count = where.reduce((sum, w) => sum + w.count, 0);
+    return {
+      head: labels.found.replace("{name}", kinds[pick].name).replace("{count}", String(count)),
+      where: where.map((w) =>
+        labels.foundIn
+          .replace("{block}", w.block)
+          .replace("{from}", String(w.from))
+          .replace("{to}", String(w.to))
+          .replace("{count}", String(w.count)),
+      ),
+    };
   });
 
   // Marks by group. A group added later in the CMS gets a circle.
@@ -118,6 +147,8 @@
         return "M 0 -9.5 L 9.5 0 L 0 9.5 L -9.5 0 Z";
       case "star":
         return star;
+      case "ring":
+        return "M -7 0 A 7 7 0 1 0 7 0 A 7 7 0 1 0 -7 0 Z";
       default:
         return "M -8 0 A 8 8 0 1 0 8 0 A 8 8 0 1 0 -8 0 Z";
     }
@@ -128,17 +159,37 @@
   }
 
   function shapeOf(id: string): string {
-    if (id === "house") return "square";
+    if (id === "empty") return "ring";
     return SHAPES[groupOf(id) ?? ""] ?? "circle";
   }
 
+  function fill(id: string): string {
+    if (id === "empty") return "none";
+    return colour[groupOf(id) ?? ""] ?? "var(--rule-strong)";
+  }
+
+  function dimmed(id: string): boolean {
+    if (pick) return id !== pick;
+    if (only === "empty") return id !== "empty";
+    return only !== null && groupOf(id) !== only;
+  }
+
+  /** Where a cell sits: across, rows run left to right with place 1 at the bottom. */
+  function at(across: boolean, r: number, p: number): string {
+    return across
+      ? `translate(${r * CELL + CELL / 2} ${(places - 1 - p) * CELL + CELL / 2})`
+      : `translate(${p * CELL + CELL / 2} ${r * CELL + CELL / 2})`;
+  }
+
+  const numbered = (r: number) => r === 0 || (r + 1) % 5 === 0;
+
   function show(event: PointerEvent) {
     const target = event.target as SVGElement;
-    const { row, place, id } = target.dataset ?? {};
+    const { row, place, id, block } = target.dataset ?? {};
     if (!row || !place || !id || !wrap) return;
     const box = wrap.getBoundingClientRect();
     const cell = target.getBoundingClientRect();
-    const half = Math.min(110, box.width / 2);
+    const half = Math.min(120, box.width / 2);
     const centre = cell.left + cell.width / 2 - box.left;
     const kind = kinds[id];
     tip = {
@@ -146,7 +197,7 @@
       top: cell.top - box.top,
       title: kind?.name ?? (id === "house" ? labels.house : labels.empty),
       detail: kind ? (groupName[kind.group] ?? "") : "",
-      place: labels.place.replace("{row}", row).replace("{place}", place),
+      place: `${blocks[Number(block)].name} · ${labels.place.replace("{row}", row).replace("{place}", place)}`,
     };
   }
 
@@ -159,28 +210,16 @@
     pick = "";
   }
 
-  function fill(id: string): string {
-    if (id === "house") return "var(--ink)";
-    if (id === "empty") return "none";
-    return colour[groupOf(id) ?? ""] ?? "var(--rule-strong)";
-  }
-
-  function dimmed(id: string): boolean {
-    if (pick) return id !== pick;
-    return only !== null && groupOf(id) !== only;
-  }
-
-  // Bands below the fold are planted, row after row, as they come into view.
+  // Blocks below the fold are planted, row after row, as they come into view.
   onMount(() => {
     if (!wrap || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const nodes = [...wrap.querySelectorAll<HTMLElement>(".band")];
-    waiting = nodes.map((node) => node.getBoundingClientRect().top > innerHeight);
+    const nodes = [...wrap.querySelectorAll<HTMLElement>(".block")];
+    waiting = nodes.map((node) => node.getBoundingClientRect().top > innerHeight * 0.8);
     const watch = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
-          const index = nodes.indexOf(entry.target as HTMLElement);
-          waiting[index] = false;
+          waiting[nodes.indexOf(entry.target as HTMLElement)] = false;
           watch.unobserve(entry.target);
         }
       },
@@ -190,6 +229,70 @@
     return () => watch.disconnect();
   });
 </script>
+
+{#snippet field(block: Block, b: number, across: boolean)}
+  {@const rows = block.rows}
+  <svg
+    class={across ? "across" : "down"}
+    viewBox={across
+      ? `0 0 ${rows.length * CELL} ${places * CELL + AXIS}`
+      : `${-AXIS} 0 ${places * CELL + AXIS} ${rows.length * CELL}`}
+    style:--share={across ? `${((rows.length / longest) * 100).toFixed(2)}%` : undefined}
+    aria-hidden="true"
+    onpointerover={show}
+    onpointerdown={show}
+    onpointerleave={hide}
+  >
+    {#each rows as _, r (r)}
+      {#if numbered(r)}
+        <text
+          class="tick"
+          x={across ? r * CELL + CELL / 2 : -8}
+          y={across ? places * CELL + 17 : r * CELL + CELL / 2 + 4}
+          text-anchor={across ? "middle" : "end"}>{r + 1}</text
+        >
+      {/if}
+    {/each}
+    {#each houses(rows) as house (house.place * 1000 + house.from)}
+      <rect
+        class="mark"
+        class:dim={pick !== "" || (only !== null && only !== "house")}
+        x={across ? house.from * CELL + 2 : house.place * CELL + 2}
+        y={across ? (places - 1 - house.place) * CELL + 2 : house.from * CELL + 2}
+        width={across ? house.length * CELL - 4 : CELL - 4}
+        height={across ? CELL - 4 : house.length * CELL - 4}
+        fill="var(--ink)"
+        style:--r={house.from}
+        data-id="house"
+        data-block={b}
+        data-row={`${house.from + 1}–${house.from + house.length}`}
+        data-place={house.place + 1}
+      />
+    {/each}
+    {#each rows as row, r (r)}
+      {#each row as id, p (p)}
+        {#if id !== "." && id !== "house"}
+          <g transform={at(across, r, p)}>
+            <path
+              class="mark"
+              class:dim={dimmed(id)}
+              class:picked={pick !== "" && id === pick}
+              d={glyph(shapeOf(id))}
+              fill={fill(id)}
+              stroke={id === "empty" ? "var(--ink-2)" : "none"}
+              stroke-width={id === "empty" ? 1.75 : 0}
+              style:--r={r}
+              data-id={id}
+              data-block={b}
+              data-row={r + 1}
+              data-place={p + 1}
+            />
+          </g>
+        {/if}
+      {/each}
+    {/each}
+  </svg>
+{/snippet}
 
 <div class="plot">
   <div class="split" aria-hidden="true">
@@ -218,12 +321,15 @@
           <span class="share">{Math.round((group.count / total) * 100)}%</span>
         </button>
       {/each}
-      <span class="item">
-        <svg class="swatch" viewBox="-10 -10 20 20" aria-hidden="true">
-          <path d={glyph("circle")} fill="none" stroke="var(--ink-2)" stroke-width="2" />
-        </svg>
-        <span class="name">{labels.empty}</span>
-      </span>
+      {#if emptyCount > 0}
+        <button type="button" aria-pressed={only === "empty"} onclick={() => toggle("empty")}>
+          <svg class="swatch" viewBox="-10 -10 20 20" aria-hidden="true">
+            <path d={glyph("ring")} fill="none" stroke="var(--ink-2)" stroke-width="2" />
+          </svg>
+          <span class="name">{labels.empty}</span>
+          <span class="count">{emptyCount}</span>
+        </button>
+      {/if}
       <span class="item">
         <svg class="swatch" viewBox="-10 -10 20 20" aria-hidden="true">
           <path d={glyph("square")} fill="var(--ink)" />
@@ -249,7 +355,12 @@
           <option value={kind.id}>{kind.name}</option>
         {/each}
       </select>
-      <p class="found" aria-live="polite">{found}</p>
+      <p class="found" aria-live="polite">
+        {#if found}
+          <span class="found-head">{found.head}</span>
+          {#each found.where as where (where)}<span class="found-where">{where}</span>{/each}
+        {/if}
+      </p>
     </div>
   </div>
 
@@ -257,46 +368,20 @@
   <div
     class="bands"
     bind:this={wrap}
-    role="img"
+    role="group"
     aria-label={labels.mapLabel}
     onclick={(event) => {
       if (!(event.target as Element).matches("[data-id]")) tip = null;
     }}
   >
-    {#each bands as band, b (band.start)}
-      <div class="band" class:waiting={waiting[b]}>
-        <p class="band-label">{labels.bands[b]}</p>
-        <svg
-          viewBox={`0 0 ${BAND * CELL} ${places * CELL + 12}`}
-          aria-hidden="true"
-          onpointerover={show}
-          onpointerdown={show}
-          onpointerleave={hide}
-        >
-          {#each band.rows as row, r (band.start + r)}
-            {#each row as id, p (p)}
-              {#if id !== "."}
-                <g transform={`translate(${r * CELL + CELL / 2} ${(places - 1 - p) * CELL + CELL / 2})`}>
-                  <path
-                    class="mark"
-                    class:dim={dimmed(id)}
-                    class:picked={pick !== "" && id === pick}
-                    d={glyph(id === "empty" ? "circle" : shapeOf(id))}
-                    fill={fill(id)}
-                    stroke={id === "empty" ? "var(--ink-2)" : "none"}
-                    stroke-width={id === "empty" ? 1.5 : 0}
-                    style:--r={r}
-                    data-id={id}
-                    data-row={band.start + r + 1}
-                    data-place={p + 1}
-                  />
-                </g>
-              {/if}
-            {/each}
-          {/each}
-          <rect x="0" y={places * CELL + 5} width={band.rows.length * CELL} height="5" fill="var(--rule-strong)" />
-        </svg>
-        <p class="road">{labels.road}</p>
+    {#each blocks as block, b (b)}
+      <div class="block" class:waiting={waiting[b]}>
+        <div class="caption">
+          <h3>{block.name}</h3>
+          <p class="stats">{block.stats}</p>
+        </div>
+        {@render field(block, b, true)}
+        {@render field(block, b, false)}
       </div>
     {/each}
 
@@ -385,6 +470,7 @@
 
   .count {
     font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
   .share {
@@ -429,53 +515,85 @@
   }
 
   .found {
+    display: grid;
     flex-basis: 100%;
     min-block-size: 1.6em;
+    max-width: none;
+  }
+
+  .found-head {
     font-family: var(--font-display);
     font-size: var(--step-1);
-    max-width: none;
   }
 
-  .bands {
-    position: relative;
-    display: grid;
-    gap: var(--s-6) var(--s-6);
-  }
-
-  .band {
-    display: grid;
-    gap: var(--s-2);
-  }
-
-  .band-label,
-  .road {
-    max-width: none;
-    font-size: var(--step--1);
+  .found-where {
     color: var(--ink-2);
   }
 
-  .road {
-    text-align: end;
+  /* Standing, the sheets sit side by side where there's room and one under the other on a phone. */
+  .bands {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 15rem));
+    gap: var(--s-4) var(--s-5);
+  }
+
+  .block {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    gap: var(--s-3);
+  }
+
+  .caption {
+    display: grid;
+    align-content: end;
+    gap: var(--s-1);
+  }
+
+  h3 {
+    font-size: var(--step-1);
+  }
+
+  .stats {
+    max-width: none;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
   }
 
   svg {
     display: block;
-    inline-size: 100%;
     block-size: auto;
     touch-action: manipulation;
   }
 
-  /* Changes sweep across a band from its first row to its last. */
+  .across {
+    display: none;
+  }
+
+  .down {
+    inline-size: 100%;
+  }
+
+  .tick {
+    fill: var(--ink-2);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Changes sweep along a block from its first row to its last. */
   .mark {
+    pointer-events: all;
     transform-box: fill-box;
     transform-origin: center;
     transition:
       opacity 300ms var(--ease),
       transform 500ms var(--ease);
-    transition-delay: calc(var(--r) * 14ms);
+    transition-delay: calc(var(--r) * 12ms);
   }
 
-  .mark:hover {
+  path.mark:hover {
     transform: scale(1.3);
     transition-delay: 0s;
   }
@@ -500,7 +618,7 @@
     display: grid;
     gap: 0.1rem;
     min-inline-size: 9rem;
-    max-inline-size: 13.75rem;
+    max-inline-size: 15rem;
     padding: var(--s-2) var(--s-3);
     background: var(--ink);
     color: var(--paper);
@@ -516,6 +634,7 @@
     font-size: var(--step--1);
   }
 
+  /* Wider screens turn the sheets a quarter left: rows run across, one block above the other. */
   @media (min-width: 48rem) {
     .controls {
       grid-template-columns: minmax(0, 1fr) auto;
@@ -527,13 +646,38 @@
     }
 
     .found {
+      justify-items: end;
       text-align: end;
     }
-  }
 
-  @media (min-width: 64rem) {
     .bands {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-6);
+    }
+
+    .block {
+      grid-row: auto;
+      grid-template-rows: auto;
+    }
+
+    .caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--s-1) var(--s-4);
+    }
+
+    .across {
+      display: block;
+      inline-size: var(--share);
+    }
+
+    .down {
+      display: none;
+    }
+
+    .tick {
+      font-size: 11px;
     }
   }
 </style>

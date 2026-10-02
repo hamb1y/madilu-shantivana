@@ -661,7 +661,12 @@ collections:
                 name: mapLabel
                 widget: text
                 i18n: true
-                hint: Keep {plants}, {rows} as written; the site fills them in.
+                hint: Keep {plants}, {empty}, {rows} as written; the site fills them in.
+              - label: Block stats
+                name: blockStats
+                widget: string
+                i18n: true
+                hint: Keep {rows}, {plants}, {empty} as written; the site fills them in.
               - label: Mark
                 name: mark
                 widget: string
@@ -675,15 +680,6 @@ collections:
                 name: showAll
                 widget: string
                 i18n: true
-              - label: Road
-                name: road
-                widget: string
-                i18n: true
-              - label: Rows
-                name: rows
-                widget: string
-                i18n: true
-                hint: Keep {from}, {to} as written; the site fills them in.
               - label: Place
                 name: place
                 widget: string
@@ -733,7 +729,12 @@ collections:
                 name: found
                 widget: string
                 i18n: true
-                hint: Keep {name}, {count}, {from}, {to} as written; the site fills them in.
+                hint: Keep {name}, {count} as written; the site fills them in.
+              - label: Found in
+                name: foundIn
+                widget: string
+                i18n: true
+                hint: Keep {block}, {from}, {to}, {count} as written; the site fills them in.
               - label: Groups title
                 name: groupsTitle
                 widget: string
@@ -883,10 +884,12 @@ collections:
   # ------------------------------------------------------------------- plot ---
   - name: plot
     label: Planting map
+    i18n: true
     files:
       - name: plot
         label: Planting map
         file: content/plot.json
+        i18n: true
         fields:
           - label: Date of the map
             name: date
@@ -894,14 +897,25 @@ collections:
             format: YYYY-MM-DD
             date_format: YYYY-MM-DD
             time_format: false
-          - label: Rows
-            name: rows
+            i18n: duplicate
+          - label: Blocks
+            name: blocks
             widget: list
-            summary: "{{fields.cells}}"
-            hint: >-
-              Row 1 is by the gate. Each row lists its places from the road
-              side, separated by commas, using the kind ids from Site › Plants.
-              "empty" is a pit with nothing in it yet, "house" is the helper's
-              house and "." is a gap with no pit.
+            i18n: true
+            summary: "{{fields.name}}"
+            hint: One block for each sheet of the hand-drawn map, in the order they're shown.
             fields:
-              - { label: Places, name: cells, widget: text }
+              - { label: Name, name: name, widget: string, i18n: true }
+              - label: Rows
+                name: rows
+                widget: list
+                i18n: duplicate
+                summary: "{{fields.cells}}"
+                hint: >-
+                  Row 1 is the top row of the hand-drawn sheet. Each row lists
+                  its nine places from left to right, separated by commas, using
+                  the kind ids from Site › Plants. "empty" is a pit where the
+                  sapling died, "house" is the helper's house and "." is ground
+                  with no pit.
+                fields:
+                  - { label: Places, name: cells, widget: text }

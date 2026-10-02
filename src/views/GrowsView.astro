@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import Figure from "../components/Figure.astro";
 import Onward from "../components/Onward.astro";
 import PlotMap from "../components/PlotMap.svelte";
-import { groups, kindTotal, pages, photo, plantCounts, plantTotal, plot, species, type Locale } from "../data/load";
+import { emptyTotal, groups, kindTotal, pages, photo, plantCounts, plantTotal, plot, species, type Locale } from "../data/load";
 import { formatDate, lx, t } from "../i18n/utils";
 
 export interface Props {
@@ -28,10 +28,18 @@ const groupRows = groups
 // The table's bars are drawn against the most planted kind.
 const most = Math.max(1, ...plantCounts.values());
 
-const BAND = 25;
-const bands = Array.from({ length: Math.ceil(plot.rows.length / BAND) }, (_, b) =>
-  t(lang, "grows.rows", { from: b * BAND + 1, to: Math.min(plot.rows.length, (b + 1) * BAND) }),
-);
+// Each sheet of the hand-drawn map, with what's on it.
+const blocks = plot.blocks.map((block) => {
+  const cells = block.rows.flat();
+  const empty = cells.filter((cell) => cell === "empty").length;
+  const planted = cells.filter((cell) => cell !== "." && cell !== "empty" && cell !== "house").length;
+  return {
+    name: lx(block.name, lang),
+    rows: block.rows,
+    stats: t(lang, "grows.blockStats", { rows: block.rows.length, plants: planted, empty }),
+  };
+});
+const rowTotal = plot.blocks.reduce((sum, block) => sum + block.rows.length, 0);
 const mapDate = formatDate(plot.date, lang);
 ---
 
@@ -51,21 +59,20 @@ const mapDate = formatDate(plot.date, lang);
       <p class="note">{t(lang, "grows.mapNote", { date: mapDate })}</p>
       <PlotMap
         client:load
-        rows={plot.rows}
+        blocks={blocks}
         kinds={Object.fromEntries(species.map((s) => [s.id, { name: lx(s.name, lang), group: s.group }]))}
         groups={groupRows.map((g) => ({ id: g.id, name: lx(g.name, lang), color: g.color, count: g.count }))}
         labels={{
           key: t(lang, "grows.key"),
           showAll: t(lang, "grows.showAll"),
-          road: t(lang, "grows.road"),
           empty: t(lang, "grows.empty"),
           house: t(lang, "grows.house"),
-          mapLabel: t(lang, "grows.mapLabel", { plants: plantTotal, rows: plot.rows.length }),
+          mapLabel: t(lang, "grows.mapLabel", { plants: plantTotal, empty: emptyTotal, rows: rowTotal }),
           place: t(lang, "grows.place"),
-          bands,
           find: t(lang, "grows.find"),
           everyKind: t(lang, "grows.everyKind"),
           found: t(lang, "grows.found"),
+          foundIn: t(lang, "grows.foundIn"),
           groupsTitle: t(lang, "grows.groupsTitle"),
         }}
       />

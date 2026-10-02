@@ -86,12 +86,15 @@ phones, up to 48px. Text measure 66ch. Two radii: `--radius` (4px) and
 - **The story page**: a timeline under large year headings, with a sticky bar
   of year links (the current year underlined as you scroll) and topic filters
   with a live count.
-- **The planting map**: one mark per planting place, with shape and colour both
+- **The planting map**: one block per hand-drawn sheet, with its row numbers.
+  On a phone each block stands as on paper; on a wide screen it's turned so
+  the rows run across. One mark per planting place, with shape and colour both
   showing the group, so it reads without colour too. Empty pits are outlines
   and the helper's house is an ink square. Hovering or tapping a mark shows
-  the kind and its place. The key filters by group, a bar shows each group's
-  share, and "Find a kind" lights up one kind and says where it grows. Rows
-  scale up into place as they scroll in.
+  the kind and its place. The key filters by group or shows the empty pits
+  alone, a bar shows each group's share, and "Find a kind" lights up one kind
+  and says in which rows of each block it grows. Rows scale up into place as
+  they scroll in.
 - **The table on What grows**: every kind with its count and a bar of that
   size in its group colour.
 - **The flow diagram** on Farming: where each input comes from, what it's made

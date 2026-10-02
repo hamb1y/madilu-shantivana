@@ -45,7 +45,7 @@ content/
   topics.json     story topics (planting, water, harvest…); entries pick one
   photos.json     every photo: id, file, description, date
   plants.json     plant groups (with map colours) and kinds
-  plot.json       the planting map, one line of kinds per row (not translated)
+  plot.json       the planting map: one block per hand-drawn sheet, one line of kinds per row
   events/         one story entry per file, named <date>-<slug>.json
 public/
   admin/          Sveltia CMS (index.html, config.yml)

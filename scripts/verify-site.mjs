@@ -590,7 +590,8 @@ async function main() {
   await interactions.setViewport({ width: 1440, height: 900 });
   await interactions.goto(`${ORIGIN}/grows/`, { waitUntil: "load" });
   await interactions.waitForSelector("astro-island:not([ssr])", { timeout: 5000 }).catch(() => {});
-  const place = await interactions.$('.bands [data-id]:not([data-id="."])');
+  // Wide screens show the sheets turned across; phones show them standing.
+  const place = await interactions.$(".bands svg.across [data-id]");
   if (!place) fail("/grows/", "planting map has no places");
   else {
     await place.hover();
@@ -601,10 +602,10 @@ async function main() {
     if (keys.length === 0) fail("/grows/", "planting map key has no group buttons");
     else {
       await keys[0].click();
-      // The marks fade in a sweep across each band; let it finish.
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      const faded = await interactions.$$eval(".bands [data-id]", (rects) =>
-        rects.filter((r) => Number(getComputedStyle(r).opacity) < 0.5).length,
+      // The marks fade in a sweep along each block; let it finish.
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const faded = await interactions.$$eval(".bands svg.across [data-id]", (marks) =>
+        marks.filter((m) => m.classList.contains("dim") && Number(getComputedStyle(m).opacity) < 0.5).length,
       );
       const pressed = await keys[0].evaluate((el) => el.getAttribute("aria-pressed"));
       if (pressed !== "true" || faded === 0) fail("/grows/", "planting map key does not filter");

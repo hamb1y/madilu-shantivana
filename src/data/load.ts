@@ -116,10 +116,16 @@ export interface FarmEvent {
   photo: string;
 }
 
+export interface PlotBlock {
+  name: Localized;
+  /** One list of planting places per row, as on the hand-drawn sheet: "." is ground with no pit, "empty" a pit where the sapling died, "house" the helper's house. */
+  rows: string[][];
+}
+
 export interface Plot {
   date: string;
-  /** One list of planting places per row; "." is no place, "empty" an empty pit, "house" the helper's house. */
-  rows: string[][];
+  /** One block per sheet of the hand-drawn map. */
+  blocks: PlotBlock[];
 }
 
 export const settings = mergeLocales(settingsFile) as Settings;
@@ -130,9 +136,16 @@ export const groups = plants.groups;
 export const topics = (mergeLocales(topicsFile) as { topics: Topic[] }).topics;
 export const species = plants.species;
 
+const plotData = mergeLocales(plotFile) as {
+  date: string;
+  blocks: { name: Localized; rows: { cells: string }[] }[];
+};
 export const plot: Plot = {
-  date: plotFile.date,
-  rows: plotFile.rows.map((row) => row.cells.split(",").map((cell) => cell.trim())),
+  date: plotData.date,
+  blocks: plotData.blocks.map((block) => ({
+    name: block.name,
+    rows: block.rows.map((row) => row.cells.split(",").map((cell) => cell.trim())),
+  })),
 };
 
 /** Width and height of a file in public/, read at build time. */
@@ -171,8 +184,8 @@ export const events: FarmEvent[] = Object.entries(eventFiles)
 /** Places planted on the map, by species id. Empty pits and the house are left out. */
 export const plantCounts: Map<string, number> = (() => {
   const counts = new Map<string, number>();
-  for (const row of plot.rows) {
-    for (const cell of row) {
+  for (const block of plot.blocks) {
+    for (const cell of block.rows.flat()) {
       if (cell === "." || cell === "empty" || cell === "house") continue;
       counts.set(cell, (counts.get(cell) ?? 0) + 1);
     }
@@ -182,5 +195,7 @@ export const plantCounts: Map<string, number> = (() => {
 
 export const plantTotal = [...plantCounts.values()].reduce((sum, n) => sum + n, 0);
 export const kindTotal = plantCounts.size;
+/** Pits where the sapling died. */
+export const emptyTotal = plot.blocks.reduce((sum, block) => sum + block.rows.flat().filter((cell) => cell === "empty").length, 0);
 
 export const logo = settings.logo ? { src: settings.logo, ...(await sizeOf(settings.logo)) } : null;
